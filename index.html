@@ -3,1142 +3,784 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#f4f6fa">
-  <title>StockVentura - AI 투자 위원회 & 데일리 마켓 대시보드</title>
+  <meta name="theme-color" content="#0a0b0e">
+  <title>StockVentura - 프로 트레이더 매매 대시보드</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="light-theme">
-  <!-- 전체 앱 래퍼 -->
-  <div class="app-layout">
-    
-    <!-- 좌측 사이드바 (데스크톱) -->
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <div class="brand-logo">
-          <i class="fa-solid fa-chart-pie"></i>
+<body class="dark-fintech">
+  
+  <!-- 상단 글로벌 네비게이션 헤더 -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <div class="brand-badge">
+        <div class="logo-mark"><i class="fa-solid fa-chart-simple"></i></div>
+        <div class="brand-text">
+          <span class="brand-title">StockVentura</span>
+          <span class="brand-sub">PRO TRADING OS</span>
         </div>
-        <span class="brand-name">StockVentura</span>
       </div>
-
-      <!-- 다크/라이트 테마 토글 버튼 -->
-      <div class="theme-toggle-box">
-        <button id="themeToggleLight" class="theme-btn active" title="라이트 모드"><i class="fa-regular fa-sun"></i></button>
-        <button id="themeToggleDark" class="theme-btn" title="다크 모드"><i class="fa-regular fa-moon"></i></button>
-      </div>
-
-      <!-- 네비게이션 아이콘 메뉴 -->
-      <nav class="sidebar-nav">
-        <button class="side-nav-btn active" data-tab="tab-dashboard" title="대시보드 홈">
-          <i class="fa-solid fa-table-columns"></i>
-        </button>
-        <button class="side-nav-btn" data-tab="tab-recommendations" title="AI 추천 종목 5선">
-          <i class="fa-solid fa-fire"></i>
-        </button>
-        <button class="side-nav-btn" data-tab="tab-timing" title="매수·매도 타이밍 판독">
-          <i class="fa-solid fa-compass"></i>
-        </button>
-        <button class="side-nav-btn" data-tab="tab-news" title="탑 뉴스 & 심층 테마">
-          <i class="fa-solid fa-newspaper"></i>
-        </button>
-        <button class="side-nav-btn" data-tab="tab-journal" title="원칙 매매일지">
-          <i class="fa-solid fa-book-bookmark"></i>
-        </button>
-        <button class="side-nav-btn" data-tab="tab-calculator" title="2% 리스크 계산기">
-          <i class="fa-solid fa-calculator"></i>
-        </button>
+      <nav class="nav-links">
+        <button class="nav-btn active" data-tab="tab-overview">마켓 브리핑</button>
+        <button class="nav-btn" data-tab="tab-picks">수급 추천 TOP 5</button>
+        <button class="nav-btn" data-tab="tab-calendar">매매 일정 캘린더</button>
+        <button class="nav-btn" data-tab="tab-journal">매매일지 작성</button>
+        <button class="nav-btn" data-tab="tab-directory">필수 분석 사이트</button>
       </nav>
+    </div>
 
-      <div class="sidebar-footer">
-        <button id="btnSidebarBackup" class="side-nav-btn" title="데이터 백업"><i class="fa-solid fa-cloud-arrow-down"></i></button>
+    <!-- 우측 상단: 한눈에 박히는 현재 누적 손익 금액 배너 -->
+    <div class="nav-right">
+      <div class="loss-pill-banner">
+        <span class="pulse-indicator"></span>
+        <span class="loss-label">누적 손익</span>
+        <strong class="loss-amount">-138,800,000원</strong>
       </div>
-    </aside>
+      <button id="btnQuickRecord" class="btn btn-action" onclick="switchTab('tab-journal')">
+        <i class="fa-solid fa-pen-to-square"></i> 일지 작성
+      </button>
+    </div>
+  </header>
 
-    <!-- 메인 콘텐츠 영역 -->
-    <div class="main-wrapper">
-      
-      <!-- 상단 탑바 -->
-      <header class="topbar">
-        <div class="topbar-left">
-          <div class="active-pill-tab">
-            <span>Market Overview</span>
-            <i class="fa-solid fa-xmark pill-close"></i>
-          </div>
-          <div class="topbar-nav-links">
-            <button class="topbar-link active" data-tab="tab-dashboard">홈 대시보드</button>
-            <button class="topbar-link" data-tab="tab-recommendations">AI 추천주</button>
-            <button class="topbar-link" data-tab="tab-timing">시장 판독기</button>
-            <button class="topbar-link" data-tab="tab-news">뉴스 & 테마</button>
-            <button class="topbar-link" data-tab="tab-journal">매매일지</button>
-          </div>
-        </div>
-
-        <div class="topbar-right">
-          <div class="market-status-pill warning-pill">
-            <span class="pulse-dot"></span>
-            <strong>오늘 장세: 매수 관망 / 지지선 대기</strong>
-          </div>
-          <div class="user-profile">
-            <div class="user-avatar">
-              <i class="fa-solid fa-user-tie"></i>
-            </div>
-            <div class="user-info">
-              <span class="user-greeting">Good Morning</span>
-              <strong class="user-name">투자자님</strong>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <!-- TradingView 실시간 티커 바 (헤더 바로 아래 매끄럽게 배치) -->
-      <div class="live-ticker-strip">
-        <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-          {
-            "symbols": [
-              {"proName": "KRX:005930", "title": "삼성전자"},
-              {"proName": "KRX:000660", "title": "SK하이닉스"},
-              {"proName": "KRX:001440", "title": "대한전선"},
-              {"proName": "KRX:010140", "title": "삼성중공업"},
-              {"proName": "KRX:089030", "title": "테크윙"},
-              {"proName": "FX_IDC:USDKRW", "title": "원/달러"},
-              {"proName": "FOREXCOM:NSXUSD", "title": "나스닥 100"},
-              {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"}
-            ],
-            "showSymbolLogo": true,
-            "isTransparent": true,
-            "displayMode": "adaptive",
-            "colorTheme": "light",
-            "locale": "kr"
-          }
-          </script>
-        </div>
-      </div>
-
-      <!-- 콘텐츠 뷰포트 -->
-      <main class="content-body">
-        
-        <!-- [탭 1] 홈 종합 대시보드 -->
-        <section id="tab-dashboard" class="tab-pane active">
-          
-          <!-- 웰컴 & 시장 진단 배너 -->
-          <div class="welcome-banner">
-            <div class="welcome-text">
-              <h2>오늘 장세 판정: <span class="highlight-warning">"매수 보류 — 지지선 눌림목 관망"</span></h2>
-              <p>파생 수급 콜벽(1,117.5~1,120) 저항 및 실적 발표를 앞둔 관망세입니다. 무리한 추격매수 대신 20일선 지지선까지 조정을 기다리세요.</p>
-            </div>
-            <div class="banner-quick-actions">
-              <button class="btn btn-primary" onclick="switchTab('tab-recommendations')"><i class="fa-solid fa-fire"></i> 오늘의 추천 5선 보기</button>
-              <button class="btn btn-secondary" onclick="openNewTradeModal()"><i class="fa-solid fa-plus"></i> 매매일지 작성</button>
-            </div>
-          </div>
-
-          <!-- 상단 3대 지표 카드 그리드 (이미지 레퍼런스 스타일) -->
-          <div class="kpi-grid">
-            <div class="kpi-card">
-              <div class="kpi-header">
-                <span class="kpi-title">코스피/코스닥 시장 체온</span>
-                <div class="kpi-icon-badge blue-badge"><i class="fa-solid fa-temperature-half"></i></div>
-              </div>
-              <div class="kpi-body">
-                <h3 class="kpi-value">RSI 46.2 <span class="kpi-sub-badge neutral">중립 하단</span></h3>
-                <p class="kpi-desc"><i class="fa-solid fa-gauge-simple"></i> 과매수(70) 없음, 과매도(30) 대기 구간</p>
-              </div>
-            </div>
-
-            <div class="kpi-card">
-              <div class="kpi-header">
-                <span class="kpi-title">파생 수급 저항/지지 위치</span>
-                <div class="kpi-icon-badge purple-badge"><i class="fa-solid fa-compass"></i></div>
-              </div>
-              <div class="kpi-body">
-                <h3 class="kpi-value">콜벽 1,117.5 <span class="kpi-sub-badge danger">최강 저항</span></h3>
-                <p class="kpi-desc"><i class="fa-solid fa-shield"></i> 골든 매수 지지선: <strong>1,072.7 ~ 1,082.5 pt</strong></p>
-              </div>
-            </div>
-
-            <div class="kpi-card">
-              <div class="kpi-header">
-                <span class="kpi-title">1회 거래 리스크 한도 (2% 룰)</span>
-                <div class="kpi-icon-badge amber-badge"><i class="fa-solid fa-shield-halved"></i></div>
-              </div>
-              <div class="kpi-body">
-                <h3 class="kpi-value">최대 200,000원 <span class="kpi-sub-badge success">시드 1천만 기준</span></h3>
-                <p class="kpi-desc"><i class="fa-solid fa-check"></i> 1회 손실 2% 고정으로 계좌 파산 원천 방지</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- 중간 2단 레이아웃: [좌] 매수·매도 신호 게이지 & 차트 / [우] 다가오는 핵심 일정 D-Day -->
-          <div class="dashboard-split-row">
-            
-            <!-- [좌] 매수 타이밍 신호 & 실시간 지수 게이지 -->
-            <div class="card-box flex-3">
-              <div class="card-header">
-                <div class="card-title-group">
-                  <h3><i class="fa-solid fa-chart-line text-primary"></i> 오늘 매수해도 되는 날인가요? 정밀 판정기</h3>
-                  <span class="card-subtitle">과매수/과매도, 파생 수급, 외인·기관 자금 흐름 종합 평가</span>
-                </div>
-              </div>
-              <div class="timing-gauge-layout">
-                <div class="gauge-meter-box">
-                  <div class="gauge-visual">
-                    <svg viewBox="0 0 200 120" class="gauge-svg">
-                      <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#e2e8f0" stroke-width="18" stroke-linecap="round"/>
-                      <!-- 40% 지점(관망)까지 게이지 채움 -->
-                      <path d="M 20 100 A 80 80 0 0 1 100 20" fill="none" stroke="url(#gaugeGradient)" stroke-width="18" stroke-linecap="round"/>
-                      <defs>
-                        <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                          <stop offset="0%" stop-color="#3b82f6"/>
-                          <stop offset="100%" stop-color="#f59e0b"/>
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                    <div class="gauge-center-text">
-                      <strong class="gauge-score">42 / 100</strong>
-                      <span class="gauge-status text-warning">매수 관망</span>
-                    </div>
-                  </div>
-                  <div class="gauge-legend">
-                    <span>0~30 과매도(적극매수)</span>
-                    <strong class="text-warning">31~60 중립(관망)</strong>
-                    <span>61~100 과매수(매도)</span>
-                  </div>
-                </div>
-
-                <div class="timing-checklist">
-                  <div class="check-item-row pass">
-                    <i class="fa-solid fa-circle-check text-profit"></i>
-                    <div>
-                      <strong>환율 및 금리 안정세</strong>
-                      <span>원/달러 환율 1,350원대 소강, 미 국채금리 4.08% 등락</span>
-                    </div>
-                  </div>
-                  <div class="check-item-row warn">
-                    <i class="fa-solid fa-circle-exclamation text-warning"></i>
-                    <div>
-                      <strong>파생 콜벽 저항선(1,117.5~1,120) 근접</strong>
-                      <span>현재가 바로 머리 위 거대 매도벽. 지금 사면 상투 위험!</span>
-                    </div>
-                  </div>
-                  <div class="check-item-row info">
-                    <i class="fa-solid fa-circle-info text-primary"></i>
-                    <div>
-                      <strong>외인·기관 자금 이동</strong>
-                      <span>지수 전반 매수보다 '수주잔고 4조원대 전력·조선'으로 압축 매수</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- [우] 다가오는 대비 필수 경제 일정 & D-Day 알림 -->
-            <div class="card-box flex-2">
-              <div class="card-header">
-                <div class="card-title-group">
-                  <h3><i class="fa-regular fa-bell text-warning"></i> 대비해야 할 D-Day 일정</h3>
-                  <span class="card-subtitle">시장 변동성을 촉발할 글로벌 주요 이벤트</span>
-                </div>
-              </div>
-              <div class="events-list">
-                <div class="event-item">
-                  <div class="event-dday dday-danger">D-2</div>
-                  <div class="event-details">
-                    <strong>미국 9월 소매판매 & 산업생산 발표</strong>
-                    <span>경기 연착륙 여부 가늠 (21:30 KST) ▷ 금리·환율 요동 주의</span>
-                  </div>
-                </div>
-                <div class="event-item">
-                  <div class="event-dday dday-warning">D-5</div>
-                  <div class="event-details">
-                    <strong>한국 금통위 기준금리 결정</strong>
-                    <span>내수 경기 부양을 위한 인하 여부 및 가계부채 부동산 반응 점검</span>
-                  </div>
-                </div>
-                <div class="event-item">
-                  <div class="event-dday dday-info">D-8</div>
-                  <div class="event-details">
-                    <strong>빅테크 실적 발표 주간 (MSFT·구글)</strong>
-                    <span>AI 데이터센터 CapEx(설비투자) 가이던스 확인 ▷ 전력망·HBM 영향</span>
-                  </div>
-                </div>
-                <div class="event-item">
-                  <div class="event-dday dday-neutral">D-14</div>
-                  <div class="event-details">
-                    <strong>미국 대선 및 FOMC 금리 회의</strong>
-                    <span>글로벌 관세·신재생/전력 인프라 정책 방향 확정</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- 하단 2단 레이아웃: [좌] AI 추천 종목 Top 5 카드 / [우] Top Stories & 최신 뉴스 큐레이션 -->
-          <div class="dashboard-split-row">
-            
-            <!-- [좌] 오늘의 AI 추천 종목 5선 (이미지 'Top Product Recommendation' 스타일) -->
-            <div class="card-box flex-3">
-              <div class="card-header">
-                <div class="card-title-group">
-                  <h3><i class="fa-solid fa-fire text-danger"></i> 오늘의 AI 추천 종목 TOP 5</h3>
-                  <span class="card-subtitle">4대 전문지 5페이지 전수 크롤링 및 위원회 필터링 통과 종목</span>
-                </div>
-                <button class="btn btn-outline btn-sm" onclick="switchTab('tab-recommendations')">전체 분석 보기</button>
-              </div>
-
-              <div class="product-rec-list">
-                
-                <!-- 추천 1: 대한전선 -->
-                <div class="rec-row-item">
-                  <div class="rec-thumb-icon wire-bg">
-                    <i class="fa-solid fa-bolt"></i>
-                  </div>
-                  <div class="rec-main-info">
-                    <div class="rec-title-wrap">
-                      <strong class="rec-name">대한전선</strong>
-                      <span class="rec-code">001440 · AI 전력인프라 대장주</span>
-                    </div>
-                    <span class="rec-catalyst">[디일렉 특종] 영국 런던 400kV 초고압 전력망 수주, 총 수주잔고 4조원 돌파</span>
-                  </div>
-                  <div class="rec-price-info">
-                    <span class="rec-curr-price">23,350원</span>
-                    <span class="rec-target-price text-profit">목표가 33,000원 (+41.3%)</span>
-                  </div>
-                  <div class="rec-action-info">
-                    <span class="badge badge-discipline">손익비 2.4 : 1</span>
-                    <a href="https://m.stock.naver.com/item/main.nhn?code=001440" target="_blank" class="btn btn-sm btn-secondary">호가창</a>
-                  </div>
-                </div>
-
-                <!-- 추천 2: 삼성중공업 -->
-                <div class="rec-row-item">
-                  <div class="rec-thumb-icon ship-bg">
-                    <i class="fa-solid fa-ship"></i>
-                  </div>
-                  <div class="rec-main-info">
-                    <div class="rec-title-wrap">
-                      <strong class="rec-name">삼성중공업</strong>
-                      <span class="rec-code">010140 · 조선 슈퍼사이클</span>
-                    </div>
-                    <span class="rec-catalyst">[한경 컨센서스] 모잠비크 코랄 설 2호 FLNG 본계약 가시화, 영업익 1.3조 전망</span>
-                  </div>
-                  <div class="rec-price-info">
-                    <span class="rec-curr-price">18,170원</span>
-                    <span class="rec-target-price text-profit">목표가 33,650원 (+85.2%)</span>
-                  </div>
-                  <div class="rec-action-info">
-                    <span class="badge badge-discipline">손익비 2.8 : 1</span>
-                    <a href="https://m.stock.naver.com/item/main.nhn?code=010140" target="_blank" class="btn btn-sm btn-secondary">호가창</a>
-                  </div>
-                </div>
-
-                <!-- 추천 3: 테크윙 -->
-                <div class="rec-row-item">
-                  <div class="rec-thumb-icon chip-bg">
-                    <i class="fa-solid fa-microchip"></i>
-                  </div>
-                  <div class="rec-main-info">
-                    <div class="rec-title-wrap">
-                      <strong class="rec-name">테크윙</strong>
-                      <span class="rec-code">089030 · HBM 초고속 검사 장비</span>
-                    </div>
-                    <span class="rec-catalyst">[디일렉] 메모리 호황에 3분기 매출 2배 폭증, 차세대 큐브프로버 공급 개시</span>
-                  </div>
-                  <div class="rec-price-info">
-                    <span class="rec-curr-price">41,200원</span>
-                    <span class="rec-target-price text-profit">목표가 55,000원 (+33.5%)</span>
-                  </div>
-                  <div class="rec-action-info">
-                    <span class="badge badge-discipline">손익비 2.1 : 1</span>
-                    <a href="https://m.stock.naver.com/item/main.nhn?code=089030" target="_blank" class="btn btn-sm btn-secondary">호가창</a>
-                  </div>
-                </div>
-
-                <!-- 추천 4: 한국콜마 -->
-                <div class="rec-row-item">
-                  <div class="rec-thumb-icon beauty-bg">
-                    <i class="fa-solid fa-spray-can-sparkles"></i>
-                  </div>
-                  <div class="rec-main-info">
-                    <div class="rec-title-wrap">
-                      <strong class="rec-name">한국콜마</strong>
-                      <span class="rec-code">161890 · K-뷰티 인디 브랜드 ODM</span>
-                    </div>
-                    <span class="rec-catalyst">[한경 컨센서스] 글로벌 인디 뷰티 수출 폭발로 계절성 초월 분기 최대 실적</span>
-                  </div>
-                  <div class="rec-price-info">
-                    <span class="rec-curr-price">124,500원</span>
-                    <span class="rec-target-price text-profit">목표가 180,000원 (+44.6%)</span>
-                  </div>
-                  <div class="rec-action-info">
-                    <span class="badge badge-discipline">손익비 2.3 : 1</span>
-                    <a href="https://m.stock.naver.com/item/main.nhn?code=161890" target="_blank" class="btn btn-sm btn-secondary">호가창</a>
-                  </div>
-                </div>
-
-                <!-- 추천 5: HD현대일렉트릭 -->
-                <div class="rec-row-item">
-                  <div class="rec-thumb-icon electric-bg">
-                    <i class="fa-solid fa-tower-broadcast"></i>
-                  </div>
-                  <div class="rec-main-info">
-                    <div class="rec-title-wrap">
-                      <strong class="rec-name">HD현대일렉트릭</strong>
-                      <span class="rec-code">267260 · 북미 변압기 쇼티지</span>
-                    </div>
-                    <span class="rec-catalyst">[핀포인트뉴스] 미국 빅테크 전력망 교체 및 데이터센터 변압기 2028년 납기 완판</span>
-                  </div>
-                  <div class="rec-price-info">
-                    <span class="rec-curr-price">348,000원</span>
-                    <span class="rec-target-price text-profit">목표가 450,000원 (+29.3%)</span>
-                  </div>
-                  <div class="rec-action-info">
-                    <span class="badge badge-discipline">손익비 2.0 : 1</span>
-                    <a href="https://m.stock.naver.com/item/main.nhn?code=267260" target="_blank" class="btn btn-sm btn-secondary">호가창</a>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- [우] Top Stories & 최신 뉴스 큐레이션 (선명하고 큼직하게 재구성) -->
-            <div class="card-box flex-2">
-              <div class="card-header">
-                <div class="card-title-group">
-                  <h3><i class="fa-solid fa-newspaper text-primary"></i> Top Stories & 5대 전문지 뉴스</h3>
-                  <span class="card-subtitle">디일렉 · 한경 컨센서스 · 프라임경제 · 핀포인트 전수 분석</span>
-                </div>
-                <button class="btn btn-outline btn-sm" onclick="switchTab('tab-news')">테마 전체</button>
-              </div>
-
-              <div class="top-stories-list">
-                <article class="story-item">
-                  <div class="story-tag tag-exclusive">단독 수주</div>
-                  <h4 class="story-headline">
-                    <a href="https://www.thelec.kr/news/articleList.html?view_type=sm" target="_blank">
-                      대한전선, 영국 런던에 400kV 초고압 전력망 구축 수주… 수주잔고 4조 돌파
-                    </a>
-                  </h4>
-                  <p class="story-desc">미국 초고압 턴키 1,200억 자재 공급에 이어 유럽 시장까지 연쇄 수주. AI 데이터센터 전력 쇼티지 최대 수혜주로 부각.</p>
-                  <div class="story-meta">
-                    <span><i class="fa-regular fa-clock"></i> 디일렉 심층보도</span>
-                    <span class="impact-text text-profit"><i class="fa-solid fa-arrow-trend-up"></i> 전력 인프라 섹터 전반 강세</span>
-                  </div>
-                </article>
-
-                <article class="story-item">
-                  <div class="story-tag tag-earnings">실적 서프라이즈</div>
-                  <h4 class="story-headline">
-                    <a href="https://www.thelec.kr/news/articleList.html?view_type=sm" target="_blank">
-                      테크윙, 메모리 호황에 3분기 매출 전년비 2배 이상 폭증
-                    </a>
-                  </h4>
-                  <p class="story-desc">엔비디아 블랙웰 양산 및 HBM4 전환으로 고속 검사 핸들러와 큐브프로버 납품 본격화. 반도체 소부장 실적 턴어라운드 증명.</p>
-                  <div class="story-meta">
-                    <span><i class="fa-regular fa-clock"></i> 디일렉 반도체</span>
-                    <span class="impact-text text-profit"><i class="fa-solid fa-arrow-trend-up"></i> HBM 소부장 수급 집중</span>
-                  </div>
-                </article>
-
-                <article class="story-item">
-                  <div class="story-tag tag-report">목표가 상향</div>
-                  <h4 class="story-headline">
-                    <a href="https://markets.hankyung.com/consensus" target="_blank">
-                      삼성중공업, 흔들림 없는 실적과 모잠비크 FLNG 본계약 체결 가시화
-                    </a>
-                  </h4>
-                  <p class="story-desc">SK증권/상상인증권 목표주가 35,000원 유지. 고선가 LNG선 건조 비중 확대에 따른 2026년 영업이익 1.3조 돌파 확실시.</p>
-                  <div class="story-meta">
-                    <span><i class="fa-regular fa-clock"></i> 한경 컨센서스</span>
-                    <span class="impact-text text-profit"><i class="fa-solid fa-arrow-trend-up"></i> 조선주 밸류에이션 리레이팅</span>
-                  </div>
-                </article>
-
-                <article class="story-item">
-                  <div class="story-tag tag-policy">글로벌 테크</div>
-                  <h4 class="story-headline">
-                    <a href="https://www.thelec.kr/news/articleList.html?view_type=sm" target="_blank">
-                      삼성전자, 엔비디아 AI 노트북용 OLED 독점 공급 확정
-                    </a>
-                  </h4>
-                  <p class="story-desc">차세대 AI 온디바이스 노트북 라인업에 탑재될 초저전력 OLED 패널 국내 기업이 독점. IT 패널 수요 반등 청신호.</p>
-                  <div class="story-meta">
-                    <span><i class="fa-regular fa-clock"></i> 디일렉 디스플레이</span>
-                    <span class="impact-text text-primary"><i class="fa-solid fa-check"></i> 디스플레이 장비주 온기 확산</span>
-                  </div>
-                </article>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- 주목해야 할 4대 핵심 메가 테마 섹션 -->
-          <div class="card-box mt-20">
-            <div class="card-header">
-              <div class="card-title-group">
-                <h3><i class="fa-solid fa-layer-group text-primary"></i> 지금 반드시 주목해야 할 4대 핵심 테마 & 정밀 분석</h3>
-                <span class="card-subtitle">단기 테마가 아닌 2~3년간 실적으로 증명될 구조적 수혜 섹터</span>
-              </div>
-            </div>
-
-            <div class="themes-quad-grid">
-              <div class="theme-quad-card">
-                <div class="tqc-header">
-                  <div class="tqc-icon blue-badge"><i class="fa-solid fa-bolt"></i></div>
-                  <div>
-                    <h4 class="tqc-title">1. AI 전력 인프라 & 초고압 송전망</h4>
-                    <span class="tqc-stage">슈퍼사이클 확장기</span>
-                  </div>
-                </div>
-                <div class="tqc-stocks">
-                  <span class="stock-pill">대한전선</span>
-                  <span class="stock-pill">HD현대일렉트릭</span>
-                  <span class="stock-pill">효성중공업</span>
-                </div>
-                <p class="tqc-reason">
-                  <strong>선정 이유:</strong> 생성형 AI 데이터센터의 전력 소모량이 기존 대비 6~10배 폭증하며 미국과 유럽의 노후 전력망이 포화 상태에 도달했습니다. 변압기와 초고압 케이블은 납기가 2028년까지 밀려있어 판가 전가력이 극대화된 최고 호황기입니다.
-                </p>
-              </div>
-
-              <div class="theme-quad-card">
-                <div class="tqc-header">
-                  <div class="tqc-icon purple-badge"><i class="fa-solid fa-ship"></i></div>
-                  <div>
-                    <h4 class="tqc-title">2. K-조선 & 해양 FLNG 슈퍼사이클</h4>
-                    <span class="tqc-stage">실적 턴어라운드 폭발기</span>
-                  </div>
-                </div>
-                <div class="tqc-stocks">
-                  <span class="stock-pill">삼성중공업</span>
-                  <span class="stock-pill">HD현대중공업</span>
-                  <span class="stock-pill">한화오션</span>
-                </div>
-                <p class="tqc-reason">
-                  <strong>선정 이유:</strong> 2021~2022년에 수주한 고선가 친환경 LNG선이 본격 인도되며 조선사들의 영업이익이 조 단위로 폭증하고 있습니다. 특히 삼성중공업의 독점적 FLNG(부유식 LNG 생산설비) 본계약이 임박해 해양 플랜트 마진이 급증합니다.
-                </p>
-              </div>
-
-              <div class="theme-quad-card">
-                <div class="tqc-header">
-                  <div class="tqc-icon amber-badge"><i class="fa-solid fa-microchip"></i></div>
-                  <div>
-                    <h4 class="tqc-title">3. HBM 후공정 & 차세대 유리기판</h4>
-                    <span class="tqc-stage">기술 전환 수혜기</span>
-                  </div>
-                </div>
-                <div class="tqc-stocks">
-                  <span class="stock-pill">테크윙</span>
-                  <span class="stock-pill">SK하이닉스</span>
-                  <span class="stock-pill">제이앤티씨</span>
-                </div>
-                <p class="tqc-reason">
-                  <strong>선정 이유:</strong> 엔비디아의 차세대 블랙웰 칩 본격 양산과 HBM4 개발로 인해 불량 칩을 선별하는 고속 테스터(핸들러/프로버) 수요가 필수 불가결해졌습니다. 테크윙의 3분기 매출 2배 급증이 이를 숫자로 입증하고 있습니다.
-                </p>
-              </div>
-
-              <div class="theme-quad-card">
-                <div class="tqc-header">
-                  <div class="tqc-icon green-badge"><i class="fa-solid fa-spray-can-sparkles"></i></div>
-                  <div>
-                    <h4 class="tqc-title">4. K-뷰티 글로벌 인디 브랜드 ODM</h4>
-                    <span class="tqc-stage">글로벌 점유율 침투기</span>
-                  </div>
-                </div>
-                <div class="tqc-stocks">
-                  <span class="stock-pill">한국콜마</span>
-                  <span class="stock-pill">코스맥스</span>
-                  <span class="stock-pill">실리콘투</span>
-                </div>
-                <p class="tqc-reason">
-                  <strong>선정 이유:</strong> 미국 아마존과 틱톡을 중심으로 한국 인디 화장품 브랜드의 돌풍이 불면서, 이들에게 제조를 공급하는 한국콜마 등의 수주 공장이 풀가동 중입니다. 중국 의존도를 완전히 벗어나 미국·유럽 시장으로 다변화에 성공했습니다.
-                </p>
-              </div>
-            </div>
-          </div>
-
-        </section>
-
-        <!-- [탭 2] AI 추천 종목 5선 상세 분석 탭 -->
-        <section id="tab-recommendations" class="tab-pane">
-          <div class="section-header">
-            <h2><i class="fa-solid fa-fire text-danger"></i> AI 투자 분석 위원회 5대 추천주 정밀 보고서</h2>
-            <p class="section-desc">한경 컨센서스, 디일렉, 프라임경제 등 4대 전문지 5페이지 전수 크롤링 및 교차 검증 통과 종목</p>
-          </div>
-
-          <!-- 1순위: 대한전선 상세 카드 -->
-          <div class="detail-rec-card">
-            <div class="drc-header">
-              <div class="drc-badge-row">
-                <span class="rank-badge">추천 1순위</span>
-                <span class="sector-badge">AI 전력망 송전선로</span>
-                <span class="score-badge">위원회 종합 점수 77.5점 (조건부 승인)</span>
-              </div>
-              <div class="drc-price-row">
-                <div>
-                  <h3 class="drc-stock-title">대한전선 (001440)</h3>
-                  <span class="drc-market">코스피 상장사 · 일평균 거래대금 1,840억 원 주도주</span>
-                </div>
-                <div class="drc-pricing">
-                  <span class="drc-curr">최근 종가: <strong>23,350원</strong></span>
-                  <span class="drc-target text-profit">증권사 목표가: <strong>33,000원 (+41.3%)</strong></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="drc-content-grid">
-              <div class="drc-box">
-                <h4><i class="fa-solid fa-newspaper text-primary"></i> 5페이지 심층 뉴스 & 수주 팩트</h4>
-                <ul class="drc-list">
-                  <li><strong>영국 런던 400kV 프로젝트 수주:</strong> [디일렉 단독] 국회 외통위 방문 및 런던 초고압 전력망 구축 사업 본격화.</li>
-                  <li><strong>미국 1,200억 턴키 추가 수주:</strong> 북미 공략 가속화로 전체 확정 수주잔고 4조 1,200억 원 공식 돌파.</li>
-                  <li><strong>기관·외인 수급 유입:</strong> 최근 5거래일 외국인 +420억, 기관 +180억 쌍끌이 순매수 유입.</li>
-                </ul>
-              </div>
-
-              <div class="drc-box">
-                <h4><i class="fa-solid fa-bullseye text-warning"></i> 실전 매매 전략 & 손익비 (2.42 : 1)</h4>
-                <div class="strategy-pill-grid">
-                  <div class="sp-item">
-                    <span>1차 매수 진입가</span>
-                    <strong>22,800 ~ 23,300원 (20일선 눌림목)</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>목표가 (Take Profit)</span>
-                    <strong class="text-profit">28,000 ~ 33,000원 (+20%~+41%)</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>절대 손절선</span>
-                    <strong class="text-loss">21,450원 (60일선 이탈 시 -7.9%)</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>권장 계좌 비중</span>
-                    <strong>총 시드의 5% ~ 8%</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 위원회 핵심 평가 요약 -->
-            <div class="committee-mini-strip">
-              <div class="cms-item">
-                <strong>타이밍 전략가 (75점):</strong> 20일선 이격 축소 확인 후 진입 유효. 장중 갭상승 추격 금지.
-              </div>
-              <div class="cms-item">
-                <strong>피터 린치 관점 (85점):</strong> "전형적인 빠른 성장주. AI 전력 부족의 실질적 수혜가 4조 수주잔고로 증명됨."
-              </div>
-              <div class="cms-item">
-                <strong>찰리 멍거 관점 (70점):</strong> "수주가 이익으로 온전히 반영되는지 주시하되, 손절폭을 21,450원으로 엄격히 통제하라."
-              </div>
-            </div>
-          </div>
-
-          <!-- 2순위: 삼성중공업 상세 카드 -->
-          <div class="detail-rec-card mt-20">
-            <div class="drc-header">
-              <div class="drc-badge-row">
-                <span class="rank-badge rank-2">추천 2순위</span>
-                <span class="sector-badge">친환경 LNG선 & 해양 FLNG</span>
-                <span class="score-badge">위원회 종합 점수 81.0점 (승인)</span>
-              </div>
-              <div class="drc-price-row">
-                <div>
-                  <h3 class="drc-stock-title">삼성중공업 (010140)</h3>
-                  <span class="drc-market">코스피 상장사 · 애널리스트 23명 컨센서스 상향</span>
-                </div>
-                <div class="drc-pricing">
-                  <span class="drc-curr">최근 종가: <strong>18,170원</strong></span>
-                  <span class="drc-target text-profit">애널리스트 평균 목표가: <strong>33,652원 (+85.2%)</strong></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="drc-content-grid">
-              <div class="drc-box">
-                <h4><i class="fa-solid fa-newspaper text-primary"></i> 핵심 리포트 & 실적 트리거</h4>
-                <ul class="drc-list">
-                  <li><strong>FLNG 독점적 수주 모멘텀:</strong> 모잠비크 코랄 설 2호 및 북미 델핀 FLNG 본계약 가시화.</li>
-                  <li><strong>2026년 영업이익 1.3조 전망:</strong> [한경 컨센서스 / DS투자증권] LNG선 선가 상승분 온기 반영으로 역대급 흑자 기조.</li>
-                  <li><strong>기관 연기금 매수:</strong> 조정장에서도 연기금의 최우선 매수 포트폴리오 유지.</li>
-                </ul>
-              </div>
-
-              <div class="drc-box">
-                <h4><i class="fa-solid fa-bullseye text-warning"></i> 실전 매매 전략 & 손익비 (2.8 : 1)</h4>
-                <div class="strategy-pill-grid">
-                  <div class="sp-item">
-                    <span>1차 매수 진입가</span>
-                    <strong>17,800 ~ 18,200원</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>목표가 (Take Profit)</span>
-                    <strong class="text-profit">25,000 ~ 33,000원 (+37%~+81%)</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>절대 손절선</span>
-                    <strong class="text-loss">16,800원 (직전 저점 이탈 시 -6.5%)</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>권장 계좌 비중</span>
-                    <strong>총 시드의 7% ~ 10%</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3순위: 테크윙 상세 카드 -->
-          <div class="detail-rec-card mt-20">
-            <div class="drc-header">
-              <div class="drc-badge-row">
-                <span class="rank-badge rank-3">추천 3순위</span>
-                <span class="sector-badge">HBM 초고속 검사 장비</span>
-                <span class="score-badge">위원회 종합 점수 76.0점 (조건부 승인)</span>
-              </div>
-              <div class="drc-price-row">
-                <div>
-                  <h3 class="drc-stock-title">테크윙 (089030)</h3>
-                  <span class="drc-market">코스닥 상장사 · 차세대 큐브프로버 독점 공급</span>
-                </div>
-                <div class="drc-pricing">
-                  <span class="drc-curr">최근가: <strong>41,200원</strong></span>
-                  <span class="drc-target text-profit">증권가 목표가: <strong>55,000원 (+33.5%)</strong></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="drc-content-grid">
-              <div class="drc-box">
-                <h4><i class="fa-solid fa-newspaper text-primary"></i> 실적 턴어라운드 팩트</h4>
-                <ul class="drc-list">
-                  <li><strong>3분기 매출 2배 폭증:</strong> [디일렉] 메모리 호황에 힘입어 전년 동기 대비 100% 이상 매출 급성장.</li>
-                  <li><strong>HBM4 필수 테스트 장비:</strong> 고단 적층 HBM 수율 잡기를 위한 큐브프로버 공급으로 단가 대폭 상승.</li>
-                </ul>
-              </div>
-
-              <div class="drc-box">
-                <h4><i class="fa-solid fa-bullseye text-warning"></i> 실전 매매 전략 & 손익비 (2.1 : 1)</h4>
-                <div class="strategy-pill-grid">
-                  <div class="sp-item">
-                    <span>1차 매수 진입가</span>
-                    <strong>39,500 ~ 41,000원</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>목표가 (Take Profit)</span>
-                    <strong class="text-profit">50,000 ~ 55,000원 (+25%~+37%)</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>절대 손절선</span>
-                    <strong class="text-loss">37,200원 (-8.0%)</strong>
-                  </div>
-                  <div class="sp-item">
-                    <span>권장 계좌 비중</span>
-                    <strong>총 시드의 3% ~ 5%</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </section>
-
-        <!-- [탭 3] 매수·매도 타이밍 판독기 탭 -->
-        <section id="tab-timing" class="tab-pane">
-          <div class="section-header">
-            <h2><i class="fa-solid fa-compass text-primary"></i> 파생 수급 기반 지수 지지·저항 판독기</h2>
-            <p class="section-desc">옵션 미결제약정(OI), 감마(Gamma), Max Pain, ELW 델타 플로우를 통한 매수/매도 시점 판별</p>
-          </div>
-
-          <div class="signal-alert-card danger-zone">
-            <div class="signal-header">
-              <span class="signal-badge badge-warning">🚨 지수 대응 지침: 신규 추격 매수 금지 / 지지선 대기</span>
-              <span class="signal-price">파생 현재가 레벨: <strong>1,112.13 pt</strong></span>
-            </div>
-            <p class="signal-desc">
-              현재가는 머리 위 **1,117.5 ~ 1,120.0 pt 콜벽 최대치(+163.9억 원)**에 근접해 있습니다. 상방 공간(5pt) 대비 하방 위험(40pt)이 크므로, 지금 지수 관련 대형주를 추격 매수하면 상투를 잡게 됩니다.
-            </p>
-          </div>
-
-          <div class="timing-rules-grid">
-            <div class="timing-rule-box sell-box">
-              <h4><i class="fa-solid fa-circle-arrow-up"></i> 1. 매도(익절) 시점</h4>
-              <div class="timing-price-tag text-loss">1,117.5 ~ 1,120.0 pt (콜벽 저항대)</div>
-              <p>월위클리 콜벽 최대치가 위치하여 기관의 강력한 매도벽이 형성됩니다. 반등 시 보유 주식을 분할 매도하여 현금을 확보하세요.</p>
-            </div>
-            <div class="timing-rule-box buy-box">
-              <h4><i class="fa-solid fa-circle-arrow-down"></i> 2. 매수(골든 타점) 시점</h4>
-              <div class="timing-price-tag text-profit">1,072.7 ~ 1,082.5 pt (트리플 지지선)</div>
-              <p>목위클리 MaxPain(1,082.5) + 월물 MaxPain(1,075.0) + 차트 6회 최다 지지(1,072.7)가 겹치는 최강의 방어선. 조정 시 손익비 1:3 이상 나오는 최적의 매수 시점입니다.</p>
-            </div>
-            <div class="timing-rule-box stop-box">
-              <h4><i class="fa-solid fa-triangle-exclamation"></i> 3. 전량 손절 시점</h4>
-              <div class="timing-price-tag text-warning">1,046.1 pt (감마 플립 마지노선)</div>
-              <p>감마 플립 이탈 시 기관의 기계적 선물 패닉셀이 발생해 1,000선까지 급락합니다. 이 선이 깨지면 미련 없이 전량 손절해야 합니다.</p>
-            </div>
-          </div>
-
-          <!-- 파생 수급 매트릭스 상세 테이블 -->
-          <div class="card-box mt-20">
-            <div class="card-header">
-              <h3><i class="fa-solid fa-table-list"></i> 파생 수급 지지·저항 상세 맵</h3>
-            </div>
-            <div class="table-responsive">
-              <table class="matrix-table">
-                <thead>
-                  <tr>
-                    <th>구분</th>
-                    <th>가격</th>
-                    <th>주요 수급 근거</th>
-                    <th>강도</th>
-                    <th>실전 대응 전략</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="row-resistance">
-                    <td>▲ 최상단 저항</td>
-                    <td>1,250.0</td>
-                    <td>월물 콜벽 최대 (+38.39억, OI 6872)</td>
-                    <td>★★★</td>
-                    <td>중장기 대세 상승 시 강력한 천장</td>
-                  </tr>
-                  <tr class="row-resistance">
-                    <td>▲ 2차 저항</td>
-                    <td>1,150.0</td>
-                    <td>GEX+ELW 중첩: 월물콜벽(+20.56억)+콜델타 46.9% 집중</td>
-                    <td>★★★</td>
-                    <td>급등 시 최우선 차익실현 구간</td>
-                  </tr>
-                  <tr class="row-resistance">
-                    <td>▲ 1차 저항</td>
-                    <td>1,120.0</td>
-                    <td>월위클리M 콜집중 2위 (+104.26억, OI 3268)</td>
-                    <td>★★★</td>
-                    <td>단기 돌파 난항 예상</td>
-                  </tr>
-                  <tr class="row-resistance-hot">
-                    <td>▲ 직전 콜벽</td>
-                    <td>1,117.5</td>
-                    <td>월위클리M 콜벽 최대 (+163.93억, OI 4897, 핀자석)</td>
-                    <td>★★★</td>
-                    <td>현재가(1,112) 바로 위 저항 (추격매수 금지)</td>
-                  </tr>
-                  <tr class="row-current">
-                    <td>▶ 현재가 레벨</td>
-                    <td>1,112.13</td>
-                    <td>07/30 폭락 이후 종가 최고권 (1,100~1,115 박스권)</td>
-                    <td>-</td>
-                    <td>신규 진입 자제, 지지선까지 관망</td>
-                  </tr>
-                  <tr class="row-support">
-                    <td>▼ 1차 지지</td>
-                    <td>1,091.3</td>
-                    <td>차트 다중터치 (4회 반등 확인)</td>
-                    <td>★★</td>
-                    <td>단기 지지력 테스트 구간</td>
-                  </tr>
-                  <tr class="row-support-hot">
-                    <td>▼ 골든 지지</td>
-                    <td>1,082.5 ~ 1,072.7</td>
-                    <td>목위클리 MaxPain + 월물 MaxPain + 차트 6회 최다 지지</td>
-                    <td>★★★</td>
-                    <td>★ 적극적 분할 매수 타점 (리스크 극소)</td>
-                  </tr>
-                  <tr class="row-support">
-                    <td>▼ 2차 지지</td>
-                    <td>1,050.0</td>
-                    <td>ELW 풋델타플로우 1위 집중 (55.7%)</td>
-                    <td>★★★</td>
-                    <td>하방 마지노선 1차 방어벽</td>
-                  </tr>
-                  <tr class="row-danger">
-                    <td>◆ 감마 플립</td>
-                    <td>1,046.1</td>
-                    <td>월위클리M 감마 Flip △ (ELW 풋집중 교차검증)</td>
-                    <td>◆</td>
-                    <td>이탈 시 패닉셀 발생 ▷ 무조건 전량 손절</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-
-        <!-- [탭 4] 뉴스 & 테마 전체 탭 -->
-        <section id="tab-news" class="tab-pane">
-          <div class="section-header">
-            <h2><i class="fa-solid fa-newspaper text-primary"></i> 4대 전문지 5페이지 전수 크롤링 & 심층 테마</h2>
-            <p class="section-desc">단순 기사 전달을 넘어 '어떤 종목에 돈이 몰리는지' 실질적 영향을 분석합니다.</p>
-          </div>
-
-          <div class="quick-links-grid mb-20">
-            <a href="https://markets.hankyung.com/consensus" target="_blank" class="quick-link-card">
-              <i class="fa-solid fa-file-lines"></i>
-              <div>
-                <strong>한경 컨센서스</strong>
-                <span>최신 증권사 목표주가 상향 리포트</span>
-              </div>
-            </a>
-            <a href="https://www.thelec.kr/news/articleList.html?view_type=sm" target="_blank" class="quick-link-card">
-              <i class="fa-solid fa-microchip"></i>
-              <div>
-                <strong>디일렉 (THE ELEC)</strong>
-                <span>반도체·배터리 테크 심층 특종</span>
-              </div>
-            </a>
-            <a href="https://m.newsprime.co.kr/section_list.html?sec_no=56&menu=index" target="_blank" class="quick-link-card">
-              <i class="fa-solid fa-newspaper"></i>
-              <div>
-                <strong>프라임경제 증권</strong>
-                <span>코스피·코스닥 주요 공시 및 수급</span>
-              </div>
-            </a>
-            <a href="https://www.pinpointnews.co.kr/news/articleList.html?sc_section_code=S1N4&view_type=sm" target="_blank" class="quick-link-card">
-              <i class="fa-solid fa-arrow-trend-up"></i>
-              <div>
-                <strong>핀포인트뉴스 마켓</strong>
-                <span>장중 수급 집중 테마 및 거래량 급증</span>
-              </div>
-            </a>
-          </div>
-        </section>
-
-        <!-- [탭 5] 원칙 매매일지 탭 -->
-        <section id="tab-journal" class="tab-pane">
-          <div class="section-header">
-            <h2><i class="fa-solid fa-book-bookmark text-primary"></i> 원칙 매매일지 (Trade Journal)</h2>
-            <p class="section-desc">과거 -1,380만 원의 손실을 멈추고 계좌를 복구하는 유일한 길은 '매매일지 복기'입니다.</p>
-          </div>
-
-          <!-- 통계 카드 그리드 -->
-          <div class="kpi-grid mb-20">
-            <div class="kpi-card">
-              <span class="kpi-title">총 실현손익</span>
-              <h3 class="kpi-value text-profit" id="statTotalPnl">+0원</h3>
-              <p class="kpi-desc" id="statTotalReturn">누적 수익률: 0.0%</p>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-title">승률 (Win Rate)</span>
-              <h3 class="kpi-value" id="statWinRate">0%</h3>
-              <p class="kpi-desc" id="statTradeCounts">0승 0패 (총 0건)</p>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-title">원칙 준수율</span>
-              <h3 class="kpi-value text-primary" id="statDisciplineRate">100%</h3>
-              <p class="kpi-desc" id="statImpulseCount">뇌동매매: 0건</p>
-            </div>
-            <div class="kpi-card">
-              <span class="kpi-title">평균 손익비 (P/L)</span>
-              <h3 class="kpi-value" id="statProfitFactor">0.00</h3>
-              <p class="kpi-desc">목표: 2.0 이상</p>
-            </div>
-          </div>
-
-          <div class="table-controls">
-            <div class="filter-group">
-              <button class="filter-btn active" data-filter="all">전체</button>
-              <button class="filter-btn" data-filter="win">수익 매매</button>
-              <button class="filter-btn" data-filter="loss">손실 매매</button>
-              <button class="filter-btn" data-filter="impulse">뇌동 매매만</button>
-            </div>
-            <div class="export-group">
-              <button id="btnNewTradeInner" class="btn btn-primary btn-sm" onclick="openNewTradeModal()"><i class="fa-solid fa-plus"></i> 새 매매 기록</button>
-              <button id="btnExportCsv" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-csv"></i> CSV</button>
-              <button id="btnExportJson" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-code"></i> 백업</button>
-            </div>
-          </div>
-
-          <div id="tradeListContainer" class="trade-cards-container"></div>
-        </section>
-
-        <!-- [탭 6] 2% 리스크 계산기 탭 -->
-        <section id="tab-calculator" class="tab-pane">
-          <div class="section-header">
-            <h2><i class="fa-solid fa-calculator text-primary"></i> 2% 리스크 & 포지션 사이징 계산기</h2>
-            <p class="section-desc">아무리 확신이 드는 종목이라도 계좌 전체의 2% 이상 잃지 않도록 매수 수량을 통제합니다.</p>
-          </div>
-
-          <div class="calculator-card">
-            <h3><i class="fa-solid fa-shield-halved text-warning"></i> 1회 거래 적정 매수 수량 자동 계산기</h3>
-            <div class="calc-form-grid">
-              <div class="form-group">
-                <label>총 투자 원금 (시드머니)</label>
-                <div class="input-unit-wrap">
-                  <input type="number" id="calcTotalSeed" value="10000000" step="1000000">
-                  <span class="unit">원</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>1회 거래 허용 손실률 (권장 1~2%)</label>
-                <div class="input-unit-wrap">
-                  <input type="number" id="calcRiskPercent" value="2" step="0.5" max="5" min="0.5">
-                  <span class="unit">%</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>진입 매수가 (예: 대한전선 23,000원)</label>
-                <div class="input-unit-wrap">
-                  <input type="number" id="calcEntryPrice" value="23000" step="100">
-                  <span class="unit">원</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>절대 손절가 (예: 21,450원)</label>
-                <div class="input-unit-wrap">
-                  <input type="number" id="calcStopPrice" value="21450" step="100">
-                  <span class="unit">원</span>
-                </div>
-              </div>
-            </div>
-
-            <button id="btnRunCalc" class="btn btn-primary btn-block"><i class="fa-solid fa-play"></i> 적정 매수 수량 및 비중 계산</button>
-
-            <div class="calc-results-box" id="calcResultsBox">
-              <div class="result-row">
-                <span>1회 허용 최대 손실금:</span>
-                <strong id="resMaxLossMoney" class="text-danger">200,000 원</strong>
-              </div>
-              <div class="result-row">
-                <span>주당 손절 위험폭:</span>
-                <strong id="resPerShareRisk">1,550 원 (-6.74%)</strong>
-              </div>
-              <div class="result-row highlight-row">
-                <span>최대 매수 가능 수량:</span>
-                <strong id="resMaxShares" class="text-primary">129 주</strong>
-              </div>
-              <div class="result-row">
-                <span>총 진입 금액 (포지션 크기):</span>
-                <strong id="resTotalPosition">2,967,000 원 (시드의 29.7%)</strong>
-              </div>
-              <p class="calc-guide-text">
-                * 위 수량(129주)만큼만 매수하면 주가가 21,450원까지 폭락해 손절되더라도 내 계좌 손실은 정확히 20만 원(시드의 2%)으로 방어됩니다.
-              </p>
-            </div>
-          </div>
-        </section>
-
-      </main>
+  <!-- 실시간 미국장 & 환율 & 국내 지수 스트립 -->
+  <div class="macro-ticker-strip">
+    <div class="ticker-item">
+      <span class="t-name">나스닥 100</span>
+      <span class="t-val">20,412.5</span>
+      <span class="t-chg down">-0.35%</span>
+    </div>
+    <div class="ticker-divider"></div>
+    <div class="ticker-item">
+      <span class="t-name">S&P 500</span>
+      <span class="t-val">5,842.1</span>
+      <span class="t-chg up">+0.12%</span>
+    </div>
+    <div class="ticker-divider"></div>
+    <div class="ticker-item">
+      <span class="t-name">필라델피아 반도체</span>
+      <span class="t-val">5,280.4</span>
+      <span class="t-chg down">-0.78%</span>
+    </div>
+    <div class="ticker-divider"></div>
+    <div class="ticker-item">
+      <span class="t-name">원/달러 환율</span>
+      <span class="t-val">1,354.2원</span>
+      <span class="t-chg down">-4.5원</span>
+    </div>
+    <div class="ticker-divider"></div>
+    <div class="ticker-item">
+      <span class="t-name">미 국채 10년물</span>
+      <span class="t-val">4.08%</span>
+      <span class="t-chg down">-0.03</span>
     </div>
   </div>
 
-  <!-- 모달: 매매일지 등록/수정 -->
-  <div id="tradeModal" class="modal-overlay">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3 id="modalTitle"><i class="fa-solid fa-pen-nib"></i> 새로운 매매 기록 작성</h3>
-        <button id="btnCloseModal" class="btn-close">&times;</button>
+  <!-- 메인 대시보드 뷰포트 -->
+  <main class="dashboard-container">
+    
+    <!-- [섹션 1] 종합 마켓 브리핑 (기본 화면) -->
+    <section id="tab-overview" class="view-panel active">
+      
+      <!-- 핵심 시황 판정 카드 (미국장 반영 & 국장 진입 판정) -->
+      <div class="hero-decision-card">
+        <div class="decision-left">
+          <div class="badge-row">
+            <span class="status-tag tag-wait"><i class="fa-solid fa-shield-halved"></i> 오늘 국장 판정: 매수 관망 (눌림목 대기)</span>
+            <span class="us-market-tag"><i class="fa-solid fa-moon"></i> 미국장 마감 반영 (혼조세 마감)</span>
+          </div>
+          <h2 class="decision-heading">"나스닥 반도체주 약세 마감 ▷ 무리한 시초가 추격매수 금지"</h2>
+          <p class="decision-summary">
+            간밤 미국 증시는 빅테크 실적 관망세와 ASML 실적 여파로 반도체 섹터가 -0.8% 조정을 받았습니다.  
+            코스피 파생 1,117.5pt 콜벽 저항이 머리 위에 있는 만큼, <strong>1,072.7 ~ 1,082.5pt(트리플 지지선)</strong>까지 지수가 조정을 받고 지지 양봉이 뜰 때까지 기다리는 것이 정석입니다.
+          </p>
+        </div>
+
+        <div class="decision-stats-grid">
+          <div class="d-stat-box">
+            <span class="ds-label">시장 RSI</span>
+            <strong class="ds-val">46.2</strong>
+            <span class="ds-sub">과매수 없음 (중립)</span>
+          </div>
+          <div class="d-stat-box">
+            <span class="ds-label">머리 위 저항 (콜벽)</span>
+            <strong class="ds-val text-loss">1,117.5 pt</strong>
+            <span class="ds-sub">상방 공간 5pt (상투주의)</span>
+          </div>
+          <div class="d-stat-box">
+            <span class="ds-label">골든 매수 지지선</span>
+            <strong class="ds-val text-profit">1,075.0 pt</strong>
+            <span class="ds-sub">손익비 1:3 이상 타점</span>
+          </div>
+          <div class="d-stat-box">
+            <span class="ds-label">1회 거래 손실 한도</span>
+            <strong class="ds-val text-warning">200,000원</strong>
+            <span class="ds-sub">시드 1,000만 원 (2% 룰)</span>
+          </div>
+        </div>
       </div>
-      <form id="tradeForm" class="modal-form">
+
+      <!-- 상위 3단 분할 그리드 (애플 핀테크 스타일: 차트 / 수급 현황 / 외인기관 픽) -->
+      <div class="grid-3col">
+        
+        <!-- 좌측: 미국장 3대 지수 & 수급 차트 (Financials 스타일) -->
+        <div class="fintech-card">
+          <div class="card-head">
+            <div class="head-title">
+              <span class="card-eyebrow">Macro Flow</span>
+              <h3>미국장 마감 & 국내 영향 <i class="fa-solid fa-angle-right"></i></h3>
+            </div>
+            <div class="segmented-control">
+              <button class="seg-btn active">종가</button>
+              <button class="seg-btn">선물</button>
+            </div>
+          </div>
+
+          <div class="chart-container-mock">
+            <!-- 미니 바 차트 (Revenue / Earnings 스타일) -->
+            <div class="bar-chart-visual">
+              <div class="bar-group">
+                <div class="bar bar-nasdaq" style="height: 65%;"></div>
+                <span class="bar-lbl">나스닥</span>
+                <span class="bar-rate text-loss">-0.35%</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar bar-sp500" style="height: 72%;"></div>
+                <span class="bar-lbl">S&P500</span>
+                <span class="bar-rate text-profit">+0.12%</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar bar-sox" style="height: 52%;"></div>
+                <span class="bar-lbl">반도체</span>
+                <span class="bar-rate text-loss">-0.78%</span>
+              </div>
+              <div class="bar-group">
+                <div class="bar bar-usdkrw" style="height: 60%;"></div>
+                <span class="bar-lbl">환율</span>
+                <span class="bar-rate text-profit">-0.33%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer-note">
+            <i class="fa-solid fa-circle-info"></i> 매일 <strong>아침 07:30(KST)</strong> 미국 정규장 종가 확정 후 당일 분석이 자동 업데이트됩니다.
+          </div>
+        </div>
+
+        <!-- 중앙: 외인·기관 스마트머니 수급 현황 (Sustainability 스타일) -->
+        <div class="fintech-card">
+          <div class="card-head">
+            <div class="head-title">
+              <span class="card-eyebrow">Smart Money</span>
+              <h3>외인·기관 수급 레이더 <i class="fa-solid fa-angle-right"></i></h3>
+            </div>
+            <span class="badge-pill">최근 5일 누적</span>
+          </div>
+
+          <div class="score-display">
+            <span class="big-score text-profit">+4,280억</span>
+            <span class="score-caption">전력인프라·조선 섹터 외인 순유입</span>
+          </div>
+
+          <div class="triple-stat-row">
+            <div class="stat-cell">
+              <span class="sc-val text-profit">+420억</span>
+              <span class="sc-lbl">대한전선 (외인)</span>
+            </div>
+            <div class="stat-cell">
+              <span class="sc-val text-profit">7일 연속</span>
+              <span class="sc-lbl">삼성중공업 (연기금)</span>
+            </div>
+            <div class="stat-cell">
+              <span class="sc-val text-profit">+140억</span>
+              <span class="sc-lbl">테크윙 (투신·사모)</span>
+            </div>
+          </div>
+
+          <div class="flow-insight">
+            <strong>수급 패턴 특징:</strong> 코스피 전체 매수보다는 <strong>'확정 수주잔고 4조 돌파'</strong> 종목으로 외인과 기관이 강하게 쌍끌이 매집 중입니다.
+          </div>
+        </div>
+
+        <!-- 우측: 수급 1위주 핵심 리스트 (Similar Stocks 스타일) -->
+        <div class="fintech-card">
+          <div class="card-head">
+            <div class="head-title">
+              <span class="card-eyebrow">Top Recommendations</span>
+              <h3>오늘의 수급 1순위 <i class="fa-solid fa-angle-right"></i></h3>
+            </div>
+            <button class="text-link" onclick="switchTab('tab-picks')">전체 5선</button>
+          </div>
+
+          <div class="stock-item-row">
+            <div class="sir-logo"><i class="fa-solid fa-bolt"></i></div>
+            <div class="sir-info">
+              <div class="sir-name">대한전선 <span>001440</span></div>
+              <div class="sir-desc">영국 런던 400kV 프로젝트 수주 (잔고 4조)</div>
+            </div>
+            <div class="sir-prices">
+              <span class="sir-curr">23,350원</span>
+              <span class="sir-target text-profit">목표 33,000원</span>
+            </div>
+            <a href="https://m.stock.naver.com/domestic/stock/001440/total" target="_blank" class="sir-arrow" title="네이버 증권 호가창">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+
+          <div class="stock-item-row">
+            <div class="sir-logo ship-color"><i class="fa-solid fa-ship"></i></div>
+            <div class="sir-info">
+              <div class="sir-name">삼성중공업 <span>010140</span></div>
+              <div class="sir-desc">FLNG 본계약 가시화 (연간 영업익 1.3조)</div>
+            </div>
+            <div class="sir-prices">
+              <span class="sir-curr">18,170원</span>
+              <span class="sir-target text-profit">목표 33,650원</span>
+            </div>
+            <a href="https://m.stock.naver.com/domestic/stock/010140/total" target="_blank" class="sir-arrow" title="네이버 증권 호가창">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+
+          <div class="stock-item-row">
+            <div class="sir-logo chip-color"><i class="fa-solid fa-microchip"></i></div>
+            <div class="sir-info">
+              <div class="sir-name">테크윙 <span>089030</span></div>
+              <div class="sir-desc">메모리 호황 3분기 매출 2배 폭증 (HBM4)</div>
+            </div>
+            <div class="sir-prices">
+              <span class="sir-curr">41,200원</span>
+              <span class="sir-target text-profit">목표 55,000원</span>
+            </div>
+            <a href="https://m.stock.naver.com/domestic/stock/089030/total" target="_blank" class="sir-arrow" title="네이버 증권 호가창">
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- [섹션 2] 수급 추천 TOP 5 상세 뷰 -->
+    <section id="tab-picks" class="view-panel">
+      <div class="section-title-wrap">
+        <h2>수급 & 실적 검증 추천주 TOP 5</h2>
+        <p>개인 투매 물량을 외인과 기관이 쌍끌이 흡수하며 실적이 확인된 5개 종목입니다.</p>
+      </div>
+
+      <div class="picks-card-grid">
+        
+        <!-- 1번: 대한전선 -->
+        <div class="pick-full-card">
+          <div class="pfc-head">
+            <div class="pfc-title">
+              <span class="pfc-rank">1위</span>
+              <div>
+                <h3>대한전선 <small>001440 · 코스피</small></h3>
+                <span class="pfc-sector">AI 전력 인프라 & 초고압 송전선로</span>
+              </div>
+            </div>
+            <div class="pfc-price-box">
+              <div class="pfc-current">23,350원</div>
+              <div class="pfc-target text-profit">목표가 33,000원 (+41.3%)</div>
+            </div>
+          </div>
+
+          <div class="pfc-body-grid">
+            <div class="pfc-col">
+              <span class="lbl">최근 수급 팩트</span>
+              <strong>외인 +420억 / 기관 +180억 순매수</strong>
+              <p>영국 런던 400kV 초고압 전력망 수주로 총 수주잔고 4조 1,200억 원 공식 돌파. 미국 턴키 수주에 이어 3~4년치 납기 확보.</p>
+            </div>
+            <div class="pfc-col">
+              <span class="lbl">실전 매매 전략</span>
+              <div class="pfc-plan-row">
+                <span>진입 타점: <strong>22,800 ~ 23,300원 (20일선 눌림목)</strong></span>
+                <span>손절선: <strong class="text-loss">21,450원 (-7.9%)</strong></span>
+                <span>손익비: <strong class="text-profit">2.42 : 1</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pfc-foot">
+            <a href="https://m.stock.naver.com/domestic/stock/001440/total" target="_blank" class="btn btn-naver">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> 네이버 증권 실시간 호가/차트 열기
+            </a>
+          </div>
+        </div>
+
+        <!-- 2번: 삼성중공업 -->
+        <div class="pick-full-card">
+          <div class="pfc-head">
+            <div class="pfc-title">
+              <span class="pfc-rank">2위</span>
+              <div>
+                <h3>삼성중공업 <small>010140 · 코스피</small></h3>
+                <span class="pfc-sector">친환경 고선가 LNG선 & 해양 FLNG</span>
+              </div>
+            </div>
+            <div class="pfc-price-box">
+              <div class="pfc-current">18,170원</div>
+              <div class="pfc-target text-profit">목표가 33,650원 (+85.2%)</div>
+            </div>
+          </div>
+
+          <div class="pfc-body-grid">
+            <div class="pfc-col">
+              <span class="lbl">최근 수급 팩트</span>
+              <strong>연기금 7일 연속 순매수 + 투신 유입</strong>
+              <p>모잠비크 코랄 설 2호 및 북미 FLNG 본계약 가시화. 고선가 선박 건조 확대로 2026년 영업이익 1.3조 돌파 확실시.</p>
+            </div>
+            <div class="pfc-col">
+              <span class="lbl">실전 매매 전략</span>
+              <div class="pfc-plan-row">
+                <span>진입 타점: <strong>17,800 ~ 18,200원</strong></span>
+                <span>손절선: <strong class="text-loss">16,800원 (-6.5%)</strong></span>
+                <span>손익비: <strong class="text-profit">2.80 : 1</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pfc-foot">
+            <a href="https://m.stock.naver.com/domestic/stock/010140/total" target="_blank" class="btn btn-naver">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> 네이버 증권 실시간 호가/차트 열기
+            </a>
+          </div>
+        </div>
+
+        <!-- 3번: 테크윙 -->
+        <div class="pick-full-card">
+          <div class="pfc-head">
+            <div class="pfc-title">
+              <span class="pfc-rank">3위</span>
+              <div>
+                <h3>테크윙 <small>089030 · 코스닥</small></h3>
+                <span class="pfc-sector">차세대 HBM 초고속 검사 장비</span>
+              </div>
+            </div>
+            <div class="pfc-price-box">
+              <div class="pfc-current">41,200원</div>
+              <div class="pfc-target text-profit">목표가 55,000원 (+33.5%)</div>
+            </div>
+          </div>
+
+          <div class="pfc-body-grid">
+            <div class="pfc-col">
+              <span class="lbl">최근 수급 팩트</span>
+              <strong>투신·사모펀드 +140억 연속 매집</strong>
+              <p>메모리 호황에 3분기 매출 전년 동기 대비 2배 이상 폭증. 엔비디아 블랙웰/HBM4 필수 큐브프로버 독점 공급 개시.</p>
+            </div>
+            <div class="pfc-col">
+              <span class="lbl">실전 매매 전략</span>
+              <div class="pfc-plan-row">
+                <span>진입 타점: <strong>39,500 ~ 41,000원</strong></span>
+                <span>손절선: <strong class="text-loss">37,200원 (-8.0%)</strong></span>
+                <span>손익비: <strong class="text-profit">2.10 : 1</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pfc-foot">
+            <a href="https://m.stock.naver.com/domestic/stock/089030/total" target="_blank" class="btn btn-naver">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> 네이버 증권 실시간 호가/차트 열기
+            </a>
+          </div>
+        </div>
+
+        <!-- 4번: 한국콜마 -->
+        <div class="pick-full-card">
+          <div class="pfc-head">
+            <div class="pfc-title">
+              <span class="pfc-rank">4위</span>
+              <div>
+                <h3>한국콜마 <small>161890 · 코스피</small></h3>
+                <span class="pfc-sector">K-뷰티 글로벌 인디 브랜드 ODM</span>
+              </div>
+            </div>
+            <div class="pfc-price-box">
+              <div class="pfc-current">124,500원</div>
+              <div class="pfc-target text-profit">목표가 180,000원 (+44.6%)</div>
+            </div>
+          </div>
+
+          <div class="pfc-body-grid">
+            <div class="pfc-col">
+              <span class="lbl">최근 수급 팩트</span>
+              <strong>기관(연기금·보험) 동반 순매수</strong>
+              <p>미국 아마존/틱톡 중심 인디 브랜드 열풍으로 수주 폭증. 3분기 비수기 극복 분기 사상 최대 실적 전망.</p>
+            </div>
+            <div class="pfc-col">
+              <span class="lbl">실전 매매 전략</span>
+              <div class="pfc-plan-row">
+                <span>진입 타점: <strong>120,000 ~ 124,000원</strong></span>
+                <span>손절선: <strong class="text-loss">114,000원 (-8.0%)</strong></span>
+                <span>손익비: <strong class="text-profit">2.30 : 1</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pfc-foot">
+            <a href="https://m.stock.naver.com/domestic/stock/161890/total" target="_blank" class="btn btn-naver">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> 네이버 증권 실시간 호가/차트 열기
+            </a>
+          </div>
+        </div>
+
+        <!-- 5번: HD현대일렉트릭 -->
+        <div class="pick-full-card">
+          <div class="pfc-head">
+            <div class="pfc-title">
+              <span class="pfc-rank">5위</span>
+              <div>
+                <h3>HD현대일렉트릭 <small>267260 · 코스피</small></h3>
+                <span class="pfc-sector">북미 변압기 쇼티지 수혜주</span>
+              </div>
+            </div>
+            <div class="pfc-price-box">
+              <div class="pfc-current">348,000원</div>
+              <div class="pfc-target text-profit">목표가 450,000원 (+29.3%)</div>
+            </div>
+          </div>
+
+          <div class="pfc-body-grid">
+            <div class="pfc-col">
+              <span class="lbl">최근 수급 팩트</span>
+              <strong>외국인 지분율 연중 최고치 경신</strong>
+              <p>미국 데이터센터 변압기 2028년 납기 완판 및 판가 인상 기조 지속. 추세 추종형 외인 매집 지속.</p>
+            </div>
+            <div class="pfc-col">
+              <span class="lbl">실전 매매 전략</span>
+              <div class="pfc-plan-row">
+                <span>진입 타점: <strong>335,000 ~ 345,000원</strong></span>
+                <span>손절선: <strong class="text-loss">318,000원 (-7.5%)</strong></span>
+                <span>손익비: <strong class="text-profit">2.00 : 1</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pfc-foot">
+            <a href="https://m.stock.naver.com/domestic/stock/267260/total" target="_blank" class="btn btn-naver">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> 네이버 증권 실시간 호가/차트 열기
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- [섹션 3] 매매 일정 캘린더 (유저 요청 반영) -->
+    <section id="tab-calendar" class="view-panel">
+      <div class="section-title-wrap">
+        <h2>매매 일정 & 글로벌 경제 캘린더</h2>
+        <p>증시 변동성을 유발할 D-Day 이벤트와 주요 기업 실적 발표 일정입니다.</p>
+      </div>
+
+      <div class="calendar-layout">
+        
+        <!-- 좌측: 타임라인 캘린더 카드 -->
+        <div class="cal-timeline-card">
+          <div class="timeline-group">
+            <div class="timeline-date-marker">이번 주 주요 일정</div>
+            
+            <div class="timeline-card-item hot">
+              <div class="t-badge badge-red">D-2</div>
+              <div class="t-content">
+                <strong>미국 9월 소매판매 및 광공업 생산</strong>
+                <span>2026-10-18 (21:30 KST) · 소비 둔화 여부 가늠</span>
+              </div>
+              <span class="t-tag">지수 영향도: 상</span>
+            </div>
+
+            <div class="timeline-card-item warn">
+              <div class="t-badge badge-amber">D-5</div>
+              <div class="t-content">
+                <strong>한국은행 금융통화위원회 기준금리 결정</strong>
+                <span>2026-10-21 (10:00 KST) · 국내 부동산/내수 수급 반응 점검</span>
+              </div>
+              <span class="t-tag">금리/환율</span>
+            </div>
+          </div>
+
+          <div class="timeline-group mt-20">
+            <div class="timeline-date-marker">다음 주 빅테크 실적 주간</div>
+            
+            <div class="timeline-card-item">
+              <div class="t-badge badge-blue">D-8</div>
+              <div class="t-content">
+                <strong>MSFT & 알파벳 3분기 실적 발표</strong>
+                <span>2026-10-24 (새벽) · AI 데이터센터 CapEx 규모 확인 (전력망 영향)</span>
+              </div>
+              <span class="t-tag">AI 전력</span>
+            </div>
+
+            <div class="timeline-card-item">
+              <div class="t-badge badge-purple">D-14</div>
+              <div class="t-content">
+                <strong>미국 대통령 선거 및 11월 FOMC 금리 회의</strong>
+                <span>2026-10-30 ~ 11-05 · 글로벌 관세·에너지 정책 방향 결정</span>
+              </div>
+              <span class="t-tag">글로벌 매크로</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측: 2% 자금 관리 간편 계산기 (깔끔한 다크 스타일) -->
+        <div class="calc-side-card">
+          <div class="csc-head">
+            <h3><i class="fa-solid fa-calculator text-primary"></i> 2% 포지션 사이징 계산기</h3>
+            <span class="csc-sub">1회 손실 20만 원 한도 고정 (계좌 보호)</span>
+          </div>
+
+          <div class="csc-form">
+            <div class="csc-group">
+              <label>투자 원금 (시드)</label>
+              <input type="number" id="calcSeed" value="10000000" step="1000000">
+            </div>
+            <div class="csc-group">
+              <label>진입 희망가 (원)</label>
+              <input type="number" id="calcEntry" value="23000" step="100">
+            </div>
+            <div class="csc-group">
+              <label>절대 손절가 (원)</label>
+              <input type="number" id="calcStop" value="21450" step="100">
+            </div>
+            <button class="btn btn-calc" onclick="runFastCalc()">적정 수량 계산</button>
+          </div>
+
+          <div class="csc-result-box">
+            <div class="res-line">
+              <span>최대 허용 손실금 (2%)</span>
+              <strong id="fastMaxLoss" class="text-loss">200,000원</strong>
+            </div>
+            <div class="res-line highlight">
+              <span>적정 매수 수량</span>
+              <strong id="fastShares" class="text-primary">129주</strong>
+            </div>
+            <div class="res-line">
+              <span>총 진입 금액 (비중)</span>
+              <strong id="fastPosition">2,967,000원 (29.7%)</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- [섹션 4] 매매일지 작성 & 복기 뷰 -->
+    <section id="tab-journal" class="view-panel">
+      <div class="section-title-wrap">
+        <h2>원칙 매매일지 작성 및 복기</h2>
+        <p>매매를 마친 후 여기에 작성하시면 브라우저에 안전하게 보관되고, 외부(모바일)에서도 GitHub를 통해 언제든 확인·수정할 수 있습니다.</p>
+      </div>
+
+      <!-- 상단 매매 필터 탭 (포맷 버그 수정: 깔끔한 세그먼트 버튼) -->
+      <div class="journal-filter-bar">
+        <div class="clean-filter-group">
+          <button class="filter-pill active" data-filter="all">전체 내역</button>
+          <button class="filter-pill" data-filter="win">수익 매매</button>
+          <button class="filter-pill" data-filter="loss">손실 매매</button>
+          <button class="filter-pill" data-filter="impulse">원칙 위반(뇌동)만</button>
+        </div>
+        <div class="journal-actions">
+          <button class="btn btn-primary btn-sm" onclick="openNewTradeModal()"><i class="fa-solid fa-plus"></i> 새 매매 작성</button>
+          <button class="btn btn-secondary btn-sm" onclick="exportToCsv()"><i class="fa-solid fa-download"></i> CSV 저장</button>
+        </div>
+      </div>
+
+      <!-- 매매 기록 목록 -->
+      <div id="tradeListContainer" class="trade-cards-feed"></div>
+
+      <!-- 외부(스마트폰)에서 매매일지 작성하는 꿀팁 안내 -->
+      <div class="mobile-sync-guide-box mt-20">
+        <h4><i class="fa-brands fa-github text-primary"></i> 밖(스마트폰)에서 매매 내역을 어떻게 작성하고 저장하나요?</h4>
+        <div class="msg-steps">
+          <div class="step-line">
+            <span class="step-num">1</span>
+            <div>
+              <strong>모바일 GitHub 앱 또는 사파리 열기:</strong>
+              <span><a href="https://github.com/7wooooo/stock-memo" target="_blank">github.com/7wooooo/stock-memo</a> 저장소의 <code>trades/</code> 폴더로 들어갑니다.</span>
+            </div>
+          </div>
+          <div class="step-line">
+            <span class="step-num">2</span>
+            <div>
+              <strong>[Add file] ▷ [Create new file] 터치:</strong>
+              <span>파일명에 <code>trades/2026-10-16_대한전선.md</code> 형식으로 입력하고 본문에 매매 내용을 적은 후 <strong>[Commit changes]</strong>를 누르면 1초 만에 안전하게 저장됩니다.</span>
+            </div>
+          </div>
+          <div class="step-line">
+            <span class="step-num">3</span>
+            <div>
+              <strong>매일 밤 23:00(KST) 자동 DB 연동:</strong>
+              <span>스마트폰으로 저장해둔 파일들을 맥북 파이프라인이 밤 11시에 읽어와 SQLite DB와 누적 손익에 자동 반영합니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [섹션 5] 필수 투자 사이트 리스트업 (유저 요청 반영) -->
+    <section id="tab-directory" class="view-panel">
+      <div class="section-title-wrap">
+        <h2>매일 반드시 챙겨봐야 할 필수 투자 사이트 큐레이션</h2>
+        <p>단순 링크가 아닌, 프로 트레이더가 매일 아침과 장중에 반드시 확인하는 핵심 사이트들입니다.</p>
+      </div>
+
+      <div class="directory-grid">
+        
+        <div class="dir-card">
+          <div class="dir-icon-badge blue"><i class="fa-solid fa-file-contract"></i></div>
+          <div class="dir-content">
+            <h4>DART 전자공시시스템</h4>
+            <span class="dir-usage">장 마감 후 대형 수주 공시, 공급 계약, 유상증자/전환사채 확인 필수</span>
+            <a href="https://dart.fss.or.kr/" target="_blank" class="dir-link">dart.fss.or.kr <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <div class="dir-card">
+          <div class="dir-icon-badge purple"><i class="fa-solid fa-file-pdf"></i></div>
+          <div class="dir-content">
+            <h4>한경 컨센서스</h4>
+            <span class="dir-usage">국내 전 증권사 애널리스트 기업·산업 리포트 및 목표주가 상향 검색</span>
+            <a href="https://markets.hankyung.com/consensus" target="_blank" class="dir-link">markets.hankyung.com <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <div class="dir-card">
+          <div class="dir-icon-badge amber"><i class="fa-solid fa-microchip"></i></div>
+          <div class="dir-content">
+            <h4>디일렉 (THE ELEC)</h4>
+            <span class="dir-usage">반도체 HBM, 유리기판, 2차전지 배터리, OLED 테크 산업 전문 특종지</span>
+            <a href="https://www.thelec.kr/" target="_blank" class="dir-link">thelec.kr <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <div class="dir-card">
+          <div class="dir-icon-badge green"><i class="fa-solid fa-bolt"></i></div>
+          <div class="dir-content">
+            <h4>핀포인트뉴스 마켓</h4>
+            <span class="dir-usage">장중 거래량 급증 특징주, 외국인·기관 수급 집중 테마 실시간 분석</span>
+            <a href="https://www.pinpointnews.co.kr/news/articleList.html?sc_section_code=S1N4&view_type=sm" target="_blank" class="dir-link">pinpointnews.co.kr <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <div class="dir-card">
+          <div class="dir-icon-badge cyan"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="dir-content">
+            <h4>네이버 증권 모바일</h4>
+            <span class="dir-usage">장중 실시간 10단계 호가창, 체결 강도, 외국인·기관 일별 잠정 매매동향</span>
+            <a href="https://m.stock.naver.com/" target="_blank" class="dir-link">m.stock.naver.com <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <div class="dir-card">
+          <div class="dir-icon-badge red"><i class="fa-solid fa-newspaper"></i></div>
+          <div class="dir-content">
+            <h4>프라임경제 증권</h4>
+            <span class="dir-usage">코스피·코스닥 테마별 심층 기사 및 장 시작 전 글로벌 매크로 브리핑</span>
+            <a href="https://m.newsprime.co.kr/section_list.html?sec_no=56&menu=index" target="_blank" class="dir-link">m.newsprime.co.kr <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 매매일지 모달 창 (새 매매 작성 버튼을 눌렀을 때만 팝업) -->
+  <div id="tradeModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modalTitle"><i class="fa-solid fa-pen-nib text-primary"></i> 새로운 매매 기록 작성</h3>
+        <button id="btnCloseModal" class="btn-x">&times;</button>
+      </div>
+
+      <form id="tradeForm" class="modal-body-form">
         <input type="hidden" id="tradeId">
 
-        <div class="form-row">
-          <div class="form-group flex-1">
+        <div class="form-2col">
+          <div class="f-group">
             <label>매매 일자 *</label>
             <input type="date" id="tradeDate" required>
           </div>
-          <div class="form-group flex-1">
-            <label>종목명 *</label>
-            <input type="text" id="tradeStock" placeholder="예: 대한전선, 삼성중공업" required>
+          <div class="f-group">
+            <label>종목명 (코드) *</label>
+            <input type="text" id="tradeStock" placeholder="예: 대한전선 (001440)" required>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group flex-1">
-            <label>매매 유형</label>
-            <select id="tradeType">
-              <option value="스윙">스윙 (수일~수주)</option>
-              <option value="단타">단타 (데이트레이딩)</option>
-              <option value="중장기">중장기 (가치/성장)</option>
-            </select>
-          </div>
-          <div class="form-group flex-1">
-            <label>진입 전략</label>
-            <select id="tradeStrategy">
-              <option value="주도주 눌림목">주도주 눌림목</option>
-              <option value="신고가 돌파">신고가 돌파</option>
-              <option value="실적 턴어라운드">실적 턴어라운드</option>
-              <option value="지지선 반등">기술적 지지선 반등</option>
-              <option value="기타">기타</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group flex-1">
+        <div class="form-2col">
+          <div class="f-group">
             <label>매수가 (평단가) *</label>
             <input type="number" id="tradeBuyPrice" placeholder="원" required>
           </div>
-          <div class="form-group flex-1">
+          <div class="f-group">
             <label>매수 수량 *</label>
             <input type="number" id="tradeQty" placeholder="주" required>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group flex-1">
+        <div class="form-2col">
+          <div class="f-group">
             <label>목표가 (Take Profit)</label>
             <input type="number" id="tradeTargetPrice" placeholder="원">
           </div>
-          <div class="form-group flex-1">
+          <div class="f-group">
             <label>손절가 (Stop Loss) *</label>
             <input type="number" id="tradeStopPrice" placeholder="원" required>
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group flex-1">
+        <div class="form-2col">
+          <div class="f-group">
             <label>매도가 (청산가) *</label>
             <input type="number" id="tradeSellPrice" placeholder="청산 가격" required>
           </div>
-          <div class="form-group flex-1">
-            <label>청산 일자</label>
-            <input type="date" id="tradeExitDate">
+          <div class="f-group">
+            <label>원칙 준수 여부</label>
+            <select id="tradeDiscipline">
+              <option value="원칙준수">원칙 준수 (손익비/손절선 준수)</option>
+              <option value="뇌동매매">뇌동매매 (장중 추격 매수)</option>
+              <option value="손절지연">손절 지연 (물타기)</option>
+              <option value="조기익절">원칙 전 조기 익절</option>
+            </select>
           </div>
         </div>
 
-        <div class="form-calc-preview">
+        <!-- 실시간 손익비 & 수익금 계산 미리보기 -->
+        <div class="calc-preview-bar">
           <div>총 매수금: <strong id="previewBuyTotal">0원</strong></div>
           <div>실현손익: <strong id="previewPnl">0원 (0.0%)</strong></div>
-          <div>설정 손익비: <strong id="previewRR">0.0 : 1</strong></div>
+          <div>손익비 (R:R): <strong id="previewRR">0.0 : 1</strong></div>
         </div>
 
-        <div class="form-group">
-          <label>원칙 준수 여부</label>
-          <div class="checkbox-row">
-            <label><input type="radio" name="disciplineRadio" value="원칙준수" checked> 원칙 준수</label>
-            <label><input type="radio" name="disciplineRadio" value="뇌동매매"> 뇌동매매 (충동 진입)</label>
-            <label><input type="radio" name="disciplineRadio" value="손절지연"> 손절 지연 (물타기)</label>
-            <label><input type="radio" name="disciplineRadio" value="조기익절"> 원칙 전 조기익절</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>진입 이유 & 복기 메모</label>
-          <textarea id="tradeNotes" rows="3" placeholder="진입 이유와 청산 이유를 기록합니다."></textarea>
+        <div class="f-group">
+          <label>진입 근거 및 복기 노트</label>
+          <textarea id="tradeNotes" rows="3" placeholder="진입 이유와 반성할 점을 솔직하게 기록합니다."></textarea>
         </div>
 
         <div class="modal-footer">
           <button type="button" id="btnDeleteTrade" class="btn btn-danger" style="display:none;"><i class="fa-solid fa-trash"></i> 삭제</button>
-          <div class="right-buttons">
+          <div class="mf-right">
             <button type="button" id="btnCancelModal" class="btn btn-secondary">취소</button>
-            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 저장하기</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 저장</button>
           </div>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- 모바일 하단 플로팅 네비게이션 -->
-  <div class="mobile-nav-bar">
-    <button class="mob-tab active" data-tab="tab-dashboard"><i class="fa-solid fa-table-columns"></i><span>홈</span></button>
-    <button class="mob-tab" data-tab="tab-recommendations"><i class="fa-solid fa-fire"></i><span>추천 5선</span></button>
-    <button class="mob-tab" data-tab="tab-timing"><i class="fa-solid fa-compass"></i><span>판독기</span></button>
-    <button class="mob-tab" data-tab="tab-news"><i class="fa-solid fa-newspaper"></i><span>뉴스·테마</span></button>
-    <button class="mob-tab" data-tab="tab-journal"><i class="fa-solid fa-book-bookmark"></i><span>매매일지</span></button>
-  </div>
+  <!-- 모바일 하단 네비게이션 바 -->
+  <nav class="mobile-bar">
+    <button class="m-btn active" data-tab="tab-overview"><i class="fa-solid fa-chart-line"></i><span>브리핑</span></button>
+    <button class="m-btn" data-tab="tab-picks"><i class="fa-solid fa-fire"></i><span>추천 5선</span></button>
+    <button class="m-btn" data-tab="tab-calendar"><i class="fa-solid fa-calendar-days"></i><span>일정</span></button>
+    <button class="m-btn" data-tab="tab-journal"><i class="fa-solid fa-pen-to-square"></i><span>매매일지</span></button>
+    <button class="m-btn" data-tab="tab-directory"><i class="fa-solid fa-compass"></i><span>분석사이트</span></button>
+  </nav>
 
   <script src="app.js"></script>
 </body>
