@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>StockVentura PRO TRADING OS | 파생 수급 & 원금 회복 대시보드</title>
+  <title>StockVentura PRO | 기관급 파생 수급 & 트레이딩 OS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #08090c;
-      --bg-card: #11131a;
-      --bg-card-hover: #161924;
-      --bg-surface: #181b26;
+      --bg-base: #07080b;
+      --bg-card: #0f1118;
+      --bg-card-hover: #151823;
+      --bg-surface: #171a26;
       --border: rgba(255, 255, 255, 0.08);
-      --border-focus: rgba(59, 130, 246, 0.4);
-      --text-main: #f1f5f9;
+      --border-accent: rgba(59, 130, 246, 0.35);
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       --accent-red: #ef4444;
-      --accent-red-bg: rgba(239, 68, 68, 0.14);
+      --accent-red-bg: rgba(239, 68, 68, 0.12);
       --accent-green: #10b981;
-      --accent-green-bg: rgba(16, 185, 129, 0.14);
+      --accent-green-bg: rgba(16, 185, 129, 0.12);
       --accent-blue: #3b82f6;
-      --accent-blue-bg: rgba(59, 130, 246, 0.14);
+      --accent-blue-bg: rgba(59, 130, 246, 0.12);
       --accent-amber: #f59e0b;
-      --accent-amber-bg: rgba(245, 158, 11, 0.14);
+      --accent-amber-bg: rgba(245, 158, 11, 0.12);
       --accent-purple: #a855f7;
-      --accent-purple-bg: rgba(168, 85, 247, 0.14);
+      --accent-purple-bg: rgba(168, 85, 247, 0.12);
       --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
@@ -38,12 +38,12 @@
       color: var(--text-main);
       font-family: var(--font-sans);
       line-height: 1.5;
-      padding-bottom: 70px;
+      padding-bottom: 80px;
       -webkit-font-smoothing: antialiased;
     }
 
     .app-container {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 16px;
     }
@@ -52,7 +52,7 @@
     header {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
       padding: 14px 0 18px;
       border-bottom: 1px solid var(--border);
     }
@@ -64,15 +64,20 @@
       }
     }
 
+    /* Logo - Clickable to Home */
     .brand-group {
       display: flex;
       align-items: center;
       gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.2s ease;
     }
+    .brand-group:hover { opacity: 0.9; }
     .brand-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -81,13 +86,13 @@
       box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
     }
     .brand-title {
-      font-size: 1.2rem;
+      font-size: 1.22rem;
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.02em;
     }
     .brand-tag {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-family: var(--font-mono);
       padding: 2px 7px;
       border-radius: 5px;
@@ -97,15 +102,16 @@
       font-weight: 700;
     }
 
+    /* Top Red Recovery Tracker Badge */
     .loss-tracker-badge {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(185, 28, 28, 0.22));
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(153, 27, 27, 0.22));
       border: 1px solid rgba(239, 68, 68, 0.4);
       border-radius: 12px;
       padding: 10px 18px;
-      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.18);
+      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.16);
     }
     .loss-label {
       font-size: 0.72rem;
@@ -115,7 +121,7 @@
     }
     .loss-amount {
       font-family: var(--font-mono);
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #ef4444;
       text-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
@@ -129,7 +135,7 @@
       margin-left: 6px;
     }
 
-    /* Tabs */
+    /* Navigation Tabs */
     .nav-tabs {
       display: flex;
       gap: 8px;
@@ -159,13 +165,13 @@
       color: #fff;
     }
     .tab-btn.active {
-      background: #1e2436;
+      background: #171d2b;
       color: #60a5fa;
       border-color: rgba(59, 130, 246, 0.5);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
-    /* Section Header */
+    /* Section Headings */
     .section-head {
       display: flex;
       align-items: center;
@@ -173,7 +179,7 @@
       margin: 22px 0 14px;
     }
     .section-title {
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       font-weight: 800;
       color: #fff;
       display: flex;
@@ -190,14 +196,13 @@
       border: 1px solid var(--border);
     }
 
-    /* Macro Flow Histogram / Comparison Bars */
+    /* Macro Histogram Grid */
     .macro-container {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 18px 20px;
-      margin-bottom: 22px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
     }
     .macro-header {
       display: flex;
@@ -213,14 +218,11 @@
       font-size: 1rem;
       font-weight: 800;
       color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
     .macro-legend {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       font-size: 0.75rem;
       color: var(--text-muted);
     }
@@ -231,12 +233,7 @@
       display: inline-block;
       margin-right: 4px;
     }
-
-    .hist-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .hist-grid { display: flex; flex-direction: column; gap: 11px; }
     .hist-row {
       display: grid;
       grid-template-columns: 140px 1fr 90px;
@@ -246,16 +243,13 @@
     }
     @media (max-width: 600px) {
       .hist-row {
-        grid-template-columns: 110px 1fr 75px;
-        font-size: 0.78rem;
+        grid-template-columns: 105px 1fr 75px;
+        font-size: 0.76rem;
       }
     }
-    .hist-label-group {
-      display: flex;
-      flex-direction: column;
-    }
+    .hist-label-group { display: flex; flex-direction: column; }
     .hist-name { font-weight: 700; color: #fff; }
-    .hist-type { font-size: 0.7rem; color: var(--text-dim); }
+    .hist-type { font-size: 0.68rem; color: var(--text-dim); }
     .hist-track {
       background: rgba(255, 255, 255, 0.05);
       height: 22px;
@@ -271,13 +265,12 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.25);
       z-index: 2;
     }
     .hist-bar {
       height: 100%;
       border-radius: 4px;
-      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       position: absolute;
       top: 0;
     }
@@ -299,16 +292,15 @@
     .hist-val.up { color: #10b981; }
     .hist-val.down { color: #60a5fa; }
 
-    /* Interactive Radar Card (Clickable) */
+    /* Interactive Radar Card */
     .radar-card {
-      background: linear-gradient(135deg, #151924, #0f121a);
+      background: linear-gradient(135deg, #131722, #0d1017);
       border: 1px solid rgba(59, 130, 246, 0.3);
       border-radius: 14px;
       padding: 18px 20px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     }
     .radar-card:hover {
       border-color: rgba(59, 130, 246, 0.6);
@@ -329,34 +321,11 @@
       color: var(--accent-green);
       border: 1px solid rgba(16, 185, 129, 0.3);
     }
-    .radar-click-hint {
-      font-size: 0.75rem;
-      color: #60a5fa;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .radar-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .radar-summary {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .radar-detail-panel {
-      display: none;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
-      animation: fadeIn 0.3s ease;
-    }
-    .radar-detail-panel.open { display: block; }
+    .radar-click-hint { font-size: 0.75rem; color: #60a5fa; }
+    .radar-title { font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .radar-summary { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
 
-    /* DERIVATIVES MAP (Option / ELW / Gamma / CallWall) */
+    /* Derivatives Ladder Map */
     .deriv-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -376,11 +345,7 @@
       border-radius: 8px;
       border: 1px solid var(--border);
     }
-    .deriv-ladder {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .deriv-ladder { display: flex; flex-direction: column; gap: 6px; }
     .deriv-node {
       display: grid;
       grid-template-columns: 85px 1fr 65px 85px;
@@ -405,33 +370,12 @@
       background: var(--bg-surface);
       border-color: var(--border);
     }
-    .node-price {
-      font-family: var(--font-mono);
-      font-weight: 800;
-      font-size: 0.92rem;
-    }
-    .node-desc {
-      color: #e2e8f0;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .node-stars {
-      font-size: 0.75rem;
-      color: #fbbf24;
-      font-family: var(--font-mono);
-    }
-    .node-basis {
-      font-size: 0.7rem;
-      color: var(--text-dim);
-      text-align: right;
-    }
+    .node-price { font-family: var(--font-mono); font-weight: 800; font-size: 0.92rem; }
+    .node-desc { color: #e2e8f0; display: flex; align-items: center; gap: 6px; }
+    .node-stars { font-size: 0.75rem; color: #fbbf24; font-family: var(--font-mono); }
+    .node-basis { font-size: 0.7rem; color: var(--text-dim); text-align: right; }
 
-    /* Node types */
-    .node-resist {
-      background: rgba(239, 68, 68, 0.05);
-      border-left: 3px solid #ef4444;
-    }
+    .node-resist { background: rgba(239, 68, 68, 0.05); border-left: 3px solid #ef4444; }
     .node-resist .node-price { color: #f87171; }
     .node-key-resist {
       background: rgba(239, 68, 68, 0.15);
@@ -440,10 +384,7 @@
     }
     .node-key-resist .node-price { color: #ff6b6b; font-weight: 900; }
 
-    .node-support {
-      background: rgba(16, 185, 129, 0.05);
-      border-left: 3px solid #10b981;
-    }
+    .node-support { background: rgba(16, 185, 129, 0.05); border-left: 3px solid #10b981; }
     .node-support .node-price { color: #34d399; }
     .node-key-support {
       background: rgba(16, 185, 129, 0.15);
@@ -452,13 +393,9 @@
     }
     .node-key-support .node-price { color: #10b981; font-weight: 900; }
 
-    .node-flip {
-      background: rgba(168, 85, 247, 0.08);
-      border-left: 3px solid #a855f7;
-    }
+    .node-flip { background: rgba(168, 85, 247, 0.08); border-left: 3px solid #a855f7; }
     .node-flip .node-price { color: #c084fc; }
 
-    /* Current Price Banner in Ladder */
     .current-price-strip {
       background: linear-gradient(90deg, #1e3a8a, #2563eb, #1e3a8a);
       color: #fff;
@@ -471,102 +408,102 @@
       font-weight: 800;
       box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
     }
-    .curr-label {
-      font-size: 0.82rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .curr-value {
-      font-family: var(--font-mono);
-      font-size: 1.15rem;
-      letter-spacing: 0.02em;
-    }
+    .curr-label { font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
+    .curr-value { font-family: var(--font-mono); font-size: 1.15rem; }
 
-    /* Stocks TOP 5 Cards */
-    .stock-list { display: flex; flex-direction: column; gap: 10px; }
-    .stock-card {
+    /* In-Site Trade Journal System */
+    .journal-section {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      color: inherit;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 24px;
     }
-    .stock-card:hover {
-      background: var(--bg-card-hover);
-      border-color: rgba(59, 130, 246, 0.4);
-      transform: translateX(4px);
-    }
-    @media (min-width: 640px) {
-      .stock-card {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-    .stock-info { display: flex; align-items: center; gap: 12px; }
-    .stock-rank {
-      font-family: var(--font-mono);
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--accent-blue);
-      width: 24px;
-    }
-    .stock-name-group { display: flex; flex-direction: column; }
-    .stock-name {
-      font-size: 0.96rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .stock-code {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--text-dim);
-    }
-    .stock-theme {
-      font-size: 0.7rem;
-      padding: 2px 7px;
-      border-radius: 4px;
+    .journal-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
       background: var(--bg-surface);
-      color: var(--text-muted);
+      padding: 16px;
+      border-radius: 10px;
       border: 1px solid var(--border);
     }
-    .stock-metrics {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      justify-content: space-between;
+    @media (min-width: 640px) {
+      .journal-form {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
-    .metric-col {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
-    .metric-label { font-size: 0.68rem; color: var(--text-dim); }
-    .metric-val {
-      font-family: var(--font-mono);
-      font-size: 0.88rem;
-      font-weight: 700;
+    .form-col-full { grid-column: 1 / -1; }
+    .input-box { display: flex; flex-direction: column; gap: 6px; }
+    .input-box label { font-size: 0.74rem; font-weight: 700; color: var(--text-muted); }
+    .input-box input, .input-box select, .input-box textarea {
+      background: var(--bg-base);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 9px 12px;
       color: #fff;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s ease;
     }
-    .metric-val.green { color: #10b981; }
-    .metric-val.red { color: #ef4444; }
+    .input-box input:focus, .input-box select:focus, .input-box textarea:focus {
+      border-color: var(--accent-blue);
+    }
 
-    /* Modal for Detailed Analysis */
+    .journal-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .journal-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+    .journal-table th {
+      background: var(--bg-surface);
+      color: var(--text-dim);
+      padding: 10px 14px;
+      font-weight: 700;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .journal-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-main);
+    }
+    .journal-table tr:hover td { background: var(--bg-card-hover); }
+
+    .tag-rule-yes {
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--accent-green-bg);
+      color: #34d399;
+      font-size: 0.7rem;
+      font-weight: 700;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .tag-rule-no {
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--accent-red-bg);
+      color: #f87171;
+      font-size: 0.7rem;
+      font-weight: 700;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* Modals */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(5px);
       z-index: 1000;
       align-items: center;
       justify-content: center;
@@ -574,20 +511,15 @@
     }
     .modal-overlay.open { display: flex; }
     .modal-box {
-      background: #11131a;
+      background: #11141c;
       border: 1px solid rgba(59, 130, 246, 0.4);
       border-radius: 16px;
       width: 100%;
-      max-width: 600px;
+      max-width: 620px;
       max-height: 85vh;
       overflow-y: auto;
       padding: 24px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-      animation: modalPop 0.25s ease;
-    }
-    @keyframes modalPop {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     }
     .modal-head {
       display: flex;
@@ -611,106 +543,13 @@
       align-items: center;
       justify-content: center;
     }
-    .modal-body { font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; }
 
-    /* Timeline & Sites */
-    .timeline-list { display: flex; flex-direction: column; gap: 10px; }
-    .timeline-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .timeline-dday {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      font-weight: 800;
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: rgba(239, 68, 68, 0.15);
-      color: #ef4444;
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      white-space: nowrap;
-    }
-    .timeline-content { flex: 1; }
-    .timeline-title { font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .timeline-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
-
-    /* Site Grid */
-    .site-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 10px; }
-    @media (min-width: 640px) { .site-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 900px) { .site-grid { grid-template-columns: repeat(3, 1fr); } }
-    .site-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-    }
-    .site-card:hover {
-      background: var(--bg-card-hover);
-      border-color: rgba(59, 130, 246, 0.4);
-      transform: translateY(-2px);
-    }
-    .site-head { display: flex; align-items: center; justify-content: space-between; }
-    .site-name { font-size: 0.95rem; font-weight: 700; color: #fff; }
-    .site-type {
-      font-size: 0.68rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: var(--bg-surface);
-      color: var(--text-dim);
-      font-family: var(--font-mono);
-    }
-    .site-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
-
-    /* 2% Calculator */
-    .tool-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 18px;
-    }
-    .calc-row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 14px;
-    }
-    @media (min-width: 640px) {
-      .calc-row {
-        grid-template-columns: repeat(3, 1fr) auto;
-        align-items: flex-end;
-      }
-    }
-    .input-group { display: flex; flex-direction: column; gap: 6px; }
-    .input-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
-    .input-field {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 12px;
-      color: #fff;
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-      outline: none;
-    }
-    .input-field:focus { border-color: var(--accent-blue); }
     .btn-action {
       background: #2563eb;
       color: #fff;
       border: none;
       border-radius: 8px;
-      padding: 11px 18px;
+      padding: 10px 18px;
       font-size: 0.85rem;
       font-weight: 700;
       cursor: pointer;
@@ -718,22 +557,6 @@
       white-space: nowrap;
     }
     .btn-action:hover { background: #1d4ed8; }
-
-    .calc-result {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      background: var(--bg-surface);
-      border: 1px dashed var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-    .calc-result-item { display: flex; flex-direction: column; }
-    .calc-res-label { font-size: 0.7rem; color: var(--text-dim); }
-    .calc-res-val { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 800; }
 
     /* Tab switcher */
     .tab-content { display: none; }
@@ -744,7 +567,7 @@
     }
 
     footer.status-bar {
-      margin-top: 36px;
+      margin-top: 40px;
       padding-top: 16px;
       border-top: 1px solid var(--border);
       display: flex;
@@ -765,14 +588,14 @@
 </head>
 <body>
   <div class="app-container">
-    <!-- Header -->
+    <!-- Header (Logo Clickable -> Goes to Main Briefing) -->
     <header>
-      <div class="brand-group">
+      <div class="brand-group" onclick="goHome()" title="메인 화면으로 이동">
         <div class="brand-icon">⚡</div>
         <div>
           <div style="display: flex; align-items: center; gap: 8px;">
             <span class="brand-title">StockVentura PRO</span>
-            <span class="brand-tag">GEX & DERIVATIVES</span>
+            <span class="brand-tag">INSTITUTIONAL OS</span>
           </div>
           <p style="font-size: 0.75rem; color: var(--text-dim);">파생 수급 지지·저항 & 원칙 매매 자동화 시스템</p>
         </div>
@@ -783,7 +606,7 @@
         <div>
           <div class="loss-label">🚨 원금 회복 프로젝트</div>
           <div style="display: flex; align-items: baseline;">
-            <span class="loss-amount">-138,800,000원</span>
+            <span class="loss-amount" id="globalPnlBadge">-138,800,000원</span>
             <span class="loss-subtext">누적 손익 목표</span>
           </div>
         </div>
@@ -794,8 +617,9 @@
     <nav class="nav-tabs">
       <button class="tab-btn active" onclick="switchTab('briefing')">📊 매크로 & 브리핑</button>
       <button class="tab-btn" onclick="switchTab('deriv-map')">🎯 파생 지지·저항 맵</button>
+      <button class="tab-btn" onclick="switchTab('journal')">📝 자체 매매일지 (원클릭)</button>
       <button class="tab-btn" onclick="switchTab('top5')">🔥 외인·기관 수급 TOP 5</button>
-      <button class="tab-btn" onclick="switchTab('calendar')">📅 매매 일정 캘린더</button>
+      <button class="tab-btn" onclick="switchTab('calendar')">📅 D-Day 캘린더</button>
       <button class="tab-btn" onclick="switchTab('calculator')">🧮 2% 리스크 계산기</button>
       <button class="tab-btn" onclick="switchTab('sites')">🌐 필수 분석 사이트</button>
     </nav>
@@ -892,7 +716,7 @@
               <div class="hist-center-line"></div>
               <div class="hist-bar neg" style="width: 16%;"></div>
             </div>
-            <div class="hist-val down">-0.33% (원화강세)</div>
+            <div class="hist-val down">-0.33% (원화안정)</div>
           </div>
         </div>
       </div>
@@ -928,7 +752,7 @@
       </div>
     </div>
 
-    <!-- TAB 2: DERIVATIVES MAP (USER ATTACHED DATA) -->
+    <!-- TAB 2: DERIVATIVES MAP -->
     <div id="tab-deriv-map" class="tab-content">
       <div class="section-head">
         <h3 class="section-title">🎯 파생 수급 지지·저항 상세 맵</h3>
@@ -1067,24 +891,118 @@
             <span class="node-basis">핵심 이탈선</span>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div style="margin-top: 16px; padding: 12px 14px; border-radius: 8px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); font-size: 0.8rem; color: #fca5a5;">
-          <strong>🚨 트레이딩 행동 강령 :</strong>
-          현재가 1,112.13pt 바로 위 <strong>1,117.5pt(월위클리 콜벽 최대 + 핀자석)</strong>가 강하게 눌러 누르고 있으므로 시초가 상방 추격매수는 절대 금지합니다.
-          눌림 발생 시 <strong>1,072.7 ~ 1,075.0pt(MaxPain + 차트 6회 지지)</strong> 확인 후 진입하며, 
-          <strong>1,046.1pt 감마 플립 이탈 시</strong>에는 시장 변동성이 하방으로 폭발하므로 전량 손절 원칙을 칼같이 집행해야 합니다.
+    <!-- TAB 3: IN-SITE TRADE JOURNAL SYSTEM -->
+    <div id="tab-journal" class="tab-content">
+      <div class="section-head">
+        <h3 class="section-title">📝 자체 실시간 매매일지 (브라우저 자체 저장)</h3>
+        <span class="section-badge">외부 유출 없이 내 브라우저에만 암호화 보관</span>
+      </div>
+
+      <div class="journal-section">
+        <!-- Input Form -->
+        <form class="journal-form" id="journalForm" onsubmit="saveTrade(event)">
+          <div class="input-box">
+            <label>매매 일자</label>
+            <input type="date" id="tradeDate" required>
+          </div>
+          <div class="input-box">
+            <label>종목명 (코드)</label>
+            <input type="text" id="tradeName" placeholder="예: 대한전선 (001440)" required>
+          </div>
+          <div class="input-box">
+            <label>매매 포지션</label>
+            <select id="tradeType">
+              <option value="매수완료">매수 완료 (보유중)</option>
+              <option value="익절">원칙 익절 (+)</option>
+              <option value="칼손절">원칙 손절 (-)</option>
+              <option value="뇌동손실">뇌동매매 손실 (-)</option>
+            </select>
+          </div>
+
+          <div class="input-box">
+            <label>매수가 (원)</label>
+            <input type="number" id="tradeBuyPrice" placeholder="예: 12800" required oninput="calcTradePnl()">
+          </div>
+          <div class="input-box">
+            <label>매도가 (원) [보유 시 빈칸]</label>
+            <input type="number" id="tradeSellPrice" placeholder="예: 13500" oninput="calcTradePnl()">
+          </div>
+          <div class="input-box">
+            <label>매수 수량 (주)</label>
+            <input type="number" id="tradeQty" placeholder="예: 300" required oninput="calcTradePnl()">
+          </div>
+
+          <div class="input-box">
+            <label>실현 손익금 (자동계산)</label>
+            <input type="text" id="tradePnlAmount" placeholder="0원" readonly style="color:#60a5fa; font-weight:800; font-family:var(--font-mono);">
+          </div>
+          <div class="input-box">
+            <label>수익률 (자동계산)</label>
+            <input type="text" id="tradePnlRate" placeholder="0.00%" readonly style="color:#60a5fa; font-weight:800; font-family:var(--font-mono);">
+          </div>
+          <div class="input-box">
+            <label>원칙 준수 여부</label>
+            <select id="tradeRuleKept">
+              <option value="YES">✅ 2% 룰 및 원칙 100% 준수</option>
+              <option value="NO">🚨 뇌동·추격·물타기 위반</option>
+            </select>
+          </div>
+
+          <div class="input-box form-col-full">
+            <label>매매 복기 메모 (진입 근거 및 반성점)</label>
+            <textarea id="tradeMemo" rows="2" placeholder="예: 1,072pt 지지선 확인 후 대한전선 12,800원 눌림목 분할 진입. 콜벽 저항 앞두고 1차 분할 익절."></textarea>
+          </div>
+
+          <div class="form-col-full" style="display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-size:0.75rem; color:var(--text-dim);">
+              * 작성 즉시 상단 누적 손익 및 복구 통계에 자동 합산됩니다.
+            </div>
+            <button type="submit" class="btn-action">💾 일지 저장하기</button>
+          </div>
+        </form>
+
+        <!-- Stored History Table -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <h4 style="font-size:0.95rem; font-weight:800; color:#fff;">📋 최근 매매 내역 및 통계</h4>
+          <button class="btn-action" onclick="exportTradesCSV()" style="background:var(--bg-surface); border:1px solid var(--border); color:var(--text-muted); font-size:0.75rem; padding:6px 12px;">
+            📥 엑셀(CSV) 백업
+          </button>
+        </div>
+
+        <div class="journal-table-wrap">
+          <table class="journal-table">
+            <thead>
+              <tr>
+                <th>일자</th>
+                <th>종목명</th>
+                <th>구분</th>
+                <th>매수가</th>
+                <th>매도가</th>
+                <th>수량</th>
+                <th>실현 손익</th>
+                <th>원칙준수</th>
+                <th>메모</th>
+                <th>관리</th>
+              </tr>
+            </thead>
+            <tbody id="journalTableBody">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
 
-    <!-- TAB 3: TOP 5 STOCKS -->
+    <!-- TAB 4: TOP 5 STOCKS -->
     <div id="tab-top5" class="tab-content">
       <div class="section-head">
         <h3 class="section-title">🔥 외인·기관 쌍끌이 수급 TOP 5</h3>
         <span class="section-badge">클릭 시 네이버 모바일 증권 호가창 연동</span>
       </div>
       <div class="stock-list">
-        <!-- Stock 1 -->
         <a class="stock-card" href="https://m.stock.naver.com/domestic/stock/001440/total" target="_blank" rel="noopener">
           <div class="stock-info">
             <span class="stock-rank">01</span>
@@ -1094,22 +1012,12 @@
             </div>
           </div>
           <div class="stock-metrics">
-            <div class="metric-col">
-              <span class="metric-label">외인·기관 수급</span>
-              <span class="metric-val green">+182억 순매수</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">매수 타점</span>
-              <span class="metric-val">12,800원 눌림</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">손절 기준</span>
-              <span class="metric-val red">12,200원 (-4.6%)</span>
-            </div>
+            <div class="metric-col"><span class="metric-label">외인·기관</span><span class="metric-val green">+182억 순매수</span></div>
+            <div class="metric-col"><span class="metric-label">매수 타점</span><span class="metric-val">12,800원</span></div>
+            <div class="metric-col"><span class="metric-label">손절 기준</span><span class="metric-val red">12,200원 (-4.6%)</span></div>
           </div>
         </a>
 
-        <!-- Stock 2 -->
         <a class="stock-card" href="https://m.stock.naver.com/domestic/stock/010140/total" target="_blank" rel="noopener">
           <div class="stock-info">
             <span class="stock-rank">02</span>
@@ -1119,22 +1027,12 @@
             </div>
           </div>
           <div class="stock-metrics">
-            <div class="metric-col">
-              <span class="metric-label">외인·기관 수급</span>
-              <span class="metric-val green">+240억 순매수</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">매수 타점</span>
-              <span class="metric-val">9,850원 지지</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">손절 기준</span>
-              <span class="metric-val red">9,400원 (-4.5%)</span>
-            </div>
+            <div class="metric-col"><span class="metric-label">외인·기관</span><span class="metric-val green">+240억 순매수</span></div>
+            <div class="metric-col"><span class="metric-label">매수 타점</span><span class="metric-val">9,850원</span></div>
+            <div class="metric-col"><span class="metric-label">손절 기준</span><span class="metric-val red">9,400원 (-4.5%)</span></div>
           </div>
         </a>
 
-        <!-- Stock 3 -->
         <a class="stock-card" href="https://m.stock.naver.com/domestic/stock/089030/total" target="_blank" rel="noopener">
           <div class="stock-info">
             <span class="stock-rank">03</span>
@@ -1144,22 +1042,12 @@
             </div>
           </div>
           <div class="stock-metrics">
-            <div class="metric-col">
-              <span class="metric-label">외인·기관 수급</span>
-              <span class="metric-val green">+95억 순매수</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">매수 타점</span>
-              <span class="metric-val">37,500원 20일선</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">손절 기준</span>
-              <span class="metric-val red">35,800원 (-4.5%)</span>
-            </div>
+            <div class="metric-col"><span class="metric-label">외인·기관</span><span class="metric-val green">+95억 순매수</span></div>
+            <div class="metric-col"><span class="metric-label">매수 타점</span><span class="metric-val">37,500원</span></div>
+            <div class="metric-col"><span class="metric-label">손절 기준</span><span class="metric-val red">35,800원 (-4.5%)</span></div>
           </div>
         </a>
 
-        <!-- Stock 4 -->
         <a class="stock-card" href="https://m.stock.naver.com/domestic/stock/267260/total" target="_blank" rel="noopener">
           <div class="stock-info">
             <span class="stock-rank">04</span>
@@ -1169,22 +1057,12 @@
             </div>
           </div>
           <div class="stock-metrics">
-            <div class="metric-col">
-              <span class="metric-label">외인·기관 수급</span>
-              <span class="metric-val green">+310억 순매수</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">매수 타점</span>
-              <span class="metric-val">320,000원 눌림</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">손절 기준</span>
-              <span class="metric-val red">308,000원 (-3.7%)</span>
-            </div>
+            <div class="metric-col"><span class="metric-label">외인·기관</span><span class="metric-val green">+310억 순매수</span></div>
+            <div class="metric-col"><span class="metric-label">매수 타점</span><span class="metric-val">320,000원</span></div>
+            <div class="metric-col"><span class="metric-label">손절 기준</span><span class="metric-val red">308,000원 (-3.7%)</span></div>
           </div>
         </a>
 
-        <!-- Stock 5 -->
         <a class="stock-card" href="https://m.stock.naver.com/domestic/stock/161890/total" target="_blank" rel="noopener">
           <div class="stock-info">
             <span class="stock-rank">05</span>
@@ -1194,24 +1072,15 @@
             </div>
           </div>
           <div class="stock-metrics">
-            <div class="metric-col">
-              <span class="metric-label">외인·기관 수급</span>
-              <span class="metric-val green">+72억 순매수</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">매수 타점</span>
-              <span class="metric-val">68,000원 박스하단</span>
-            </div>
-            <div class="metric-col">
-              <span class="metric-label">손절 기준</span>
-              <span class="metric-val red">65,500원 (-3.6%)</span>
-            </div>
+            <div class="metric-col"><span class="metric-label">외인·기관</span><span class="metric-val green">+72억 순매수</span></div>
+            <div class="metric-col"><span class="metric-label">매수 타점</span><span class="metric-val">68,000원</span></div>
+            <div class="metric-col"><span class="metric-label">손절 기준</span><span class="metric-val red">65,500원 (-3.6%)</span></div>
           </div>
         </a>
       </div>
     </div>
 
-    <!-- TAB 4: CALENDAR -->
+    <!-- TAB 5: CALENDAR -->
     <div id="tab-calendar" class="tab-content">
       <div class="section-head">
         <h3 class="section-title">📅 주요 경제 지표 & 실적 발표 D-Day</h3>
@@ -1249,104 +1118,92 @@
       </div>
     </div>
 
-    <!-- TAB 5: CALCULATOR -->
+    <!-- TAB 6: CALCULATOR -->
     <div id="tab-calculator" class="tab-content">
-      <div class="tool-box">
+      <div class="tool-box" style="background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px;">
         <h3 style="font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 4px;">🧮 2% 리스크 & 적정 진입 수량 계산기</h3>
         <p style="font-size: 0.8rem; color: var(--text-muted);">
           내 계좌 시드와 1회 허용 손실액(시드의 2%)을 기준으로, 목표 손절가에 따른 <strong>최대 진입 가능 주식 수량</strong>을 계산합니다.
         </p>
 
-        <div class="calc-row">
-          <div class="input-group">
-            <label class="input-label">총 운용 시드 (원)</label>
-            <input type="number" id="calcSeed" class="input-field" value="10000000">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-top:14px;">
+          <div class="input-box">
+            <label>총 운용 시드 (원)</label>
+            <input type="number" id="calcSeed" value="10000000">
           </div>
-          <div class="input-group">
-            <label class="input-label">매수 진입가 (원)</label>
-            <input type="number" id="calcBuyPrice" class="input-field" value="12800">
+          <div class="input-box">
+            <label>매수 진입가 (원)</label>
+            <input type="number" id="calcBuyPrice" value="12800">
           </div>
-          <div class="input-group">
-            <label class="input-label">칼손절 기준가 (원)</label>
-            <input type="number" id="calcStopPrice" class="input-field" value="12200">
+          <div class="input-box">
+            <label>칼손절 기준가 (원)</label>
+            <input type="number" id="calcStopPrice" value="12200">
           </div>
-          <button class="btn-action" onclick="calculateRisk()">포지션 계산</button>
         </div>
+        <button class="btn-action" style="margin-top:14px;" onclick="calculateRisk()">포지션 계산</button>
 
-        <div class="calc-result" id="calcResultBox">
-          <div class="calc-result-item">
-            <span class="calc-res-label">1회 허용 손실액 (2%)</span>
-            <span class="calc-res-val" style="color:#f59e0b;" id="resMaxLoss">200,000 원</span>
-          </div>
-          <div class="calc-result-item">
-            <span class="calc-res-label">1주당 손절 리스크</span>
-            <span class="calc-res-val" style="color:#ef4444;" id="resPerShareRisk">-600 원 (-4.68%)</span>
-          </div>
-          <div class="calc-result-item">
-            <span class="calc-res-label">최대 매수 가능 수량</span>
-            <span class="calc-res-val" style="color:#10b981;" id="resMaxShares">333 주</span>
-          </div>
-          <div class="calc-result-item">
-            <span class="calc-res-label">적정 진입 비중 (투자금)</span>
-            <span class="calc-res-val" style="color:#60a5fa;" id="resTotalEntry">4,262,400 원 (시드의 42.6%)</span>
-          </div>
+        <div style="margin-top:14px; padding:14px; border-radius:10px; background:var(--bg-surface); border:1px dashed var(--border); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;">
+          <div><div style="font-size:0.7rem; color:var(--text-dim);">1회 허용 손실액 (2%)</div><div style="font-family:var(--font-mono); font-size:1.1rem; font-weight:800; color:#f59e0b;" id="resMaxLoss">200,000 원</div></div>
+          <div><div style="font-size:0.7rem; color:var(--text-dim);">1주당 손절 리스크</div><div style="font-family:var(--font-mono); font-size:1.1rem; font-weight:800; color:#ef4444;" id="resPerShareRisk">-600 원 (-4.68%)</div></div>
+          <div><div style="font-size:0.7rem; color:var(--text-dim);">최대 매수 가능 수량</div><div style="font-family:var(--font-mono); font-size:1.1rem; font-weight:800; color:#10b981;" id="resMaxShares">333 주</div></div>
+          <div><div style="font-size:0.7rem; color:var(--text-dim);">적정 진입 비중</div><div style="font-family:var(--font-mono); font-size:1.1rem; font-weight:800; color:#60a5fa;" id="resTotalEntry">4,262,400 원 (시드의 42.6%)</div></div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 6: ESSENTIAL SITES -->
+    <!-- TAB 7: ESSENTIAL SITES -->
     <div id="tab-sites" class="tab-content">
       <div class="section-head">
         <h3 class="section-title">🌐 트레이더 필수 분석 사이트</h3>
         <span class="section-badge">클릭 시 공식 분석 사이트 연결</span>
       </div>
-      <div class="site-grid">
-        <a class="site-card" href="http://consensus.hankyung.com/" target="_blank" rel="noopener">
-          <div class="site-head">
-            <span class="site-name">한경 컨센서스</span>
-            <span class="site-type">리포트 무료</span>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:12px;">
+        <a class="site-card" href="http://consensus.hankyung.com/" target="_blank" rel="noopener" style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.95rem; font-weight:700; color:#fff;">한경 컨센서스</span>
+            <span style="font-size:0.68rem; padding:2px 6px; border-radius:4px; background:var(--bg-surface); color:var(--text-dim);">리포트 무료</span>
           </div>
-          <p class="site-desc">국내 증권사 모든 기업·산업 리포트 원문 무료 열람. 목표가 및 실적 추정치 확인 필수.</p>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.4;">국내 증권사 모든 기업·산업 리포트 원문 무료 열람. 목표가 및 실적 추정치 확인 필수.</p>
         </a>
 
-        <a class="site-card" href="https://dart.fss.or.kr/" target="_blank" rel="noopener">
-          <div class="site-head">
-            <span class="site-name">DART 전자공시</span>
-            <span class="site-type">금융감독원</span>
+        <a class="site-card" href="https://dart.fss.or.kr/" target="_blank" rel="noopener" style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.95rem; font-weight:700; color:#fff;">DART 전자공시</span>
+            <span style="font-size:0.68rem; padding:2px 6px; border-radius:4px; background:var(--bg-surface); color:var(--text-dim);">금융감독원</span>
           </div>
-          <p class="site-desc">유상증자, CB/BW 전환사채 발행, 최대주주 지분 변동, 분기 실적 공시 1차 팩트 체크.</p>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.4;">유상증자, CB/BW 전환사채 발행, 최대주주 지분 변동, 분기 실적 공시 1차 팩트 체크.</p>
         </a>
 
-        <a class="site-card" href="https://kr.investing.com/" target="_blank" rel="noopener">
-          <div class="site-head">
-            <span class="site-name">인베스팅닷컴</span>
-            <span class="site-type">글로벌 지표</span>
+        <a class="site-card" href="https://kr.investing.com/" target="_blank" rel="noopener" style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.95rem; font-weight:700; color:#fff;">인베스팅닷컴</span>
+            <span style="font-size:0.68rem; padding:2px 6px; border-radius:4px; background:var(--bg-surface); color:var(--text-dim);">글로벌 지표</span>
           </div>
-          <p class="site-desc">나스닥 선물 야간 실시간 추이, 원/달러 환율, WTI 유가, 미 국채 10년물 금리 확인.</p>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.4;">나스닥 선물 야간 실시간 추이, 원/달러 환율, WTI 유가, 미 국채 10년물 금리 확인.</p>
         </a>
 
-        <a class="site-card" href="http://www.paxnet.co.kr/" target="_blank" rel="noopener">
-          <div class="site-head">
-            <span class="site-name">팍스넷 (Paxnet)</span>
-            <span class="site-type">시장 테마</span>
+        <a class="site-card" href="http://www.paxnet.co.kr/" target="_blank" rel="noopener" style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.95rem; font-weight:700; color:#fff;">팍스넷 (Paxnet)</span>
+            <span style="font-size:0.68rem; padding:2px 6px; border-radius:4px; background:var(--bg-surface); color:var(--text-dim);">시장 테마</span>
           </div>
-          <p class="site-desc">당일 급등 테마주 주도주 분석, 상한가 원인 정리 및 실시간 특징주 수급 포착.</p>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.4;">당일 급등 테마주 주도주 분석, 상한가 원인 정리 및 실시간 특징주 수급 포착.</p>
         </a>
 
-        <a class="site-card" href="https://www.fnguide.com/" target="_blank" rel="noopener">
-          <div class="site-head">
-            <span class="site-name">에프앤가이드</span>
-            <span class="site-type">재무·밸류에이션</span>
+        <a class="site-card" href="https://www.fnguide.com/" target="_blank" rel="noopener" style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.95rem; font-weight:700; color:#fff;">에프앤가이드</span>
+            <span style="font-size:0.68rem; padding:2px 6px; border-radius:4px; background:var(--bg-surface); color:var(--text-dim);">재무·밸류에이션</span>
           </div>
-          <p class="site-desc">PER, PBR, ROE 및 분기별 컨센서스 부합 여부 퀀트 데이터 정밀 검증.</p>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.4;">PER, PBR, ROE 및 분기별 컨센서스 부합 여부 퀀트 데이터 정밀 검증.</p>
         </a>
 
-        <a class="site-card" href="https://kr.tradingview.com/" target="_blank" rel="noopener">
-          <div class="site-head">
-            <span class="site-name">트레이딩뷰 (TradingView)</span>
-            <span class="site-type">차트 분석</span>
+        <a class="site-card" href="https://kr.tradingview.com/" target="_blank" rel="noopener" style="background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.95rem; font-weight:700; color:#fff;">트레이딩뷰</span>
+            <span style="font-size:0.68rem; padding:2px 6px; border-radius:4px; background:var(--bg-surface); color:var(--text-dim);">차트 분석</span>
           </div>
-          <p class="site-desc">선물 파생 매물대(Volume Profile), RSI, 볼린저밴드 및 다중 지표 정밀 작도.</p>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.4;">선물 파생 매물대(Volume Profile), RSI, 볼린저밴드 및 다중 지표 정밀 작도.</p>
         </a>
       </div>
     </div>
@@ -1358,38 +1215,37 @@
     </footer>
   </div>
 
-  <!-- MODAL 1: MACRO DETAIL -->
+  <!-- MODALS -->
   <div id="macro-modal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'macro-modal')">
     <div class="modal-box">
       <div class="modal-head">
         <h4 class="modal-title">📊 미국장 마감 상세 분석 & 국내 시장 영향</h4>
         <button class="modal-close" onclick="closeModal('macro-modal')">✕</button>
       </div>
-      <div class="modal-body">
+      <div style="font-size:0.88rem; color:#cbd5e1; line-height:1.6;">
         <h5 style="color:#60a5fa; margin-bottom:6px;">1. 글로벌 매크로 동향</h5>
         <p style="margin-bottom:12px;">
           간밤 뉴욕 증시는 다우가 사상 최고치를 경신했으나, 나스닥(-0.35%)과 필라델피아 반도체(-0.78%)는 ASML의 2025년 가이던스 하향 여파로 조정을 받았습니다.
-          다만 엔비디아와 TSMC는 낙폭을 상당 부분 만회하며 AI 하드웨어 수요가 건재함을 시사했습니다.
+          엔비디아와 TSMC는 낙폭을 만회하며 AI 하드웨어 수요가 건재함을 입증했습니다.
         </p>
 
-        <h5 style="color:#10b981; margin-bottom:6px;">2. 국내 증시(국장) 파급 영향</h5>
-        <p style="margin-bottom:12px;">
-          - <strong>선물 지수:</strong> 야간 E-mini 나스닥 선물(-0.28%)과 코스피 200 야간 선물(878.05pt, -0.42%) 모두 약보합권에서 출발을 예고합니다.<br>
-          - <strong>환율 긍정적:</strong> 원/달러 환율이 1,354.20원(-0.33%)으로 안정세를 찾아 외국인의 공격적인 현물 매도 공세는 제한적일 전망입니다.<br>
-          - <strong>실행 수칙:</strong> 반도체 대형주(삼성전자, SK하이닉스)의 갭하락 시초가 추격매수는 절대 금지하며, 전력 인프라 및 조선 등 독립적인 실적 모멘텀 섹터로 압축 대응합니다.
+        <h5 style="color:#10b981; margin-bottom:6px;">2. 국내 증시 파급 영향</h5>
+        <p>
+          - <strong>야간 선물 약보합:</strong> 나스닥 선물(-0.28%)과 코스피200 선물(878.05pt, -0.42%) 약보합 출발 예상.<br>
+          - <strong>환율 우호적:</strong> 원/달러 환율이 1,354.20원(-0.33%)으로 안정세를 유지하여 외인 투매 우려는 낮음.<br>
+          - <strong>대응:</strong> 반도체 시초가 갭하락 추격 금지, 전력망·조선 등 실적 수급주 중심 눌림목 분할 진입.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- MODAL 2: RADAR DETAIL -->
   <div id="radar-modal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'radar-modal')">
     <div class="modal-box">
       <div class="modal-head">
         <h4 class="modal-title">⚡ 외인·기관 오늘의 1순위 수급 종목 상세</h4>
         <button class="modal-close" onclick="closeModal('radar-modal')">✕</button>
       </div>
-      <div class="modal-body">
+      <div style="font-size:0.88rem; color:#cbd5e1; line-height:1.6;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <div>
             <h4 style="color:#fff; font-size:1.1rem;">대한전선 (001440)</h4>
@@ -1420,15 +1276,15 @@
         <h5 style="color:#fbbf24; margin-bottom:6px;">🎯 원칙 매매 진입 & 청산 가이드</h5>
         <ul style="padding-left:18px; margin-bottom:12px; font-size:0.85rem;">
           <li><strong>매수 진입가:</strong> 12,800원 부근 (5일선 지지 확인 시 분할 매수)</li>
-          <li><strong>목표가:</strong> 1차 14,200원 (+10.9%), 2차 15,500원 돌파 시도</li>
+          <li><strong>목표가:</strong> 1차 14,200원 (+10.9%), 2차 15,500원</li>
           <li><strong>칼손절 기준선:</strong> 12,200원 종가 이탈 시 즉시 기계적 손절 (-4.6%)</li>
-          <li><strong>핵심 모멘텀:</strong> 북미 변전소 및 AI 데이터센터 전력선 수주 잔고 사상 최대치 갱신 중</li>
         </ul>
       </div>
     </div>
   </div>
 
   <script>
+    // Tab Switching
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -1439,10 +1295,11 @@
       const tabs = {
         'briefing': 0,
         'deriv-map': 1,
-        'top5': 2,
-        'calendar': 3,
-        'calculator': 4,
-        'sites': 5
+        'journal': 2,
+        'top5': 3,
+        'calendar': 4,
+        'calculator': 5,
+        'sites': 6
       };
       const buttons = document.querySelectorAll('.tab-btn');
       if (buttons[tabs[tabId]]) {
@@ -1450,22 +1307,26 @@
       }
     }
 
+    // Logo click -> go to Home
+    function goHome() {
+      switchTab('briefing');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modals
     function openModal(id) {
       const modal = document.getElementById(id);
       if (modal) modal.classList.add('open');
     }
-
     function closeModal(id) {
       const modal = document.getElementById(id);
       if (modal) modal.classList.remove('open');
     }
-
     function closeModalOnOverlay(e, id) {
-      if (e.target.id === id) {
-        closeModal(id);
-      }
+      if (e.target.id === id) closeModal(id);
     }
 
+    // 2% Risk Calculator
     function calculateRisk() {
       const seed = parseFloat(document.getElementById('calcSeed').value) || 0;
       const buyPrice = parseFloat(document.getElementById('calcBuyPrice').value) || 0;
@@ -1476,7 +1337,7 @@
         return;
       }
 
-      const maxLoss = seed * 0.02; // 2%
+      const maxLoss = seed * 0.02;
       const perShareLoss = buyPrice - stopPrice;
       const lossRate = ((perShareLoss / buyPrice) * 100).toFixed(2);
       const maxShares = Math.floor(maxLoss / perShareLoss);
@@ -1487,6 +1348,175 @@
       document.getElementById('resPerShareRisk').innerText = `-${perShareLoss.toLocaleString()} 원 (-${lossRate}%)`;
       document.getElementById('resMaxShares').innerText = maxShares.toLocaleString() + " 주";
       document.getElementById('resTotalEntry').innerText = `${totalEntry.toLocaleString()} 원 (시드의 ${entryRatio}%)`;
+    }
+
+    // ----------------------------------------------------
+    // IN-SITE TRADE JOURNAL ENGINE (LOCAL STORAGE)
+    // ----------------------------------------------------
+    const STORAGE_KEY = 'stockventura_trades_v1';
+    const INITIAL_LOSS = -138800000;
+
+    // Set today's date in form by default
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('tradeDate');
+      if (dateInput) dateInput.value = today;
+      loadTrades();
+    });
+
+    function calcTradePnl() {
+      const buyPrice = parseFloat(document.getElementById('tradeBuyPrice').value) || 0;
+      const sellPrice = parseFloat(document.getElementById('tradeSellPrice').value) || 0;
+      const qty = parseInt(document.getElementById('tradeQty').value) || 0;
+
+      if (buyPrice > 0 && sellPrice > 0 && qty > 0) {
+        const pnl = (sellPrice - buyPrice) * qty;
+        const rate = (((sellPrice - buyPrice) / buyPrice) * 100).toFixed(2);
+        const pnlAmountEl = document.getElementById('tradePnlAmount');
+        const pnlRateEl = document.getElementById('tradePnlRate');
+        
+        pnlAmountEl.value = (pnl >= 0 ? '+' : '') + pnl.toLocaleString() + " 원";
+        pnlRateEl.value = (pnl >= 0 ? '+' : '') + rate + " %";
+        pnlAmountEl.style.color = pnl >= 0 ? '#10b981' : '#ef4444';
+        pnlRateEl.style.color = pnl >= 0 ? '#10b981' : '#ef4444';
+      } else {
+        document.getElementById('tradePnlAmount').value = "0원";
+        document.getElementById('tradePnlRate').value = "0.00%";
+      }
+    }
+
+    function getStoredTrades() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveTrade(e) {
+      e.preventDefault();
+      const date = document.getElementById('tradeDate').value;
+      const name = document.getElementById('tradeName').value;
+      const type = document.getElementById('tradeType').value;
+      const buyPrice = parseFloat(document.getElementById('tradeBuyPrice').value) || 0;
+      const sellPrice = parseFloat(document.getElementById('tradeSellPrice').value) || 0;
+      const qty = parseInt(document.getElementById('tradeQty').value) || 0;
+      const ruleKept = document.getElementById('tradeRuleKept').value;
+      const memo = document.getElementById('tradeMemo').value;
+
+      const pnl = (sellPrice > 0 && buyPrice > 0) ? (sellPrice - buyPrice) * qty : 0;
+      const rate = (sellPrice > 0 && buyPrice > 0) ? (((sellPrice - buyPrice) / buyPrice) * 100).toFixed(2) : "0.00";
+
+      const newTrade = {
+        id: Date.now(),
+        date,
+        name,
+        type,
+        buyPrice,
+        sellPrice,
+        qty,
+        pnl,
+        rate,
+        ruleKept,
+        memo
+      };
+
+      const trades = getStoredTrades();
+      trades.unshift(newTrade);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
+
+      // Reset form
+      document.getElementById('tradeName').value = '';
+      document.getElementById('tradeBuyPrice').value = '';
+      document.getElementById('tradeSellPrice').value = '';
+      document.getElementById('tradeQty').value = '';
+      document.getElementById('tradePnlAmount').value = '0원';
+      document.getElementById('tradePnlRate').value = '0.00%';
+      document.getElementById('tradeMemo').value = '';
+
+      loadTrades();
+      alert("매매일지가 성공적으로 저장되었습니다!");
+    }
+
+    function deleteTrade(id) {
+      if (!confirm("이 매매 기록을 삭제하시겠습니까?")) return;
+      let trades = getStoredTrades();
+      trades = trades.filter(t => t.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
+      loadTrades();
+    }
+
+    function loadTrades() {
+      const trades = getStoredTrades();
+      const tbody = document.getElementById('journalTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      let cumulativeRealizedPnl = 0;
+
+      if (trades.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color:var(--text-dim); padding:24px;">기록된 매매일지가 없습니다. 위 작성창에서 첫 매매를 기록해보세요.</td></tr>`;
+      } else {
+        trades.forEach(t => {
+          cumulativeRealizedPnl += t.pnl;
+          const tr = document.createElement('tr');
+          const pnlColor = t.pnl > 0 ? '#10b981' : (t.pnl < 0 ? '#ef4444' : '#94a3b8');
+          const pnlSign = t.pnl > 0 ? '+' : '';
+          const ruleBadge = t.ruleKept === 'YES' 
+            ? `<span class="tag-rule-yes">원칙준수</span>` 
+            : `<span class="tag-rule-no">뇌동·위반</span>`;
+
+          tr.innerHTML = `
+            <td>${t.date}</td>
+            <td><strong>${t.name}</strong></td>
+            <td><span style="font-size:0.75rem; color:var(--text-dim);">${t.type}</span></td>
+            <td style="font-family:var(--font-mono);">${t.buyPrice.toLocaleString()}원</td>
+            <td style="font-family:var(--font-mono);">${t.sellPrice ? t.sellPrice.toLocaleString() + '원' : '-'}</td>
+            <td style="font-family:var(--font-mono);">${t.qty.toLocaleString()}주</td>
+            <td style="font-family:var(--font-mono); font-weight:800; color:${pnlColor};">
+              ${t.sellPrice ? pnlSign + t.pnl.toLocaleString() + '원 (' + pnlSign + t.rate + '%)' : '보유중'}
+            </td>
+            <td>${ruleBadge}</td>
+            <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${t.memo || ''}">
+              ${t.memo || '-'}
+            </td>
+            <td>
+              <button onclick="deleteTrade(${t.id})" style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.8rem;">🗑️</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Update Global PnL Badge (-1.38억 + 실현손익)
+      const currentNetLoss = INITIAL_LOSS + cumulativeRealizedPnl;
+      const badgeEl = document.getElementById('globalPnlBadge');
+      if (badgeEl) {
+        badgeEl.innerText = (currentNetLoss >= 0 ? '+' : '') + currentNetLoss.toLocaleString() + "원";
+      }
+    }
+
+    function exportTradesCSV() {
+      const trades = getStoredTrades();
+      if (trades.length === 0) {
+        alert("내보낼 매매 데이터가 없습니다.");
+        return;
+      }
+
+      let csv = "\uFEFF일자,종목명,구분,매수가,매도가,수량,실현손익,수익률,원칙준수,복기메모\n";
+      trades.forEach(t => {
+        csv += `"${t.date}","${t.name}","${t.type}","${t.buyPrice}","${t.sellPrice}","${t.qty}","${t.pnl}","${t.rate}%","${t.ruleKept}","${(t.memo || '').replace(/"/g, '""')}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", `매매일지_백업_${new Date().toISOString().split('T')[0]}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   </script>
 </body>
