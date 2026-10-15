@@ -2,10 +2,16 @@
   <strong>🚨 누적 손실 현황: <span style="color:#ef4444; font-size:1.15em;">-138,800,000원</span> (원금 복구 프로젝트 진행 중)</strong>
 </div>
 
+# 🌐 [👉 여기를 터치하면 실시간 인터랙티브 웹 앱으로 이동합니다](https://7wooooo.github.io/stock-memo/)
+> **실시간 웹사이트 주소**: [https://7wooooo.github.io/stock-memo/](https://7wooooo.github.io/stock-memo/)  
+> *(GitHub 저장소 설정에서 Pages를 활성화하면 위 주소로 인터랙티브 웹 화면이 열립니다)*
+
+---
+
 # 📊 StockVentura 데일리 마켓 브리핑 & 매매일지
 
-> **최종 동기화: 2026-10-16 01:02 (KST)**  
-> 4대 전문지(한경 컨센서스, 디일렉, 프라임경제, 핀포인트뉴스) 5페이지 전수 분석 + 외인·기관 수급 레이더 + SQLite DB 자동 연동
+> **최종 업데이트: 2026-10-16 (KST)**  
+> 4대 전문지 5페이지 전수 분석 + 외인·기관 수급 레이더 + SQLite DB 자동 연동
 
 ---
 
