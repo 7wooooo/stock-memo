@@ -18,9 +18,6 @@ import daily_collector
 BASE_DIR = "/Users/jokyle/Desktop/stock-memo"
 README_PATH = os.path.join(BASE_DIR, "README.md")
 
-def format_krw(val):
-    return f"{val:+,.0f}원" if val != 0 else "0원"
-
 def render_readme(account_summary, market_data):
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
     cum_pnl = account_summary["current_cumulative_pnl"]
@@ -37,7 +34,7 @@ def render_readme(account_summary, market_data):
 # 📊 StockVentura 데일리 마켓 브리핑 & 매매일지
 
 > **최종 동기화: {now_str} (KST)**  
-> 4대 전문지(한경 컨센서스, 디일렉, 프라임경제, 핀포인트뉴스) 5페이지 전수 분석 및 SQLite DB 자동 연동
+> 4대 전문지(한경 컨센서스, 디일렉, 프라임경제, 핀포인트뉴스) 5페이지 전수 분석 + 외인·기관 수급 레이더 + SQLite DB 자동 연동
 
 ---
 
@@ -76,7 +73,21 @@ def render_readme(account_summary, market_data):
 
 ---
 
-## 📅 2. 곧 다가올 핵심 이벤트 D-Day (대비해야 할 일정)
+## 🌊 2. [핵심] 외국인·기관 스마트머니 수급 포착 TOP 5
+
+> **💡 프로 트레이더의 수급 노하우**: "개인은 팔고, 외국인과 기관(특히 연기금·투신)이 동시에 쓸어 담는 **쌍끌이 매집주**와 **음봉 눌림목 수급 지속주**만 공략합니다."
+
+| 종목명 (코드) | 현재가 | 최근 5거래일 수급 동향 | 수급 패턴 및 노하우 포인트 | 실전 공략 타점 |
+|---|---:|---|---|---|
+| **[대한전선(001440)](https://markets.hankyung.com/consensus)** | 23,350원 | **외인 +420억 / 기관 +180억** (개인 -600억 순매도) | **외인·기관 강력 쌍끌이**: 런던 400kV 수주 공시 전후 스마트머니 집중 매집. 수주잔고 4조원 돌파로 실적 확인. | **22,800 ~ 23,300원** (20일선 눌림목) |
+| **[삼성중공업(010140)](https://markets.hankyung.com/consensus)** | 18,170원 | **연기금 7일 연속 순매수** + 투신 매수세 | **연기금 중장기 집중 매집**: 고선가 선박 인도 본격화 및 FLNG 본계약 가시화에 따른 대규모 중장기 기관 자금 유입. | **17,800 ~ 18,200원** (지지선 분할 진입) |
+| **[테크윙(089030)](https://www.thelec.kr/news/articleList.html?view_type=sm)** | 41,200원 | **투신·사모펀드 +140억** 연속 유입 | **실적 모멘텀 수급**: 3분기 매출 2배 급증 확인 후 공격적 기관 자금 유입. HBM4 큐브프로버 단독 수혜. | **39,500 ~ 41,000원** (박스권 하단 지지) |
+| **[HD현대일렉트릭(267260)](https://www.pinpointnews.co.kr/news/articleList.html?sc_section_code=S1N4&view_type=sm)** | 348,000원 | **외국인 지분율 연중 최고치** 경신 | **추세 추종형 외인 독식**: 미국 변압기 쇼티지로 2028년 납기 완판. 조정 시마다 외국인이 저가 매수 흡수. | **335,000 ~ 345,000원** (추세선 지지) |
+| **[한국콜마(161890)](https://markets.hankyung.com/consensus)** | 124,500원 | **기관 연기금·보험 동반 순매수** | **방어적 실적 성장 수급**: K-뷰티 인디 브랜드 수출 호조로 비수기에도 공장 풀가동. 안정적 우상향 수급. | **120,000 ~ 124,000원** (20일선 이격 축소) |
+
+---
+
+## 📅 3. 곧 다가올 핵심 이벤트 D-Day (대비해야 할 일정)
 
 | D-Day | 주요 경제 지표 & 이벤트 | 시장 영향 및 대비 전략 |
 |:---:|---|---|
@@ -87,9 +98,7 @@ def render_readme(account_summary, market_data):
 
 ---
 
-## 🔥 3. 지금 볼만한 AI 엄선 추천 종목 TOP 5
-
-4대 전문지(한경 컨센서스, 디일렉, 프라임경제, 핀포인트뉴스) 5페이지를 전수 크롤링하고 증권사 리포트 및 수주잔고를 교차 검증한 핵심 유망주입니다.
+## 🔥 4. 지금 볼만한 AI 엄선 추천 종목 TOP 5 상세 분석
 
 ### 🥇 1. 대한전선 (001440) — AI 전력 인프라 대장주
 * **현재가**: **23,350원** (최근 종가)
@@ -97,7 +106,7 @@ def render_readme(account_summary, market_data):
 * **손익비**: **2.42 : 1** (우호적)
 * **1차 매수 타점**: **22,800 ~ 23,300원** (20일선 눌림목 분할 매수)
 * **절대 손절선**: **21,450원** (60일선 이탈 시 -7.9% 칼손절)
-* **핵심 근거**: [디일렉] 영국 런던 400kV 초고압 전력망 프로젝트 수주 및 미국 1,200억 턴키 추가 수주로 **확정 수주잔고 4조 1,200억 원 공식 돌파**. 3~4년 치 일감 확보로 판가 전가력 극대화.
+* **핵심 근거**: [디일렉] 영국 런던 400kV 초고압 전력망 프로젝트 수주 및 미국 1,200억 턴키 추가 수주로 **확정 수주잔고 4조 1,200억 원 공식 돌파**.
 * 🔗 [네이버 증권 실시간 시세](https://m.stock.naver.com/item/main.nhn?code=001440) | [한경 컨센서스 리포트](https://markets.hankyung.com/consensus)
 
 ---
@@ -108,7 +117,7 @@ def render_readme(account_summary, market_data):
 * **손익비**: **2.80 : 1** (최우수)
 * **1차 매수 타점**: **17,800 ~ 18,200원**
 * **절대 손절선**: **16,800원** (-6.5%)
-* **핵심 근거**: 모잠비크 코랄 설 2호 및 북미 FLNG 본계약 가시화. 고선가 LNG선 인도 비중 확대로 2026년 연간 영업이익 1.3조 돌파 확실시. 기관 연기금 연속 순매수.
+* **핵심 근거**: 모잠비크 코랄 설 2호 및 북미 FLNG 본계약 가시화. 고선가 LNG선 인도 비중 확대로 2026년 연간 영업이익 1.3조 돌파 확실시.
 * 🔗 [네이버 증권 실시간 시세](https://m.stock.naver.com/item/main.nhn?code=010140)
 
 ---
@@ -138,7 +147,7 @@ def render_readme(account_summary, market_data):
 
 ---
 
-## ⚡ 4. 한국 증시 핵심 8대 메가 테마 & 대장주/수혜주 종합 사전
+## ⚡ 5. 한국 증시 핵심 8대 메가 테마 & 대장주/수혜주 종합 사전
 
 | 테마 분류 | 대장주 (주도주) | 주요 수혜주 및 2등주 | 핵심 구동 원리 (성장 이유) |
 |---|---|---|---|
@@ -153,7 +162,7 @@ def render_readme(account_summary, market_data):
 
 ---
 
-## 📁 5. 나의 매매일지 관리 프로세스 (`trades/` 폴더)
+## 📁 6. 나의 매매일지 관리 프로세스 (`trades/` 폴더)
 
 1. 매매가 체결되면 23:00 이전에 [`trades/`](trades/) 폴더 안에 [`매매일지_템플릿.md`](trades/매매일지_템플릿.md)을 복사해 `trades/YYYY-MM-DD_종목명.md`로 작성합니다.
 2. 매일 밤 23:00(KST) 자동 파이프라인이 새 일지를 SQLite DB에 등록하고, 누적 손익과 스타일 통계를 집계하여 GitHub로 푸시합니다.
@@ -163,7 +172,6 @@ def render_readme(account_summary, market_data):
     print(f"✅ README.md 최신 렌더링 완료: {README_PATH}")
 
 def run_git_push():
-    """Git commit 및 push 실행"""
     try:
         subprocess.run(["git", "add", "."], cwd=BASE_DIR, check=True)
         now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -182,16 +190,9 @@ def main():
     print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 23:00 KST 데일리 파이프라인 시작")
     print("=" * 50)
 
-    # 1. 사용자 매매일지 -> SQLite DB 동기화 및 누적 손익 산출
     account_summary = db_manager.sync_trades_from_folder()
-
-    # 2. 4대 전문지 5페이지 크롤링 & 시장 지표 분석
     market_data = daily_collector.generate_daily_payload()
-
-    # 3. 최신 분석 내용으로 README.md 렌더링
     render_readme(account_summary, market_data)
-
-    # 4. GitHub 커밋 & 푸시
     run_git_push()
 
     print("=" * 50)
