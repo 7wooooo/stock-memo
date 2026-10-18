@@ -2,11 +2,13 @@ name: Daily Market Cloud Auto Update
 
 on:
   schedule:
-    # 07:30 KST (UTC 22:30) - 미국장 마감 직후 및 국내장 개장 전 자동 실행
+    # 07:30 KST (UTC 22:30) - 뉴욕증시(나스닥) 마감 직후 및 국내장 개장 전 장전 시황 자동 갱신
     - cron: '30 22 * * *'
-    # 23:00 KST (UTC 14:00) - 국내장 마감 분석 및 야간 선물 개시 자동 실행
+    # 15:40 KST (UTC 06:40) - 국내 증시 정규장 마감 직후 마감 시황 자동 갱신
+    - cron: '40 6 * * *'
+    # 23:00 KST (UTC 14:00) - 야간 나스닥 선물 및 외환 마감 자동 갱신
     - cron: '0 14 * * *'
-  workflow_dispatch: # 깃허브 웹 화면에서 언제든 'Run workflow' 버튼 클릭 즉시 실행
+  workflow_dispatch: # GitHub 웹 화면에서 언제든 수동 즉시 실행 가능
 
 permissions:
   contents: write

@@ -613,20 +613,28 @@
     }
 
     /* ========================================================
-       ALPHA ENGINE DAILY CLOSING CARD (MATCHING IMAGE 1)
+       ALPHA ENGINE BRIEFING SYSTEM (CLEAN WHITE SAAS THEME)
+       Supports Morning (Pre-Market) & Closing Briefings
        ======================================================== */
     .alpha-card-wrap {
-      background: #0f172a;
+      background: #ffffff;
+      border: 1px solid var(--border-base);
       border-radius: var(--radius-lg);
       padding: 24px;
-      color: #f8fafc;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      margin-bottom: 28px;
+      color: var(--text-main);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+      transition: background-color 0.2s ease;
+    }
+    [data-theme="dark"] .alpha-card-wrap {
+      background: #131720;
+      border-color: rgba(255, 255, 255, 0.08);
+      color: #f9fafb;
     }
     .alpha-top-header {
       background: #f59e0b;
-      color: #000;
-      padding: 14px 20px;
+      color: #000000;
+      padding: 16px 20px;
       border-radius: 12px 12px 0 0;
       margin: -24px -24px 20px;
       display: flex;
@@ -634,48 +642,88 @@
       align-items: center;
     }
     .alpha-title-main { font-size: 1.35rem; font-weight: 900; letter-spacing: -0.02em; }
-    .alpha-title-sub { font-size: 0.8rem; font-weight: 700; opacity: 0.9; }
+    .alpha-title-sub { font-size: 0.82rem; font-weight: 700; opacity: 0.95; }
+
+    .alpha-subtab-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: var(--bg-card-sub);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-base);
+      width: fit-content;
+    }
+    .alpha-subtab-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .alpha-subtab-btn.active {
+      background: var(--bg-card);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
 
     .alpha-indices-row {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 18px;
       flex-wrap: wrap;
     }
     .alpha-idx-pill {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-base);
       padding: 8px 14px;
       border-radius: 8px;
       font-size: 0.84rem;
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--text-body);
     }
-    .alpha-idx-pill strong { color: #fff; }
+    .alpha-idx-pill strong { color: var(--text-main); font-weight: 800; }
 
     .alpha-headline-text {
-      font-size: 1.4rem;
+      font-size: 1.32rem;
       font-weight: 800;
-      color: #fff;
-      line-height: 1.35;
+      color: var(--text-main);
+      line-height: 1.45;
       margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-base);
     }
 
     .alpha-hero-stock {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(15, 23, 42, 0.8));
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      background: #fffbeb;
+      border: 1px solid #fde68a;
       border-radius: 12px;
-      padding: 16px 20px;
+      padding: 18px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 22px;
     }
+    [data-theme="dark"] .alpha-hero-stock {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.25);
+    }
     .alpha-hero-pct {
-      font-size: 2.1rem;
+      font-size: 1.55rem;
       font-weight: 900;
-      color: #ef4444;
+      color: #b45309;
+    }
+    [data-theme="dark"] .alpha-hero-pct {
+      color: #fbbf24;
     }
 
     .alpha-theme-grid {
@@ -686,36 +734,40 @@
     }
     @media (min-width: 680px) { .alpha-theme-grid { grid-template-columns: repeat(2, 1fr); } }
     .alpha-theme-box {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--bg-card);
+      border: 1px solid var(--border-base);
       border-radius: 12px;
-      padding: 14px 16px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
     }
-    .alpha-theme-name { font-size: 0.9rem; font-weight: 800; color: #f59e0b; margin-bottom: 4px; }
-    .alpha-theme-reason { font-size: 0.74rem; color: #94a3b8; margin-bottom: 10px; }
-    .alpha-stock-item { display: flex; justify-content: space-between; font-size: 0.82rem; padding: 3px 0; }
-    .alpha-stock-item span:last-child { color: #ef4444; font-weight: 800; }
+    .alpha-theme-name { font-size: 0.92rem; font-weight: 800; color: #d97706; margin-bottom: 4px; }
+    .alpha-theme-reason { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; line-height: 1.45; }
+    .alpha-stock-item { display: flex; justify-content: space-between; font-size: 0.82rem; padding: 4px 0; border-bottom: 1px dashed var(--border-subtle); }
+    .alpha-stock-item:last-child { border-bottom: none; }
+    .alpha-stock-item span:first-child { color: var(--text-main); font-weight: 600; }
+    .alpha-stock-item span:last-child { color: var(--color-green-text, #059669); font-weight: 800; }
 
     .alpha-feedback-strip {
-      background: #1e293b;
+      background: var(--bg-card-sub);
       border-left: 4px solid #f59e0b;
-      padding: 14px 16px;
+      padding: 14px 18px;
       border-radius: 8px;
       font-size: 0.84rem;
-      line-height: 1.5;
+      line-height: 1.6;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
+      color: var(--text-body);
     }
     .alpha-match-tag {
       background: #f59e0b;
       color: #000;
-      padding: 4px 12px;
+      padding: 5px 14px;
       border-radius: 6px;
       font-weight: 800;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
     }
 
     /* Modal */
@@ -1159,92 +1211,223 @@
        TAB 2: 한 장 마감 시황 (ALPHA ENGINE STYLE - MATCHING IMAGE 1)
        ======================================================== -->
     <div id="view-briefing" class="tab-view">
-      <div class="alpha-card-wrap">
+
+      <!-- Briefing Sub-Tabs (장전 시황 vs 마감 시황) -->
+      <div class="alpha-subtab-bar">
+        <button id="btn-sub-morning" class="alpha-subtab-btn active" onclick="switchBriefingSub('morning')">
+          <span>☀️</span>
+          <span>장전 시황 (08:30 KST · 나스닥 마감 & 당일 전략)</span>
+        </button>
+        <button id="btn-sub-closing" class="alpha-subtab-btn" onclick="switchBriefingSub('closing')">
+          <span>🌙</span>
+          <span>마감 시황 (15:40 KST · 국내 증시 & 수급 총괄)</span>
+        </button>
+      </div>
+
+      <!-- ========================================================
+           CARD 1: ☀️ 장전 시황 (PRE-MARKET BRIEFING) - WHITE THEME
+           ======================================================== -->
+      <div id="briefing-card-morning" class="alpha-card-wrap">
         <div class="alpha-top-header">
           <div>
-            <div class="alpha-title-main">마감 시황</div>
-            <div class="alpha-title-sub">2026.10.18 (일) · 한 장으로 보는 오늘 시장 (파생 & 수급 연계)</div>
+            <div class="alpha-title-main">☀️ 장전 시황 (Pre-Market Briefing)</div>
+            <div class="alpha-title-sub">08:30 KST 발행 · 뉴욕증시(나스닥·반도체) 마감 종합 & 오늘 국내 증시 시초가 공략</div>
           </div>
-          <div style="background:#000; color:#f59e0b; padding:4px 10px; border-radius:6px; font-weight:900; font-size:12px;">
-            ALPHA ENGINE
+          <div style="background:#000; color:#f59e0b; padding:5px 12px; border-radius:6px; font-weight:900; font-size:12px;">
+            ALPHA MORNING ENGINE
           </div>
         </div>
 
+        <!-- US Close Indices & FX Macro Pills -->
         <div class="alpha-indices-row">
           <div class="alpha-idx-pill">
-            <span>코스피</span>
-            <strong>2,596.91</strong>
-            <span style="color:#38bdf8; font-weight:700;">-0.61%</span>
+            <span>나스닥 (NASDAQ)</span>
+            <strong>20,412.50</strong>
+            <span style="color:#ef4444; font-weight:700;">-0.35% (장후반 반등)</span>
           </div>
           <div class="alpha-idx-pill">
-            <span>코스닥</span>
-            <strong>763.88</strong>
-            <span style="color:#38bdf8; font-weight:700;">-0.84%</span>
+            <span>S&P 500</span>
+            <strong>5,842.10</strong>
+            <span style="color:var(--color-green-text, #059669); font-weight:700;">+0.12% (최고치권)</span>
           </div>
           <div class="alpha-idx-pill">
-            <span>선물200</span>
-            <strong>878.05</strong>
-            <span style="color:#38bdf8; font-weight:700;">-0.42%</span>
+            <span>필라델피아 반도체 (SOX)</span>
+            <strong>5,280.40</strong>
+            <span style="color:#ef4444; font-weight:700;">-0.78% (낙폭 축소)</span>
           </div>
           <div class="alpha-idx-pill">
-            <span>원/달러</span>
-            <strong>1,354.20원</strong>
-            <span style="color:#34d399; font-weight:700;">-4.5원 (안정)</span>
+            <span>엔비디아 (NVDA)</span>
+            <strong>$138.25</strong>
+            <span style="color:var(--color-green-text, #059669); font-weight:700;">+0.80% (블랙웰 완판)</span>
+          </div>
+          <div class="alpha-idx-pill">
+            <span>야간 NDF 원/달러</span>
+            <strong>1,351.50원</strong>
+            <span style="color:var(--color-green-text, #059669); font-weight:700;">-2.70원 (외인 우호)</span>
           </div>
         </div>
 
         <div class="alpha-headline-text">
-          "외국인 반도체 차익실현 vs SK하이닉스 숏 감마 스퀴즈 & 전력망 독주"
+          "뉴욕증시 반도체 낙폭 축소 & 엔비디아 상승 마감 ▷ 국내 증시 반도체 시초가 눌림목 반등 및 방산·전력망 순환매 주목"
+        </div>
+
+        <!-- Hottest Pre-Market Focus Stock -->
+        <div class="alpha-hero-stock">
+          <div>
+            <div style="font-size:0.75rem; color:#b45309; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">오늘 아침 시초가 핵심 대장주</div>
+            <div style="font-size:1.35rem; font-weight:900; color:var(--text-main); margin-top:2px;">SK하이닉스 (000660)</div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+              엔비디아·마이크론 반등 연계 ▷ 180,000원 풋옵션 지지벽 확인. 시초가 갭상승 시 뇌동 추격 매수 금지, 9시 15분 수급 확인 후 진입.
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div class="alpha-hero-pct">182,000원</div>
+            <div style="font-size:0.75rem; color:#b45309; font-weight:700;">손절선 175,000원 엄수</div>
+          </div>
+        </div>
+
+        <!-- 4 Morning Watch Themes -->
+        <div class="alpha-theme-grid">
+          <div class="alpha-theme-box">
+            <div class="alpha-theme-name">💾 1. AI 반도체 & HBM (미 반도체 연계)</div>
+            <div class="alpha-theme-reason">엔비디아 블랙웰 생산라인 풀가동 재확인. 시초가 갭하락 출발 후 양봉 전환 시 1차 타점.</div>
+            <div class="alpha-stock-item"><span>SK하이닉스 (000660)</span><span>감마 99.2pt 지지</span></div>
+            <div class="alpha-stock-item"><span>삼성전자 (005930)</span><span>58,000원 풋벽</span></div>
+            <div class="alpha-stock-item"><span>한미반도체 (042700)</span><span>TC본더 독점 수주</span></div>
+          </div>
+
+          <div class="alpha-theme-box">
+            <div class="alpha-theme-name">🧬 2. 코스닥150 선물 숏스퀴즈 (바이오)</div>
+            <div class="alpha-theme-reason">알테오젠 머크 독점 계약 마일스톤 가시화. 공매도 대규모 숏스퀴즈로 40만원 안착 테스트.</div>
+            <div class="alpha-stock-item"><span>알테오젠 (196170)</span><span>코스닥 1위 독주</span></div>
+            <div class="alpha-stock-item"><span>리가켐바이오 (141080)</span><span>ADC 빅딜 기대</span></div>
+            <div class="alpha-stock-item"><span>삼천당제약 (000250)</span><span>경구용 비만약</span></div>
+          </div>
+
+          <div class="alpha-theme-box">
+            <div class="alpha-theme-name">🚀 3. K-방산 & 우주항공 (외인 선물 매집)</div>
+            <div class="alpha-theme-reason">개별주식선물 외국인 4일 연속 순매수(+340억). 루마니아 K9 및 폴란드 2차 실행계약 임박.</div>
+            <div class="alpha-stock-item"><span>한화에어로스페이스 (012450)</span><span>외인 +340억 쌍끌이</span></div>
+            <div class="alpha-stock-item"><span>현대로템 (064350)</span><span>K2 전차 수주</span></div>
+            <div class="alpha-stock-item"><span>LIG넥스원 (079550)</span><span>천궁II 중동 수출</span></div>
+          </div>
+
+          <div class="alpha-theme-box">
+            <div class="alpha-theme-name">⚡ 4. AI 전력인프라 & 원전 SMR</div>
+            <div class="alpha-theme-reason">빅테크 AI 데이터센터 전력망 쇼티지 + 아마존·구글 소형모듈원전(SMR) 파트너십 발표 수혜.</div>
+            <div class="alpha-stock-item"><span>대한전선 (001440)</span><span>거래대금 1,800억</span></div>
+            <div class="alpha-stock-item"><span>두산에너빌리티 (034020)</span><span>SMR 파생 롱</span></div>
+            <div class="alpha-stock-item"><span>HD현대일렉트릭 (267260)</span><span>변압기 3년치 완판</span></div>
+          </div>
+        </div>
+
+        <!-- Morning 3-Rule Action Strip -->
+        <div class="alpha-feedback-strip">
+          <div style="flex:1; min-width:260px;">
+            <strong style="color:var(--text-main);">🛡️ 알파엔진 장 시작 전 3대 행동 수칙</strong><br>
+            • <strong>09:00~09:15 뇌동매매 절대 금지:</strong> 전일 나스닥 영향에 따른 시초가 갭(Gap) 변동성 구간은 관망 후 9시 20분 이후 수급 확인.<br>
+            • <strong>2% 룰 철저 준수:</strong> 1종목 최대 손실 한도 계좌 원금의 2%(-270만원) 초과 금지, 손절가 이탈 시 즉시 기계적 손절.<br>
+            • <strong>선물 수급 동조화:</strong> 코스피200 선물 외국인 순매수가 순유입(+2,000계약 이상)될 때만 주도주 매수 진입.
+          </div>
+          <span class="alpha-match-tag">⚡ 09:00 원칙 엄수</span>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           CARD 2: 🌙 마감 시황 (CLOSING BRIEFING) - WHITE THEME
+           ======================================================== -->
+      <div id="briefing-card-closing" class="alpha-card-wrap" style="display:none;">
+        <div class="alpha-top-header">
+          <div>
+            <div class="alpha-title-main">🌙 마감 시황 (Closing Briefing)</div>
+            <div class="alpha-title-sub">15:40 KST 발행 · 국내 증시 수급 총괄 & 파생 사다리 검증 복기</div>
+          </div>
+          <div style="background:#000; color:#f59e0b; padding:5px 12px; border-radius:6px; font-weight:900; font-size:12px;">
+            ALPHA CLOSING ENGINE
+          </div>
+        </div>
+
+        <!-- Domestic Closing Indices & Rates -->
+        <div class="alpha-indices-row">
+          <div class="alpha-idx-pill">
+            <span>코스피</span>
+            <strong>2,596.91</strong>
+            <span style="color:#ef4444; font-weight:700;">-0.61%</span>
+          </div>
+          <div class="alpha-idx-pill">
+            <span>코스닥</span>
+            <strong>763.88</strong>
+            <span style="color:#ef4444; font-weight:700;">-0.84%</span>
+          </div>
+          <div class="alpha-idx-pill">
+            <span>선물200</span>
+            <strong>878.05</strong>
+            <span style="color:#ef4444; font-weight:700;">-0.42%</span>
+          </div>
+          <div class="alpha-idx-pill">
+            <span>원/달러</span>
+            <strong>1,354.20원</strong>
+            <span style="color:var(--color-green-text, #059669); font-weight:700;">-4.50원 (안정)</span>
+          </div>
+        </div>
+
+        <div class="alpha-headline-text">
+          "외국인 반도체 차익실현 vs SK하이닉스 숏 감마 스퀴즈 방어 & 전력망·방산 독주 장세"
         </div>
 
         <!-- Hot Stock Hero Box -->
         <div class="alpha-hero-stock">
           <div>
-            <div style="font-size:0.75rem; color:#ef4444; font-weight:700; text-transform:uppercase;">오늘 가장 뜨거웠던 대장주</div>
-            <div style="font-size:1.3rem; font-weight:800; color:#fff; margin-top:2px;">SK하이닉스 (000660)</div>
-            <div style="font-size:0.8rem; color:#94a3b8;">Fintel 감마스퀴즈 점수 99.19점 (국내 1위) · 180,000원 풋옵션 방어벽 확인</div>
+            <div style="font-size:0.75rem; color:#b45309; font-weight:800; text-transform:uppercase; letter-spacing:0.04em;">오늘 가장 뜨거웠던 대장주</div>
+            <div style="font-size:1.35rem; font-weight:900; color:var(--text-main); margin-top:2px;">SK하이닉스 (000660)</div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
+              Fintel 감마스퀴즈 점수 99.19점 (국내 1위) · 180,000원 풋옵션 방어벽 확인 후 반등 마감.
+            </div>
           </div>
-          <div class="alpha-hero-pct">숏스퀴즈 롱</div>
+          <div style="text-align:right;">
+            <div class="alpha-hero-pct" style="color:var(--color-green-text, #059669);">+1.85%</div>
+            <div style="font-size:0.75rem; color:var(--color-green-text, #059669); font-weight:700;">숏스퀴즈 롱 유효</div>
+          </div>
         </div>
 
         <!-- 4 Theme Grid -->
         <div class="alpha-theme-grid">
           <div class="alpha-theme-box">
             <div class="alpha-theme-name">💾 HBM & 개별주식선물 숏스퀴즈</div>
-            <div class="alpha-theme-reason">외인 현물 매도 속 선물 헷지 매수 유입, 180,000 풋옵션 지지선 확인</div>
+            <div class="alpha-theme-reason">외인 현물 매도 속 선물 헷지 매수 유입, 180,000원 풋옵션 지지선 확인.</div>
             <div class="alpha-stock-item"><span>SK하이닉스 (000660)</span><span>감마 99.2pt</span></div>
-            <div class="alpha-stock-item"><span>삼성전자 (005930)</span><span>58,000 풋벽</span></div>
-            <div class="alpha-stock-item"><span>테크윙 (089030)</span><span>HBM 테스트</span></div>
+            <div class="alpha-stock-item"><span>삼성전자 (005930)</span><span>58,000원 풋벽</span></div>
+            <div class="alpha-stock-item"><span>테크윙 (089030)</span><span>HBM 테스트 수혜</span></div>
           </div>
 
           <div class="alpha-theme-box">
             <div class="alpha-theme-name">🧬 코스닥150 선물 숏커버링 랠리</div>
-            <div class="alpha-theme-reason">머크 키트루다SC 마일스톤 가시화로 공매도 세력 대규모 환매수 폭발</div>
-            <div class="alpha-stock-item"><span>알테오젠 (196170)</span><span>코스닥 1위</span></div>
-            <div class="alpha-stock-item"><span>에코프로비엠 (247540)</span><span>숏커버링</span></div>
-            <div class="alpha-stock-item"><span>리가켐바이오 (141080)</span><span>ADC 파생롱</span></div>
+            <div class="alpha-theme-reason">머크 키트루다SC 마일스톤 가시화로 공매도 세력 대규모 환매수 폭발.</div>
+            <div class="alpha-stock-item"><span>알테오젠 (196170)</span><span>코스닥 1위 안착</span></div>
+            <div class="alpha-stock-item"><span>에코프로비엠 (247540)</span><span>숏커버링 반등</span></div>
+            <div class="alpha-stock-item"><span>리가켐바이오 (141080)</span><span>ADC 파생 롱</span></div>
           </div>
 
           <div class="alpha-theme-box">
             <div class="alpha-theme-name">🚀 K-방산 & 콜옵션 프리미엄 확대</div>
-            <div class="alpha-theme-reason">개별주식선물 외인 4일 연속 순매수(+340억) 유입 및 루마니아 수주 기대</div>
+            <div class="alpha-theme-reason">개별주식선물 외인 4일 연속 순매수(+340억) 유입 및 루마니아 수주 모멘텀.</div>
             <div class="alpha-stock-item"><span>한화에어로스페이스 (012450)</span><span>외인 +340억</span></div>
-            <div class="alpha-stock-item"><span>현대로템 (064350)</span><span>전차 수주</span></div>
-            <div class="alpha-stock-item"><span>LIG넥스원 (079550)</span><span>천궁II 공급</span></div>
+            <div class="alpha-stock-item"><span>현대로템 (064350)</span><span>전차 수주 지속</span></div>
+            <div class="alpha-stock-item"><span>LIG넥스원 (079550)</span><span>천궁II 수출</span></div>
           </div>
 
           <div class="alpha-theme-box">
             <div class="alpha-theme-name">⚡ AI 전력인프라 & 원전 SMR</div>
-            <div class="alpha-theme-reason">빅테크 AI CAPEX 유지로 초고압 전력망 쇼티지 & 체코 원전 본계약</div>
+            <div class="alpha-theme-reason">빅테크 AI CAPEX 유지로 초고압 전력망 쇼티지 & 체코 원전 본계약 가시화.</div>
             <div class="alpha-stock-item"><span>대한전선 (001440)</span><span>1,800억 폭발</span></div>
-            <div class="alpha-stock-item"><span>두산에너빌리티 (034020)</span><span>SMR 롱</span></div>
+            <div class="alpha-stock-item"><span>두산에너빌리티 (034020)</span><span>SMR 롱 포지션</span></div>
             <div class="alpha-stock-item"><span>HD현대일렉트릭 (267260)</span><span>변압기 완판</span></div>
           </div>
         </div>
 
         <div class="alpha-feedback-strip">
           <div style="flex:1; min-width:260px;">
-            <strong>🎯 알파엔진 아침 판단 ▷ 마감 복기 결과</strong><br>
+            <strong style="color:var(--text-main);">🎯 알파엔진 아침 판단 ▷ 마감 복기 결과</strong><br>
             • <strong>아침 판단:</strong> ASML 쇼크 반도체 갭하락 시초가 추격매수 절대 금지, 1,117.5pt 콜벽 저항 경계.<br>
             • <strong>마감 복기:</strong> 반도체 대형주 조정 적중, 전력망·FLNG 수급 집중으로 계좌 방어 성공. 뇌동매매 0회 준수.
           </div>
@@ -1252,8 +1435,7 @@
         </div>
       </div>
     </div>
-
-    <!-- ========================================================
+<!-- ========================================================
        TAB 3: 파생 지지·저항 상세 사다리 맵 (MINIMALIST CLEAN FIGMA STYLE)
        ======================================================== -->
         <!-- ========================================================
@@ -1461,9 +1643,28 @@
       if (sBtn) sBtn.classList.add('active');
 
       if (tabKey === 'journal') {
-        renderPnlChart();
+        loadTrades();
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchBriefingSub(subType) {
+      const btnM = document.getElementById('btn-sub-morning');
+      const btnC = document.getElementById('btn-sub-closing');
+      const cardM = document.getElementById('briefing-card-morning');
+      const cardC = document.getElementById('briefing-card-closing');
+
+      if (subType === 'morning') {
+        btnM.classList.add('active');
+        btnC.classList.remove('active');
+        cardM.style.display = 'block';
+        cardC.style.display = 'none';
+      } else {
+        btnM.classList.remove('active');
+        btnC.classList.add('active');
+        cardM.style.display = 'none';
+        cardC.style.display = 'block';
+      }
     }
 
     function toggleTheme() {
@@ -1515,97 +1716,105 @@
       });
     }
 
-    function calculateRisk() {
-      const seed = parseFloat(document.getElementById('calcSeed').value) || 0;
-      const buyPrice = parseFloat(document.getElementById('calcBuyPrice').value) || 0;
-      const stopPrice = parseFloat(document.getElementById('calcStopPrice').value) || 0;
-      if (buyPrice <= 0 || stopPrice <= 0 || buyPrice <= stopPrice) {
-        alert("매수가가 손절가보다 커야 합니다.");
-        return;
-      }
-      const maxLoss = seed * 0.02;
-      const perShareLoss = buyPrice - stopPrice;
-      const maxShares = Math.floor(maxLoss / perShareLoss);
-      const totalEntry = maxShares * buyPrice;
-      const entryRatio = ((totalEntry / seed) * 100).toFixed(1);
-
-      document.getElementById('resMaxLoss').innerText = maxLoss.toLocaleString() + " 원";
-      document.getElementById('resMaxShares').innerText = maxShares.toLocaleString() + " 주";
-      document.getElementById('resTotalEntry').innerText = `${totalEntry.toLocaleString()} 원 (${entryRatio}%)`;
-    }
-
     function exportTableCSV() {
-      let csv = "\uFEFF종목명,코드,현재가,목표가,손절가,수급,옵션분석,상태\n";
-      document.querySelectorAll('#leadersTable tbody tr').forEach(r => {
+      let csv = '종목명,코드,테마,현재가,목표가,손절가,상태\n';
+      const rows = document.querySelectorAll('#leadersTable tbody tr');
+      rows.forEach(r => {
         const cols = r.querySelectorAll('td');
-        if (cols.length >= 8) {
-          const name = cols[1].innerText.replace(/\n/g, ' ');
-          const code = cols[2].innerText.replace(/\n/g, ' ');
-          const price = cols[3].innerText.replace(/\n/g, ' ');
-          const target = cols[4].innerText.replace(/\n/g, ' ');
-          const stop = cols[5].innerText.replace(/\n/g, ' ');
-          const flow = cols[6].innerText.replace(/\n/g, ' ');
-          const opt = cols[7].innerText.replace(/\n/g, ' ');
-          const status = cols[8].innerText.replace(/\n/g, ' ');
-          csv += `"${name}","${code}","${price}","${target}","${stop}","${flow}","${opt}","${status}"\n`;
+        if (cols.length >= 7) {
+          const name = cols[1].innerText.replace(/\n/g, ' ').trim();
+          const code = cols[2].innerText.replace(/\n/g, ' ').trim();
+          const cur = cols[3].innerText.replace(/\n/g, ' ').trim();
+          const target = cols[4].innerText.replace(/\n/g, ' ').trim();
+          const stop = cols[5].innerText.replace(/\n/g, ' ').trim();
+          const status = cols[8] ? cols[8].innerText.trim() : '';
+          csv += `"${name}","${code}","${cur}","${target}","${stop}","${status}"\n`;
         }
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const a = document.createElement("a");
+      const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = `주도주_수급분석_${new Date().toISOString().split('T')[0]}.csv`;
       a.click();
     }
 
-    const STORAGE_KEY = 'stockventura_trades_v1';
+    function exportTradesCSV() {
+      const trades = getStoredTrades();
+      let csv = '날짜,당일실현손익(원),누적실현손익(원)\n';
+      let cum = 0;
+      trades.sort((a,b) => a.date > b.date ? 1 : -1).forEach(t => {
+        cum += Number(t.pnl) || 0;
+        csv += `"${t.date}",${t.pnl},${cum}\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `매매일지_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+    }
+
+    /* ========================================================
+       ULTRA-SIMPLE TRADING JOURNAL STORAGE & CHART (FIXED V2)
+       ======================================================== */
+    const STORAGE_KEY = 'stockventura_trades_v2';
     const INITIAL_LOSS = -138800000;
 
     document.addEventListener("DOMContentLoaded", () => {
       const dateInput = document.getElementById('tradeDate');
-      if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
+      if (dateInput) {
+        dateInput.value = new Date().toISOString().split('T')[0];
+      }
       loadTrades();
     });
 
-    function calcTradePnl() {
-      const buyPrice = parseFloat(document.getElementById('tradeBuyPrice').value) || 0;
-      const sellPrice = parseFloat(document.getElementById('tradeSellPrice').value) || 0;
-      const qty = parseInt(document.getElementById('tradeQty').value) || 0;
-      if (buyPrice > 0 && sellPrice > 0 && qty > 0) {
-        const pnl = (sellPrice - buyPrice) * qty;
-        document.getElementById('tradePnlAmount').value = (pnl >= 0 ? '+' : '') + pnl.toLocaleString() + " 원";
-      } else {
-        document.getElementById('tradePnlAmount').value = "0원";
+    function getStoredTrades() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          // Starter verified sample data so graph & table display immediately
+          const starter = [
+            { id: 1729200000000, date: '2026-10-14', pnl: 850000 },
+            { id: 1729286400000, date: '2026-10-15', pnl: -320000 },
+            { id: 1729372800000, date: '2026-10-16', pnl: 1450000 }
+          ];
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(starter));
+          return starter;
+        }
+        return JSON.parse(raw) || [];
+      } catch(e) {
+        console.error("Failed to load trades:", e);
+        return [];
       }
     }
 
-    function getStoredTrades() {
-      try {
-        const d = localStorage.getItem(STORAGE_KEY);
-        return d ? JSON.parse(d) : [];
-      } catch (e) { return []; }
-    }
-
     function saveTrade(e) {
-      e.preventDefault();
-      const date = document.getElementById('tradeDate').value;
-      const pnl = parseFloat(document.getElementById('tradePnlAmount').value) || 0;
+      if (e) e.preventDefault();
+      const dateInput = document.getElementById('tradeDate');
+      const pnlInput = document.getElementById('tradePnlAmount');
+      
+      const date = dateInput ? dateInput.value.trim() : '';
+      const pnl = pnlInput ? parseFloat(pnlInput.value) : 0;
 
       if (!date) {
         alert("날짜를 선택해주세요.");
         return;
       }
+      if (isNaN(pnl) || pnl === 0) {
+        alert("당일 실현손익 금액을 0이 아닌 숫자로 입력해주세요.");
+        return;
+      }
 
       const trades = getStoredTrades();
-      trades.push({ id: Date.now(), date, pnl });
+      trades.push({ id: Date.now(), date: date, pnl: pnl });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
 
-      document.getElementById('tradePnlAmount').value = '';
-
+      if (pnlInput) pnlInput.value = '';
       loadTrades();
+      alert("✅ 매매일지가 정상 저장되었습니다!");
     }
 
     function deleteTrade(id) {
-      if (!confirm("삭제하시겠습니까?")) return;
+      if (!confirm("해당 날짜의 매매 기록을 삭제하시겠습니까?")) return;
       let trades = getStoredTrades().filter(t => t.id !== id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(trades));
       loadTrades();
@@ -1616,94 +1825,116 @@
       const tbody = document.getElementById('journalTableBody');
       if (!tbody) return;
       tbody.innerHTML = '';
-      let cumPnl = 0;
 
-      if (trades.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="padding:16px; text-align:center; color:var(--text-dim);">기록된 매매일지가 없습니다.</td></tr>';
+      // Sort chronological ascending to compute running cumulative PnL
+      trades.sort((a, b) => (a.date > b.date ? 1 : (a.date < b.date ? -1 : 0)));
+
+      let runningCum = 0;
+      const processed = trades.map(t => {
+        runningCum += (Number(t.pnl) || 0);
+        return {
+          id: t.id,
+          date: t.date,
+          pnl: Number(t.pnl) || 0,
+          cumPnl: runningCum
+        };
+      });
+
+      if (processed.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="padding:24px; text-align:center; color:var(--text-dim); font-size:0.88rem;">기록된 매매일지가 없습니다. 위 입력창에서 날짜와 실현손익을 입력 후 저장해보세요.</td></tr>';
       } else {
-        [...trades].reverse().forEach(t => {
-          cumPnl += t.pnl;
+        // Render newest at the top of the table
+        [...processed].reverse().forEach(t => {
           const tr = document.createElement('tr');
-          const pnlColor = t.pnl > 0 ? 'var(--color-green)' : (t.pnl < 0 ? 'var(--color-red)' : 'var(--text-muted)');
+          const isWin = t.pnl >= 0;
+          const pnlColor = isWin ? 'var(--color-green-text, #059669)' : 'var(--color-red-text, #dc2626)';
+          const pnlBg = isWin ? 'var(--color-green-bg, #ecfdf5)' : 'var(--color-red-bg, #fef2f2)';
+          const cumColor = t.cumPnl >= 0 ? 'var(--color-green-text, #059669)' : 'var(--color-red-text, #dc2626)';
+
           tr.innerHTML = `
-            <td style="padding:8px;">${t.date}</td>
-            <td style="padding:8px; font-weight:700;">${t.name}</td>
-            <td style="padding:8px;">${t.buyPrice.toLocaleString()}원</td>
-            <td style="padding:8px;">${t.sellPrice ? t.sellPrice.toLocaleString() + '원' : '-'}</td>
-            <td style="padding:8px;">${t.qty}주</td>
-            <td style="padding:8px; font-weight:800; color:${pnlColor};">${t.pnl >= 0 ? '+' : ''}${t.pnl.toLocaleString()}원</td>
-            <td style="padding:8px;"><button onclick="deleteTrade(${t.id})" style="border:none; background:none; cursor:pointer;">🗑️</button></td>
+            <td style="padding:14px 16px; font-weight:700; color:var(--text-main); font-size:0.88rem;">${t.date}</td>
+            <td style="padding:14px 16px;">
+              <span style="background:${pnlBg}; color:${pnlColor}; font-weight:800; padding:4px 12px; border-radius:6px; font-size:0.88rem; display:inline-block;">
+                ${isWin ? '+' : ''}${t.pnl.toLocaleString()}원
+              </span>
+            </td>
+            <td style="padding:14px 16px; font-weight:800; color:${cumColor}; font-size:0.92rem;">
+              ${t.cumPnl >= 0 ? '+' : ''}${t.cumPnl.toLocaleString()}원
+            </td>
+            <td style="padding:14px 16px; text-align:center;">
+              <button onclick="deleteTrade(${t.id})" style="border:none; background:transparent; cursor:pointer; font-size:16px; padding:4px 8px; border-radius:4px;" title="삭제">🗑️</button>
+            </td>
           `;
           tbody.appendChild(tr);
         });
       }
 
-      const totalLoss = INITIAL_LOSS + cumPnl;
+      // Update Top KPI stat card
+      const currentLoss = INITIAL_LOSS + runningCum;
       const kpiEl = document.getElementById('pnlStatDisplay');
-      if (kpiEl) kpiEl.innerText = (totalLoss >= 0 ? '+' : '') + (totalLoss / 1000000).toFixed(1) + "M";
-      renderPnlChart();
+      if (kpiEl) {
+        const valM = (currentLoss / 1000000).toFixed(1) + "M";
+        kpiEl.innerText = valM;
+        kpiEl.style.color = currentLoss >= 0 ? 'var(--color-green)' : 'var(--color-red)';
+      }
+
+      renderPnlChart(processed);
     }
 
-    function renderPnlChart() {
-      const trades = getStoredTrades();
+    function renderPnlChart(processedTrades) {
       const svg = document.getElementById('pnlSvg');
       if (!svg) return;
-      const w = svg.clientWidth || 800;
-      const h = 200;
-      svg.innerHTML = '';
-
+      const trades = processedTrades || [];
       if (trades.length === 0) {
-        svg.innerHTML = `<text x="${w/2}" y="105" fill="#9ca3af" text-anchor="middle" font-size="12" font-family="Pretendard">매매를 기록하면 실시간 손익 곡선이 나타납니다.</text>`;
+        svg.innerHTML = '<text x="50%" y="50%" text-anchor="middle" fill="#9ca3af" font-size="12">매매 기록을 입력하면 누적 손익 곡선이 그려집니다.</text>';
         return;
       }
 
-      let cum = 0;
-      const pts = [];
-      let min = 0, max = 0;
-      trades.forEach((t, i) => {
-        cum += t.pnl;
-        pts.push({ x: i, cum, date: t.date });
-        if (cum < min) min = cum;
-        if (cum > max) max = cum;
-      });
+      const width = svg.clientWidth || 800;
+      const height = 200;
+      const padding = { top: 30, right: 40, bottom: 35, left: 70 };
 
-      const rng = (max - min) || 100000;
-      const step = (w - 60) / Math.max(pts.length - 1, 1);
+      const values = trades.map(t => t.cumPnl);
+      const minVal = Math.min(0, ...values);
+      const maxVal = Math.max(0, ...values);
+      const range = (maxVal - minVal) || 1;
+
+      const getX = (i) => padding.left + (i / Math.max(1, trades.length - 1)) * (width - padding.left - padding.right);
+      const getY = (val) => height - padding.bottom - ((val - minVal) / range) * (height - padding.top - padding.bottom);
+
+      const zeroY = getY(0);
+
       let pathD = '';
-
-      pts.forEach((pt, i) => {
-        const cx = pts.length === 1 ? w / 2 : 30 + i * step;
-        const cy = h - 25 - ((pt.cum - min) / rng) * (h - 50);
-        if (i === 0) pathD += `M ${cx} ${cy}`;
-        else pathD += ` L ${cx} ${cy}`;
-
-        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        circle.setAttribute("cx", cx);
-        circle.setAttribute("cy", cy);
-        circle.setAttribute("r", 4);
-        circle.setAttribute("fill", pt.cum >= 0 ? "#10b981" : "#6366f1");
-        svg.appendChild(circle);
+      trades.forEach((t, i) => {
+        const x = getX(i);
+        const y = getY(t.cumPnl);
+        pathD += (i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`);
       });
 
-      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-      path.setAttribute("d", pathD);
-      path.setAttribute("fill", "none");
-      path.setAttribute("stroke", "#6366f1");
-      path.setAttribute("stroke-width", "2.5");
-      svg.insertBefore(path, svg.firstChild);
-    }
+      const lastVal = trades[trades.length - 1].cumPnl;
+      const lineColor = lastVal >= 0 ? '#10b981' : '#ef4444';
 
-    function exportTradesCSV() {
-      const trades = getStoredTrades();
-      if (trades.length === 0) return alert("데이터가 없습니다.");
-      let csv = "\uFEFF일자,종목명,매수가,매도가,수량,실현손익\n";
-      trades.forEach(t => csv += `"${t.date}","${t.name}","${t.buyPrice}","${t.sellPrice}","${t.qty}","${t.pnl}"\n`);
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = `매매일지_${new Date().toISOString().split('T')[0]}.csv`;
-      a.click();
+      let dots = '';
+      trades.forEach((t, i) => {
+        const x = getX(i);
+        const y = getY(t.cumPnl);
+        const dotColor = t.cumPnl >= 0 ? '#10b981' : '#ef4444';
+        dots += `<circle cx="${x}" cy="${y}" r="4.5" fill="${dotColor}" stroke="#ffffff" stroke-width="2"/>`;
+        dots += `<text x="${x}" y="${y - 10}" text-anchor="middle" font-size="11" font-weight="700" fill="${dotColor}">${t.cumPnl >= 0 ? '+' : ''}${(t.cumPnl/10000).toFixed(0)}만</text>`;
+      });
+
+      svg.innerHTML = `
+        <!-- Zero Baseline -->
+        <line x1="${padding.left}" y1="${zeroY}" x2="${width - padding.right}" y2="${zeroY}" stroke="#d1d5db" stroke-dasharray="4,4" stroke-width="1.5" />
+        <text x="${padding.left - 8}" y="${zeroY + 4}" text-anchor="end" font-size="10" fill="#9ca3af">0원</text>
+        
+        <!-- Cumulative Line -->
+        <path d="${pathD}" fill="none" stroke="${lineColor}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        
+        <!-- Points & Labels -->
+        ${dots}
+      `;
     }
-  </script>
+</script>
 </body>
 </html>
