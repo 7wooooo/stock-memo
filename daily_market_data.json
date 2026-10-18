@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026.10.18 22:04 KST",
+  "updated_at": "2026.10.18 22:09 KST",
   "market_overview": {
     "kospi": {
       "price": 0.0,
@@ -51,56 +51,66 @@
     "weekly_gamma_flip": 1046.1,
     "monthly_gamma_flip": 1006.7
   },
-  "options_driven_leaders": [
+  "weekly_10pct_momentum_leaders": [
     {
-      "rank": 1,
       "name": "SK하이닉스",
       "code": "000660",
-      "sector": "반도체 / 숏 감마 스퀴즈",
-      "gamma_score": "99.19 pt (국내 1위)",
-      "target_entry": 182000,
-      "stop_loss": 175000,
-      "thesis": "180,000원 풋옵션 방어벽 확인. 딜러 숏 감마 헷지 매수 유입 시 단기 5~8% 반등 트리거."
+      "sector": "AI 반도체 / 숏 감마 스퀴즈",
+      "weekly_target_rate": "+10.8%",
+      "momentum_score": 98,
+      "catalyst": "Fintel 감마스퀴즈 99.2pt(국내1위). 180,000원 풋옵션 방어벽 확인 후 딜러 델타헷지 숏커버링 랠리 기대.",
+      "target_entry": 1265000,
+      "target_price": 1404150,
+      "stop_loss": 1214400,
+      "risk_reward": "1:2.8"
     },
     {
-      "rank": 2,
       "name": "알테오젠",
       "code": "196170",
-      "sector": "바이오 / 코스닥150 선물 1위",
-      "gamma_score": "숏스퀴즈 랠리",
-      "target_entry": 380000,
-      "stop_loss": 365000,
-      "thesis": "키트루다SC 마일스톤 기대감으로 공매도 숏커버링 폭발 및 코스닥150 파생 수급 집중."
+      "sector": "바이오 플랫폼 / 숏스퀴즈 1위",
+      "weekly_target_rate": "+12.5%",
+      "momentum_score": 97,
+      "catalyst": "코스닥150 선물 대장주. 머크 키트루다SC 피하주사 마일스톤 가시화로 공매도 대규모 숏스퀴즈 발생.",
+      "target_entry": 234000,
+      "target_price": 259740,
+      "stop_loss": 224640,
+      "risk_reward": "1:3.2"
     },
     {
-      "rank": 3,
       "name": "한화에어로스페이스",
       "code": "012450",
-      "sector": "K-방산 / 개별주식선물",
-      "gamma_score": "콜옵션 집중",
-      "target_entry": 350000,
-      "stop_loss": 335000,
-      "thesis": "주식선물 외국인 4거래일 연속 순매수 및 변동성 프리미엄 확대형 콜옵션 랠리."
+      "sector": "K-방산 / 개별주식선물 수급",
+      "weekly_target_rate": "+11.4%",
+      "momentum_score": 95,
+      "catalyst": "개별주식선물 외인 4일 연속 순매수(+340억) 유입. 박스권 350,000원 돌파 시 콜옵션 감마 가속화.",
+      "target_entry": 900000,
+      "target_price": 999000,
+      "stop_loss": 864000,
+      "risk_reward": "1:2.7"
     },
     {
-      "rank": 4,
-      "name": "삼성전자",
-      "code": "005930",
-      "sector": "반도체 / 풋옵션 OI 최대",
-      "gamma_score": "58,000 풋벽",
-      "target_entry": 58500,
-      "stop_loss": 57000,
-      "thesis": "58,000원 행사가 풋옵션 최대 미결제약정 집중선으로 하방 경직성 확보."
+      "name": "대한전선",
+      "code": "001440",
+      "sector": "AI 전력망 / 거래대금 폭발",
+      "weekly_target_rate": "+13.2%",
+      "momentum_score": 94,
+      "catalyst": "당일 거래대금 1,800억 돌파. 북미 AI 데이터센터향 525kV 초고압망 수주 잔고 최고치 경신.",
+      "target_entry": 12800,
+      "target_price": 14500,
+      "stop_loss": 12200,
+      "risk_reward": "1:2.8"
     },
     {
-      "rank": 5,
       "name": "두산에너빌리티",
       "code": "034020",
-      "sector": "원전 SMR / 파생 롱",
-      "gamma_score": "원전 파생롱",
-      "target_entry": 21500,
-      "stop_loss": 20400,
-      "thesis": "체코 원전 본계약 및 빅테크 SMR 전력 공급 파트너십으로 선물 롱 포지션 급증."
+      "sector": "원전 SMR / 파생 롱 포지션",
+      "weekly_target_rate": "+14.0%",
+      "momentum_score": 93,
+      "catalyst": "체코 원전 본계약 및 아마존 SMR 전력 공급 파트너십. 외인 선물 순매수 전환 후 바닥 탈피 첫 양봉.",
+      "target_entry": 64400,
+      "target_price": 71484,
+      "stop_loss": 61824,
+      "risk_reward": "1:2.7"
     }
   ]
 }

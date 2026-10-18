@@ -818,6 +818,9 @@
       <button class="nav-icon-btn active" id="sbtn-dashboard" onclick="switchMainTab('dashboard')" title="종합 대시보드">
         📊
       </button>
+      <button class="nav-icon-btn" id="sbtn-momentum" onclick="switchMainTab('momentum')" title="주간 +10% 주도주 레이더">
+        🎯
+      </button>
       <button class="nav-icon-btn" id="sbtn-report" onclick="switchMainTab('report')" title="옵션·파생 심층 리포트">
         📑
       </button>
@@ -844,6 +847,9 @@
       <div class="top-pill-tabs">
         <button class="top-tab active" id="tab-btn-dashboard" onclick="switchMainTab('dashboard')">
           종합 대시보드 (Overview) ✕
+        </button>
+        <button class="top-tab" id="tab-btn-momentum" onclick="switchMainTab('momentum')">
+          🎯 주간 +10% 주도주 레이더
         </button>
         <button class="top-tab" id="tab-btn-report" onclick="switchMainTab('report')">
           📑 옵션·파생 심층 리포트
@@ -884,7 +890,7 @@
       <!-- Welcome Hero -->
       <div class="welcome-hero">
         <h1 class="welcome-title">Welcome Back, Trader !</h1>
-        <p class="welcome-subtitle">Here's what's happening with the options, gamma & market today (2026.10.18 22:04 KST)</p>
+        <p class="welcome-subtitle">Here's what's happening with the options, gamma & market today (2026.10.18 22:09 KST)</p>
       </div>
 
       <!-- TOP 3 KPI CARDS -->
@@ -1128,7 +1134,7 @@
         <div class="bottom-card">
           <div class="card-title-row">
             <h3 class="card-title-text" style="font-size:1.02rem;">🎯 파생 핵심 지지·저항</h3>
-            <button class="card-action-btn" onclick="switchMainTab('deriv')">전체 맵 ↗</button>
+            <button class="card-action-btn" onclick="switchMainTab('momentum')">주도주 레이더 ↗</button>
           </div>
           <div class="card-list-group">
             <div class="clean-list-item">
@@ -1261,6 +1267,141 @@
               </div>
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========================================================
+       TAB VIEW: WEEKLY +10% MOMENTUM RADAR
+       ======================================================== -->
+    <div id="view-momentum" class="tab-view">
+      <div class="market-pulse-card" style="margin-top:10px;">
+        <div class="pulse-header">
+          <div class="pulse-title-wrap">
+            <span class="pulse-badge" style="background:#10b981;">MOMENTUM RADAR</span>
+            <h2 style="font-size:1.25rem; font-weight:800; color:var(--text-title);">🎯 주간 +10% 폭발 타겟 주도주 레이더</h2>
+          </div>
+          <span class="pulse-date">매일 거래대금·옵션수급·신고가 필터 자동 갱신</span>
+        </div>
+
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:18px; line-height:1.5;">
+          유동성(거래대금 1,000억+), 기관/외국인 쌍끌이 메가 수급, 20일선 정배열 박스권 돌파 종목만을 엄선하여 
+          <strong>1주일 내 +10%~+15% 이상 시세 분출이 유력한 1등 대장주</strong>를 매일 장 시작 전/장 마감 후 자동 스크리닝합니다.
+        </p>
+
+        <!-- Dynamic Momentum Stock Cards (Top 5) -->
+        <div style="display:flex; flex-direction:column; gap:14px; margin-bottom:24px;">
+          
+          <!-- Rank 1: SK하이닉스 -->
+          <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/000660/total" target="_blank" rel="noopener" style="background:var(--bg-card-sub); border:1px solid var(--border-color); border-radius:14px; padding:16px 20px;">
+            <div style="font-family:'Inter', sans-serif; font-size:1.4rem; font-weight:900; color:#0284c7; width:35px;">01</div>
+            <div style="flex:1;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span style="font-size:1.05rem; font-weight:800; color:var(--text-title);">SK하이닉스 (000660)</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#e0f2fe; color:#0369a1; font-weight:700;">모멘텀 점수 98점</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#ecfdf5; color:#059669; font-weight:800;">🎯 주간 목표 +10.8%</span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+                Fintel 감마스퀴즈 99.2pt (국내1위). 180,000원 풋옵션 방어벽 확인 후 딜러 델타헷지 숏커버링 랠리 기대.
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.95rem; font-weight:800; color:#10b981;">매수 182,000원</div>
+              <div style="font-size:0.8rem; color:var(--text-title); font-weight:700;">목표 202,000원</div>
+              <div style="font-size:0.72rem; color:#ef4444; font-weight:700;">손절 175,000원 (-3.8%)</div>
+            </div>
+          </a>
+
+          <!-- Rank 2: 알테오젠 -->
+          <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/196170/total" target="_blank" rel="noopener" style="background:var(--bg-card-sub); border:1px solid var(--border-color); border-radius:14px; padding:16px 20px;">
+            <div style="font-family:'Inter', sans-serif; font-size:1.4rem; font-weight:900; color:#0284c7; width:35px;">02</div>
+            <div style="flex:1;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span style="font-size:1.05rem; font-weight:800; color:var(--text-title);">알테오젠 (196170)</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#e0f2fe; color:#0369a1; font-weight:700;">모멘텀 점수 97점</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#ecfdf5; color:#059669; font-weight:800;">🎯 주간 목표 +12.5%</span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+                코스닥150 선물 대장주. 머크 키트루다SC 피하주사 마일스톤 가시화로 공매도 대규모 숏스퀴즈 발생.
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.95rem; font-weight:800; color:#10b981;">매수 380,000원</div>
+              <div style="font-size:0.8rem; color:var(--text-title); font-weight:700;">목표 428,000원</div>
+              <div style="font-size:0.72rem; color:#ef4444; font-weight:700;">손절 365,000원 (-3.9%)</div>
+            </div>
+          </a>
+
+          <!-- Rank 3: 한화에어로스페이스 -->
+          <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/012450/total" target="_blank" rel="noopener" style="background:var(--bg-card-sub); border:1px solid var(--border-color); border-radius:14px; padding:16px 20px;">
+            <div style="font-family:'Inter', sans-serif; font-size:1.4rem; font-weight:900; color:#0284c7; width:35px;">03</div>
+            <div style="flex:1;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span style="font-size:1.05rem; font-weight:800; color:var(--text-title);">한화에어로스페이스 (012450)</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#e0f2fe; color:#0369a1; font-weight:700;">모멘텀 점수 95점</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#ecfdf5; color:#059669; font-weight:800;">🎯 주간 목표 +11.4%</span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+                개별주식선물 외인 4일 연속 순매수(+340억) 유입. 박스권 350,000원 돌파 시 콜옵션 감마 가속화.
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.95rem; font-weight:800; color:#10b981;">매수 350,000원</div>
+              <div style="font-size:0.8rem; color:var(--text-title); font-weight:700;">목표 390,000원</div>
+              <div style="font-size:0.72rem; color:#ef4444; font-weight:700;">손절 335,000원 (-4.2%)</div>
+            </div>
+          </a>
+
+          <!-- Rank 4: 대한전선 -->
+          <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/001440/total" target="_blank" rel="noopener" style="background:var(--bg-card-sub); border:1px solid var(--border-color); border-radius:14px; padding:16px 20px;">
+            <div style="font-family:'Inter', sans-serif; font-size:1.4rem; font-weight:900; color:#0284c7; width:35px;">04</div>
+            <div style="flex:1;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span style="font-size:1.05rem; font-weight:800; color:var(--text-title);">대한전선 (001440)</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#e0f2fe; color:#0369a1; font-weight:700;">모멘텀 점수 94점</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#ecfdf5; color:#059669; font-weight:800;">🎯 주간 목표 +13.2%</span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+                당일 거래대금 1,800억 돌파. 북미 AI 데이터센터향 525kV 초고압망 수주 잔고 최고치 경신.
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.95rem; font-weight:800; color:#10b981;">매수 12,800원</div>
+              <div style="font-size:0.8rem; color:var(--text-title); font-weight:700;">목표 14,500원</div>
+              <div style="font-size:0.72rem; color:#ef4444; font-weight:700;">손절 12,200원 (-4.6%)</div>
+            </div>
+          </a>
+
+          <!-- Rank 5: 두산에너빌리티 -->
+          <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/034020/total" target="_blank" rel="noopener" style="background:var(--bg-card-sub); border:1px solid var(--border-color); border-radius:14px; padding:16px 20px;">
+            <div style="font-family:'Inter', sans-serif; font-size:1.4rem; font-weight:900; color:#0284c7; width:35px;">05</div>
+            <div style="flex:1;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span style="font-size:1.05rem; font-weight:800; color:var(--text-title);">두산에너빌리티 (034020)</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#e0f2fe; color:#0369a1; font-weight:700;">모멘텀 점수 93점</span>
+                <span style="font-size:0.72rem; padding:2px 8px; border-radius:6px; background:#ecfdf5; color:#059669; font-weight:800;">🎯 주간 목표 +14.0%</span>
+              </div>
+              <div style="font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+                체코 원전 본계약 및 아마존 SMR 전력 공급 파트너십. 외인 선물 순매수 전환 후 바닥 탈피 첫 양봉.
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.95rem; font-weight:800; color:#10b981;">매수 21,500원</div>
+              <div style="font-size:0.8rem; color:var(--text-title); font-weight:700;">목표 24,500원</div>
+              <div style="font-size:0.72rem; color:#ef4444; font-weight:700;">손절 20,400원 (-5.1%)</div>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- 4 Core Laws for Weekly +10% Swing -->
+        <div class="report-callout" style="border-left-color:#10b981;">
+          <strong style="color:#059669; font-size:0.95rem;">💡 주간 +10% 이상 터지는 주도주 매매 4대 절대 공식</strong><br>
+          1. <strong>테마 내 거래대금 1위 대장주만 매매:</strong> 2등주나 후발 잡주는 급락장에 쉽게 무너집니다. 당일 거래대금 최소 1,000억 이상 터진 1등주만 건드립니다.<br>
+          2. <strong>20일선 위 정배열 돌파 or 첫 눌림목:</strong> 역배열 역추세 물타기 매매는 영구 금지하며, 전고점 돌파 후 지지받는 자리만 진입합니다.<br>
+          3. <strong>외인·기관 쌍끌이 메가 수급 확인:</strong> 개미만 사는 종목은 철저히 배제하고, 외국인 선물 헷지 매수와 기관 펀드 자금이 동반 유입되는 종목을 탑니다.<br>
+          4. <strong>손익비 1:3 룰:</strong> 목표 수익률 +10%~+15% 대비 손절은 무조건 -3.5%~-4.5%로 칼같이 잘라내야 -1.38억 원금을 안전하게 회복할 수 있습니다.
         </div>
       </div>
     </div>
