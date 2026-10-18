@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026.10.18 21:59 KST",
+  "updated_at": "2026.10.18 22:04 KST",
   "market_overview": {
     "kospi": {
       "price": 0.0,
@@ -51,36 +51,56 @@
     "weekly_gamma_flip": 1046.1,
     "monthly_gamma_flip": 1006.7
   },
-  "top_conviction_stocks": [
+  "options_driven_leaders": [
     {
       "rank": 1,
-      "name": "대한전선",
-      "code": "001440",
-      "sector": "AI 전력망 / 초고압 케이블",
-      "net_buy": "+182억",
-      "target_entry": 12800,
-      "stop_loss": 12200,
-      "thesis": "한경 컨센서스 목표가 상향. 북미 AI 데이터센터 수주 사상 최대."
+      "name": "SK하이닉스",
+      "code": "000660",
+      "sector": "반도체 / 숏 감마 스퀴즈",
+      "gamma_score": "99.19 pt (국내 1위)",
+      "target_entry": 182000,
+      "stop_loss": 175000,
+      "thesis": "180,000원 풋옵션 방어벽 확인. 딜러 숏 감마 헷지 매수 유입 시 단기 5~8% 반등 트리거."
     },
     {
       "rank": 2,
-      "name": "삼성중공업",
-      "code": "010140",
-      "sector": "조선 / 고수익 FLNG",
-      "net_buy": "+240억",
-      "target_entry": 9850,
-      "stop_loss": 9400,
-      "thesis": "FLNG 수주 독점력 부각 및 기관 3거래일 연속 순매수."
+      "name": "알테오젠",
+      "code": "196170",
+      "sector": "바이오 / 코스닥150 선물 1위",
+      "gamma_score": "숏스퀴즈 랠리",
+      "target_entry": 380000,
+      "stop_loss": 365000,
+      "thesis": "키트루다SC 마일스톤 기대감으로 공매도 숏커버링 폭발 및 코스닥150 파생 수급 집중."
     },
     {
       "rank": 3,
-      "name": "테크윙",
-      "code": "089030",
-      "sector": "HBM 테스트 핸들러",
-      "net_buy": "+95억",
-      "target_entry": 37500,
-      "stop_loss": 35800,
-      "thesis": "디일렉 첨단 패키징 R&D 수혜. HBM 큐브 핸들러 글로벌 공급."
+      "name": "한화에어로스페이스",
+      "code": "012450",
+      "sector": "K-방산 / 개별주식선물",
+      "gamma_score": "콜옵션 집중",
+      "target_entry": 350000,
+      "stop_loss": 335000,
+      "thesis": "주식선물 외국인 4거래일 연속 순매수 및 변동성 프리미엄 확대형 콜옵션 랠리."
+    },
+    {
+      "rank": 4,
+      "name": "삼성전자",
+      "code": "005930",
+      "sector": "반도체 / 풋옵션 OI 최대",
+      "gamma_score": "58,000 풋벽",
+      "target_entry": 58500,
+      "stop_loss": 57000,
+      "thesis": "58,000원 행사가 풋옵션 최대 미결제약정 집중선으로 하방 경직성 확보."
+    },
+    {
+      "rank": 5,
+      "name": "두산에너빌리티",
+      "code": "034020",
+      "sector": "원전 SMR / 파생 롱",
+      "gamma_score": "원전 파생롱",
+      "target_entry": 21500,
+      "stop_loss": 20400,
+      "thesis": "체코 원전 본계약 및 빅테크 SMR 전력 공급 파트너십으로 선물 롱 포지션 급증."
     }
   ]
 }

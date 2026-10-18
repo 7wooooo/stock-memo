@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>StockVentura | Institutional Trading OS & Alpha Report</title>
+  <title>StockVentura | 옵션 감마 & 파생 주도주 OS</title>
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* ========================================================
-       DESIGN SYSTEM (FIT TO USER UPLOADED DASHBOARD UI)
-       ======================================================== */
     :root {
       --bg-body: #f4f6fa;
       --bg-sidebar: #ffffff;
@@ -17,36 +14,25 @@
       --bg-card-sub: #f8fafc;
       --bg-hover: #f1f5f9;
       --border-color: #e8ecf4;
-      --border-subtle: rgba(0, 0, 0, 0.05);
       --text-title: #1e293b;
       --text-body: #334155;
       --text-muted: #64748b;
       --text-dim: #94a3b8;
-      
       --primary: #2563eb;
       --primary-light: #eff6ff;
-      --primary-hover: #1d4ed8;
-      
-      --accent-cyan: #06b6d4;
-      --accent-cyan-bg: #ecfeff;
-      --accent-purple: #8b5cf6;
-      --accent-purple-bg: #f5f3ff;
       --accent-green: #10b981;
       --accent-green-bg: #ecfdf5;
-      --accent-amber: #f59e0b;
-      --accent-amber-bg: #fffbeb;
       --accent-red: #ef4444;
       --accent-red-bg: #fef2f2;
-      
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --accent-purple-bg: #f5f3ff;
       --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.04);
       --shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.07);
-      
       --radius-sm: 10px;
       --radius-md: 16px;
       --radius-lg: 22px;
       --radius-pill: 9999px;
-      
       --font-main: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     }
 
@@ -57,28 +43,15 @@
       --bg-card-sub: #181d2a;
       --bg-hover: #1e2434;
       --border-color: rgba(255, 255, 255, 0.08);
-      --border-subtle: rgba(255, 255, 255, 0.04);
       --text-title: #f8fafc;
       --text-body: #cbd5e1;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
-      
       --primary: #3b82f6;
       --primary-light: rgba(59, 130, 246, 0.15);
-      --primary-hover: #60a5fa;
-      
-      --accent-cyan: #22d3ee;
-      --accent-cyan-bg: rgba(34, 211, 238, 0.12);
-      --accent-purple: #a855f7;
-      --accent-purple-bg: rgba(168, 85, 247, 0.12);
-      --accent-green: #10b981;
       --accent-green-bg: rgba(16, 185, 129, 0.12);
-      --accent-amber: #f59e0b;
-      --accent-amber-bg: rgba(245, 158, 11, 0.12);
-      --accent-red: #ef4444;
       --accent-red-bg: rgba(239, 68, 68, 0.12);
-      
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --accent-purple-bg: rgba(168, 85, 247, 0.12);
       --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
       --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.6);
     }
@@ -102,7 +75,6 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Left Sidebar */
     aside.app-sidebar {
       width: 76px;
       background: var(--bg-sidebar);
@@ -116,7 +88,6 @@
       bottom: 0;
       left: 0;
       z-index: 100;
-      transition: background-color 0.25s ease;
     }
     @media (max-width: 820px) {
       aside.app-sidebar {
@@ -143,9 +114,9 @@
       justify-content: center;
       font-size: 22px;
       font-weight: 800;
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
       cursor: pointer;
       margin-bottom: 24px;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
     }
     @media (max-width: 820px) { .sidebar-logo { display: none; } }
 
@@ -191,7 +162,6 @@
       font-size: 19px;
       cursor: pointer;
       transition: all 0.2s ease;
-      position: relative;
     }
     .nav-icon-btn:hover { background: var(--bg-hover); color: var(--text-title); }
     .nav-icon-btn.active {
@@ -200,7 +170,6 @@
       box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
     }
 
-    /* Main Container */
     main.app-main {
       margin-left: 76px;
       flex: 1;
@@ -211,7 +180,6 @@
       main.app-main { margin-left: 0; padding: 16px 16px 80px; }
     }
 
-    /* Header Bar */
     .top-header-bar {
       display: flex;
       justify-content: space-between;
@@ -237,8 +205,8 @@
       font-weight: 600;
       color: var(--text-muted);
       cursor: pointer;
-      transition: all 0.2s ease;
       white-space: nowrap;
+      transition: all 0.2s ease;
     }
     .top-tab.active {
       background: #e0f2fe;
@@ -249,7 +217,6 @@
       background: rgba(14, 165, 233, 0.2);
       color: #38bdf8;
     }
-    .top-tab:hover:not(.active) { color: var(--text-title); }
 
     .top-user-group { display: flex; align-items: center; gap: 14px; }
     .top-icon-circle {
@@ -317,9 +284,9 @@
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease;
     }
-    .kpi-modern-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .kpi-modern-card:hover { transform: translateY(-2px); }
     .kpi-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .kpi-card-label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
     .kpi-icon-badge {
@@ -516,7 +483,7 @@
     .gauge-sub-val { font-size: 1.05rem; font-weight: 800; color: var(--text-title); }
 
     /* ========================================================
-       NEW: ONE-PAGE MARKET PULSE CARD (MATCHING USER'S IMAGE)
+       ONE-PAGE MARKET PULSE CARD
        ======================================================== */
     .market-pulse-card {
       background: var(--bg-card);
@@ -574,7 +541,7 @@
 
     /* Hot Stock Hero Box */
     .hot-stock-box {
-      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(249, 115, 22, 0.08));
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(168, 85, 247, 0.08));
       border: 1px solid rgba(239, 68, 68, 0.25);
       border-radius: var(--radius-md);
       padding: 16px 20px;
@@ -646,7 +613,7 @@
       white-space: nowrap;
     }
 
-    /* Bottom Row */
+    /* Options-Driven Leaders Cards */
     .bottom-row-3 {
       display: grid;
       grid-template-columns: 1fr;
@@ -727,7 +694,7 @@
     .tab-view.active { display: block; animation: fadeIn 0.25s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Institutional Research Report View */
+    /* Report View */
     .report-paper {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -788,7 +755,6 @@
       margin: 16px 0;
     }
 
-    /* Modal */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -852,7 +818,7 @@
       <button class="nav-icon-btn active" id="sbtn-dashboard" onclick="switchMainTab('dashboard')" title="종합 대시보드">
         📊
       </button>
-      <button class="nav-icon-btn" id="sbtn-report" onclick="switchMainTab('report')" title="심층 시황 리포트">
+      <button class="nav-icon-btn" id="sbtn-report" onclick="switchMainTab('report')" title="옵션·파생 심층 리포트">
         📑
       </button>
       <button class="nav-icon-btn" id="sbtn-deriv" onclick="switchMainTab('deriv')" title="파생 사다리 맵">
@@ -880,7 +846,7 @@
           종합 대시보드 (Overview) ✕
         </button>
         <button class="top-tab" id="tab-btn-report" onclick="switchMainTab('report')">
-          📑 당일 심층 리포트
+          📑 옵션·파생 심층 리포트
         </button>
         <button class="top-tab" id="tab-btn-deriv" onclick="switchMainTab('deriv')">
           파생 상세 사다리 맵
@@ -911,14 +877,14 @@
     </header>
 
     <!-- ========================================================
-       TAB VIEW 1: DASHBOARD OVERVIEW (ALL-IN-ONE)
+       TAB VIEW 1: DASHBOARD OVERVIEW
        ======================================================== -->
     <div id="view-dashboard" class="tab-view active">
 
       <!-- Welcome Hero -->
       <div class="welcome-hero">
         <h1 class="welcome-title">Welcome Back, Trader !</h1>
-        <p class="welcome-subtitle">Here's what's happening with the market & derivatives today (2026.10.18 21:59 KST)</p>
+        <p class="welcome-subtitle">Here's what's happening with the options, gamma & market today (2026.10.18 22:04 KST)</p>
       </div>
 
       <!-- TOP 3 KPI CARDS -->
@@ -1047,19 +1013,16 @@
         </div>
       </div>
 
-      <!-- ========================================================
-           NEW: ONE-PAGE MARKET PULSE (MATCHING USER'S IMAGE STRUCTURE)
-           ======================================================== -->
+      <!-- ONE-PAGE MARKET PULSE CARD -->
       <div class="market-pulse-card">
         <div class="pulse-header">
           <div class="pulse-title-wrap">
             <span class="pulse-badge">ALPHA ENGINE</span>
-            <h2 style="font-size:1.15rem; font-weight:800; color:var(--text-title);">한 장으로 보는 오늘 시장 (마감 & 내일 장전)</h2>
+            <h2 style="font-size:1.15rem; font-weight:800; color:var(--text-title);">한 장으로 보는 오늘 시장 (마감 & 옵션 파생 수급)</h2>
           </div>
-          <span class="pulse-date">2026.10.18 기준 · 시황 원페이지 요약</span>
+          <span class="pulse-date">2026.10.18 기준 · 파생 연계 원페이지 시황</span>
         </div>
 
-        <!-- Index Chips -->
         <div class="pulse-index-bar">
           <div class="pulse-index-chip">
             <span>코스피</span>
@@ -1077,25 +1040,24 @@
             <span style="color:#38bdf8; font-weight:700;">-0.42%</span>
           </div>
           <div class="pulse-index-chip">
-            <span>수급</span>
-            <span>외인 순매도</span>
-            <span style="color:#ef4444; font-weight:700;">-8,938억</span>
+            <span>SK하이닉스 감마점수</span>
+            <strong style="color:#ef4444;">99.19 pt</strong>
+            <span style="color:#ef4444; font-weight:700;">(국내 1위)</span>
           </div>
         </div>
 
-        <!-- Headline -->
         <div class="pulse-headline">
-          "외국인 반도체 대규모 차익실현 vs AI 전력인프라·조선 수급 독주"
+          "SK하이닉스 숏 감마 스퀴즈 임박 vs 개별주식선물 수급 주도주 차별화"
         </div>
 
-        <!-- Hot Stock Box -->
+        <!-- Hot Stock Hero Box: SK하이닉스 감마 스퀴즈 -->
         <div class="hot-stock-box">
           <div>
-            <div class="hot-stock-label">🔥 오늘 가장 뜨거웠던 대장주</div>
-            <div class="hot-stock-name">대한전선 (001440)</div>
-            <div class="hot-stock-sub">북미 AI 데이터센터향 초고압 케이블 수주 사상 최대치</div>
+            <div class="hot-stock-label">🎯 옵션 감마 스퀴즈 1순위 주도주</div>
+            <div class="hot-stock-name">SK하이닉스 (000660)</div>
+            <div class="hot-stock-sub">Fintel 감마 스퀴즈 점수 99.19점 · 180,000원 풋옵션 방어벽 확인</div>
           </div>
-          <div class="hot-stock-pct">+14.20%</div>
+          <div class="hot-stock-pct">숏스퀴즈 롱</div>
         </div>
 
         <!-- 4 Major Themes 2x2 Grid -->
@@ -1103,64 +1065,64 @@
           <!-- Theme 1 -->
           <div class="pulse-theme-card">
             <div class="theme-card-head">
-              <span class="theme-name-tag">⚡ AI 전력인프라 & 전선</span>
-              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">섹터 +9.8%</span>
+              <span class="theme-name-tag">💾 개별주식선물 & 감마 스퀴즈</span>
+              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">파생 집중</span>
             </div>
-            <div class="theme-driver-desc">빅테크 AI CAPEX 유지로 초고압 전력망 쇼티지 가속</div>
-            <div class="theme-stock-row"><span class="theme-stock-name">대한전선 (001440)</span><span class="theme-stock-rate">+14.20%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">HD현대일렉트릭 (267260)</span><span class="theme-stock-rate">+8.50%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">제룡전기 (033100)</span><span class="theme-stock-rate">+7.15%</span></div>
+            <div class="theme-driver-desc">외인 선물 대규모 매도 후 숏커버링 전환 및 콜옵션 매수 집중</div>
+            <div class="theme-stock-row"><span class="theme-stock-name">SK하이닉스 (000660)</span><span class="theme-stock-rate">감마 99.2pt</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">삼성전자 (005930)</span><span class="theme-stock-rate">58,000 풋벽</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">테크윙 (089030)</span><span class="theme-stock-rate">HBM 테스트</span></div>
           </div>
 
           <!-- Theme 2 -->
           <div class="pulse-theme-card">
             <div class="theme-card-head">
-              <span class="theme-name-tag">🚢 조선 & 해양 FLNG</span>
-              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">섹터 +5.4%</span>
+              <span class="theme-name-tag">🧬 코스닥150 선물 주도주</span>
+              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">숏커버 랠리</span>
             </div>
-            <div class="theme-driver-desc">고수익 FLNG선 독점 수주 및 필리조선소 군용 MRO 수혜</div>
-            <div class="theme-stock-row"><span class="theme-stock-name">삼성중공업 (010140)</span><span class="theme-stock-rate">+6.40%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">한화오션 (042660)</span><span class="theme-stock-rate">+5.20%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">HD한국조선해양 (009540)</span><span class="theme-stock-rate">+4.10%</span></div>
+            <div class="theme-driver-desc">머크 키트루다SC 마일스톤 기대감으로 공매도 숏스퀴즈 폭발</div>
+            <div class="theme-stock-row"><span class="theme-stock-name">알테오젠 (196170)</span><span class="theme-stock-rate">코스닥 1위</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">에코프로비엠 (247540)</span><span class="theme-stock-rate">숏커버링</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">리가켐바이오 (141080)</span><span class="theme-stock-rate">ADC 파생롱</span></div>
           </div>
 
           <!-- Theme 3 -->
           <div class="pulse-theme-card">
             <div class="theme-card-head">
-              <span class="theme-name-tag">💾 HBM 첨단 패키징</span>
-              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">섹터 +6.8%</span>
+              <span class="theme-name-tag">🚀 방산 & 변동성 프리미엄</span>
+              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">외인 매집</span>
             </div>
-            <div class="theme-driver-desc">반도체대전 개막 및 HBM4/5 차세대 패키징 검사장비 국산화</div>
-            <div class="theme-stock-row"><span class="theme-stock-name">테크윙 (089030)</span><span class="theme-stock-rate">+7.80%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">한미반도체 (042700)</span><span class="theme-stock-rate">+4.50%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">쎄크 (068240)</span><span class="theme-stock-rate">+11.20%</span></div>
+            <div class="theme-driver-desc">개별주식선물 4거래일 연속 외인 순매수 & K-방산 수주 가시성</div>
+            <div class="theme-stock-row"><span class="theme-stock-name">한화에어로스페이스 (012450)</span><span class="theme-stock-rate">외인 +340억</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">현대로템 (064350)</span><span class="theme-stock-rate">전차 수주</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">LIG넥스원 (079550)</span><span class="theme-stock-rate">천궁II 공급</span></div>
           </div>
 
           <!-- Theme 4 -->
           <div class="pulse-theme-card">
             <div class="theme-card-head">
-              <span class="theme-name-tag">💄 글로벌 인디 K-뷰티</span>
-              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">섹터 +5.1%</span>
+              <span class="theme-name-tag">⚛️ 원전 SMR & 전력망</span>
+              <span style="font-size:0.75rem; color:#ef4444; font-weight:800;">기관 쌍끌이</span>
             </div>
-            <div class="theme-driver-desc">아마존 가을 프라임데이 호조 및 계절성 뛰어넘는 미국 수출</div>
-            <div class="theme-stock-row"><span class="theme-stock-name">한국콜마 (161890)</span><span class="theme-stock-rate">+6.20%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">실리콘투 (257720)</span><span class="theme-stock-rate">+8.90%</span></div>
-            <div class="theme-stock-row"><span class="theme-stock-name">코스맥스 (192820)</span><span class="theme-stock-rate">+4.80%</span></div>
+            <div class="theme-driver-desc">체코 원전 본계약 및 빅테크 SMR 전력 공급 파트너십</div>
+            <div class="theme-stock-row"><span class="theme-stock-name">두산에너빌리티 (034020)</span><span class="theme-stock-rate">SMR 롱</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">HD현대일렉트릭 (267260)</span><span class="theme-stock-rate">변압기 완판</span></div>
+            <div class="theme-stock-row"><span class="theme-stock-name">대한전선 (001440)</span><span class="theme-stock-rate">초고압망</span></div>
           </div>
         </div>
 
         <!-- Engine Evaluation Box -->
         <div class="engine-feedback-box">
           <div class="feedback-body">
-            <strong>🎯 알파엔진 아침 판단 ▷ 실전 복기 결과</strong><br>
-            • <strong>아침 판단:</strong> ASML 쇼크 반도체 갭하락 시초가 추격매수 절대 금지, 1,117.5pt 콜벽 저항 경계, 전력·조선 압축 대응.<br>
-            • <strong>마감 복기:</strong> 반도체 대형주 약세(-0.78%) 정확히 적중. 전력망·FLNG 수급 집중으로 계좌 방어 성공. 뇌동매매 0회 준수.
+            <strong>🎯 알파엔진 파생 수급 전략 진단</strong><br>
+            • <strong>감마 스퀴즈 타점:</strong> SK하이닉스 180,000원 풋옵션 지지선 터치 시 딜러 델타 헷지 매수세가 유입되어 숏 감마 스퀴즈 반등 확률 극대화.<br>
+            • <strong>지수 위험선:</strong> 코스피200 선물 878pt 공방 중 1,046.1pt 감마 플립선 이탈 시 전량 손절 원칙 유지.
           </div>
-          <span class="feedback-badge">✅ 원칙 100% 적중</span>
+          <span class="feedback-badge">✅ 파생 헷지 검증</span>
         </div>
       </div>
 
-      <!-- BOTTOM ROW: 3 COLUMNS -->
+      <!-- BOTTOM ROW: 3 COLUMNS (실시간 옵션·파생 주도주 추천) -->
       <div class="bottom-row-3">
         <!-- Col 1 -->
         <div class="bottom-card">
@@ -1216,7 +1178,7 @@
           </div>
         </div>
 
-        <!-- Col 2 -->
+        <!-- Col 2: D-DAY -->
         <div class="bottom-card">
           <div class="card-title-row">
             <h3 class="card-title-text" style="font-size:1.02rem;">📅 D-Day 캘린더 & 경보</h3>
@@ -1258,44 +1220,44 @@
           </div>
         </div>
 
-        <!-- Col 3 -->
+        <!-- Col 3: NEW! 옵션·파생 주도주 TOP 3 -->
         <div class="bottom-card">
           <div class="card-title-row">
-            <h3 class="card-title-text" style="font-size:1.02rem;">🔥 수급 1~3순위 추천</h3>
-            <span style="font-size:0.75rem; color:var(--text-dim);">쌍끌이 매집</span>
+            <h3 class="card-title-text" style="font-size:1.02rem;">🔥 옵션·파생 주도주 TOP 3</h3>
+            <span style="font-size:0.75rem; color:var(--text-dim);">감마 스퀴즈 타점</span>
           </div>
           <div class="card-list-group">
-            <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/001440/total" target="_blank" rel="noopener">
-              <div class="stock-avatar-thumb">⚡</div>
-              <div class="item-content-body">
-                <div class="item-title-text">대한전선 (001440)</div>
-                <div class="item-desc-text">AI 전력망 초고압선 · 타점 12,800원</div>
-              </div>
-              <div class="item-right-metric">
-                <div class="metric-value-text" style="color:#10b981;">+182억</div>
-                <div class="metric-sub-text" style="color:#ef4444;">손절 12,200원</div>
-              </div>
-            </a>
-            <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/010140/total" target="_blank" rel="noopener">
-              <div class="stock-avatar-thumb">🚢</div>
-              <div class="item-content-body">
-                <div class="item-title-text">삼성중공업 (010140)</div>
-                <div class="item-desc-text">FLNG 고수익선 · 타점 9,850원</div>
-              </div>
-              <div class="item-right-metric">
-                <div class="metric-value-text" style="color:#10b981;">+240억</div>
-                <div class="metric-sub-text" style="color:#ef4444;">손절 9,400원</div>
-              </div>
-            </a>
-            <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/089030/total" target="_blank" rel="noopener">
+            <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/000660/total" target="_blank" rel="noopener">
               <div class="stock-avatar-thumb">💾</div>
               <div class="item-content-body">
-                <div class="item-title-text">테크윙 (089030)</div>
-                <div class="item-desc-text">HBM 테스트 핸들러 · 타점 37,500원</div>
+                <div class="item-title-text">SK하이닉스 (000660)</div>
+                <div class="item-desc-text">감마스퀴즈 점수 99.2pt · 풋벽 180,000원</div>
               </div>
               <div class="item-right-metric">
-                <div class="metric-value-text" style="color:#10b981;">+95억</div>
-                <div class="metric-sub-text" style="color:#ef4444;">손절 35,800원</div>
+                <div class="metric-value-text" style="color:#10b981;">타점 182,000원</div>
+                <div class="metric-sub-text" style="color:#ef4444;">손절 175,000원</div>
+              </div>
+            </a>
+            <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/196170/total" target="_blank" rel="noopener">
+              <div class="stock-avatar-thumb">🧬</div>
+              <div class="item-content-body">
+                <div class="item-title-text">알테오젠 (196170)</div>
+                <div class="item-desc-text">코스닥150 선물 1위 · 숏커버링 폭발</div>
+              </div>
+              <div class="item-right-metric">
+                <div class="metric-value-text" style="color:#10b981;">타점 380,000원</div>
+                <div class="metric-sub-text" style="color:#ef4444;">손절 365,000원</div>
+              </div>
+            </a>
+            <a class="clean-list-item" href="https://m.stock.naver.com/domestic/stock/012450/total" target="_blank" rel="noopener">
+              <div class="stock-avatar-thumb">🚀</div>
+              <div class="item-content-body">
+                <div class="item-title-text">한화에어로스페이스 (012450)</div>
+                <div class="item-desc-text">주식선물 외인 +340억 · 콜옵션 매수 집중</div>
+              </div>
+              <div class="item-right-metric">
+                <div class="metric-value-text" style="color:#10b981;">타점 350,000원</div>
+                <div class="metric-sub-text" style="color:#ef4444;">손절 335,000원</div>
               </div>
             </a>
           </div>
@@ -1308,43 +1270,48 @@
        ======================================================== -->
     <div id="view-report" class="tab-view">
       <div class="report-paper">
-        <span class="report-badge">INSTITUTIONAL ALPHA REPORT · 2026.10.18</span>
-        <h1 class="report-main-title">주간 증시 심층 리포트 : 반도체 매물 소화와 인프라·조선 수급 차별화 전략</h1>
+        <span class="report-badge">INSTITUTIONAL DERIVATIVES REPORT · 2026.10.18</span>
+        <h1 class="report-main-title">파생 감마 스퀴즈와 옵션 주도주 심층 전략 리포트</h1>
         
         <div class="report-meta-row">
           <span>작성: StockVentura AI Intelligence</span>
           <span>대상: 원금 회복 프로젝트 트레이더</span>
-          <span>기준일: 2026년 10월 18일</span>
+          <span>업데이트: 2026년 10월 18일 22:00 KST</span>
         </div>
 
-        <h2 class="report-h2">1. 매크로 및 글로벌 야간 시장 총평</h2>
+        <h2 class="report-h2">1. 왜 개별주식 옵션과 감마 스퀴즈가 중요한가?</h2>
         <p class="report-p">
-          간밤 뉴욕 증시는 다우 존스가 사상 최고치를 경신했으나, 나스닥 100(-0.35%)과 필라델피아 반도체 지수(-0.78%)는 ASML의 가이던스 하향에 따른 장비주 충격 여파로 차별화된 흐름을 보였습니다. 
-          반면 야간 NDF 원/달러 환율은 <strong>1,354.20원(-4.50원)</strong>으로 안정세를 보여 외국인의 공격적인 환차손 투매 가능성을 크게 낮추고 있습니다.
+          현물 주식의 차트나 단순 뉴스만 보고 매매하면 딜러들의 기계적 헷지 매물에 당하게 됩니다. 
+          외국인과 기관 시장조성자(Market Maker)들은 옵션과 주식선물 포지션 위험을 헤지하기 위해 <strong>기초자산 주식을 기계적으로 사거나 파는 델타 헷지(Delta Hedging)</strong>를 수행합니다. 
+          이 과정에서 풋옵션 매물이 청산되거나 콜옵션 거래량이 폭발할 때 주가가 단기 폭등하는 <strong>감마 스퀴즈(Gamma Squeeze)</strong>가 발생하며, 이 타점을 노리는 것이 손익비 1:3 이상의 핵심 기법입니다.
         </p>
 
-        <h2 class="report-h2">2. 파생 딜러 포지션 및 GEX 감마 상세 분석</h2>
-        <p class="report-p">
-          현재 코스피 200 선물(878.05pt) 및 옵션 시장은 명확한 상하방 범위를 설정하고 있습니다:
-        </p>
+        <h2 class="report-h2">2. 실전 옵션·파생 주도주 5선 심층 분석</h2>
         <div class="report-callout">
-          • <strong>상방 콜벽 (1,117.5 pt):</strong> 월위클리 콜벽 최대(+163.9억) 핀자석 저항선. 지수가 이 부근에 진입하면 딜러들의 매도 헷지로 상승 탄력이 둔화되므로 시초가 추격매수는 절대 금물입니다.<br>
-          • <strong>골든 매수 지지선 (1,072.7 ~ 1,075.0 pt):</strong> 차트 6회 최다 지지와 월물 MaxPain이 중첩된 영역으로, 하락 시 <strong>손익비 1:3의 롱 타점</strong>을 제공합니다.<br>
-          • <strong>감마 플립 위험선 (1,046.1 pt):</strong> 시장 델타가 음수로 전환되는 핵심 변곡선으로, 종가 기준 이탈 시 하방 변동성이 가속화되므로 계좌 보호를 위해 전량 손절해야 합니다.
+          <strong>① SK하이닉스 (000660) - 감마 스퀴즈 점수 99.19점 (국내 1위)</strong><br>
+          • <strong>파생 수급 구조:</strong> Fintel 감마스퀴즈 지표상 국내 최상위권. 최근 외국인의 현물 매도세가 거셌으나, 개별주식선물에서는 하락폭이 둔화되며 180,000원 행사가 풋옵션 방어벽이 두텁게 형성되었습니다.<br>
+          • <strong>실전 타점:</strong> 180,000 ~ 182,000원 눌림목 도달 시 딜러들의 숏 감마 헷지 매수세 유입으로 단기 5~8% 반등 트리거 발생. 손절가는 175,000원 이탈 시.<br><br>
+
+          <strong>② 알테오젠 (196170) - 코스닥 150 선물 숏스퀴즈 대장주</strong><br>
+          • <strong>파생 수급 구조:</strong> 코스닥 150 선물 바스켓 내 비중 1위. 머크 키트루다SC 피하주사 마일스톤 가시화로 공매도 세력의 환매수(Short Covering)가 강하게 유입 중입니다.<br>
+          • <strong>실전 타점:</strong> 380,000원 20일선 지지 확인 시 분할 매수. 목표가 430,000원, 손절가 365,000원 (-3.9%).<br><br>
+
+          <strong>③ 한화에어로스페이스 (012450) - 주식선물 외인 4일 연속 순매수</strong><br>
+          • <strong>파생 수급 구조:</strong> 개별주식선물 시장에서 외국인이 +340억 이상 누적 매수하며 변동성(IV) 프리미엄이 확대되는 전형적인 콜옵션 강세 패턴입니다.<br>
+          • <strong>실전 타점:</strong> 350,000원 박스권 상단 돌파 후 안착 시 롱 진입. 손절가 335,000원.<br><br>
+
+          <strong>④ 삼성전자 (005930) - 58,000원 풋옵션 최대 미결제약정(OI)</strong><br>
+          • <strong>파생 수급 구조:</strong> 58,000원에 월물 풋옵션 최대 미결제약정이 집중되어 있어 하방 경직성을 확보했습니다. 다만 62,000원 콜벽 저항이 두터워 박스권 매매(58,500원 매수 / 61,500원 매도)로만 대응.<br><br>
+
+          <strong>⑤ 두산에너빌리티 (034020) - SMR 원전 파생 롱 포지션 확대</strong><br>
+          • <strong>파생 수급 구조:</strong> 체코 원전 본계약 및 아마존 SMR 전력 공급 파트너십으로 주식선물 거래량 급증. 21,500원 지지선 유효.
         </div>
 
-        <h2 class="report-h2">3. 기관·외국인 수급 주도주 3선 심층 밸류에이션</h2>
-        <p class="report-p">
-          <strong>① 대한전선 (001440)</strong> : 한경 컨센서스 목표주가 상향 리포트 발행. 북미 AI 데이터센터향 525kV 초고압 직류송전(HVDC) 케이블 수주 잔고가 사상 최대치를 경신하며 12,800원 눌림목 분할 매수 타점 유효.<br>
-          <strong>② 삼성중공업 (010140)</strong> : 고수익 FLNG선 독점 건조와 기관의 3거래일 연속 순매수(+240억) 유입. 9,850원 돌파 후 안착 시 1차 목표가 11,500원 설정.<br>
-          <strong>③ 테크윙 (089030)</strong> : 디일렉 보도에 따른 HBM 큐브 핸들러 및 웨이퍼 검사 장비 공급 확대. 37,500원 20일선 지지 시 손절선 35,800원으로 짧게 잡고 대응 가능.
-        </p>
-
-        <h2 class="report-h2">4. 내일(월요일) 실전 매매 행동 시나리오</h2>
+        <h2 class="report-h2">3. 내일(월요일) 옵션 파생 매매 시나리오</h2>
         <div class="report-callout" style="border-left-color: #10b981;">
-          • <strong>시나리오 A (시초가 보합/상승 출발):</strong> 1,117.5pt 콜벽 저항대 돌파 여부를 관망하고, 상투 추격매수 금지. 보유 종목은 분할 익절 준비.<br>
-          • <strong>시나리오 B (시초가 갭하락 후 눌림목):</strong> 1,072.7pt 골든 지지선 도달 및 거래량 감소 확인 시 수급 주도주 3선 분할 매수 집행.<br>
-          • <strong>철칙 2% 룰:</strong> 1,000만 원 시드 기준 1회 최대 손실액은 200,000원으로 강제 제한.
+          • <strong>시나리오 1 (SK하이닉스 182,000원 터치 시):</strong> 2% 룰(손실한도 20만 원) 기준 175,000원 손절을 잡고 숏스퀴즈 기술적 반등 노림.<br>
+          • <strong>시나리오 2 (선물 880선 돌파 실패 시):</strong> 1,117.5pt 콜벽 상투선에서 추가 추격 매수 엄금, 현금 비중 50% 유지.<br>
+          • <strong>시나리오 3 (1,046.1pt 감마 플립선 하향 이탈 시):</strong> 시장 변동성이 하방으로 폭발하므로 보유 종목 전량 기계적 칼손절 집행.
         </div>
 
         <div style="margin-top:24px; text-align:right;">
@@ -1355,9 +1322,7 @@
       </div>
     </div>
 
-    <!-- ========================================================
-       TAB VIEW 3: FULL DERIVATIVES LADDER MAP
-       ======================================================== -->
+    <!-- TAB VIEW 3: DERIVATIVES LADDER MAP -->
     <div id="view-deriv" class="tab-view">
       <div class="chart-card-box" style="margin-top:10px;">
         <div class="card-title-row">
@@ -1417,9 +1382,7 @@
       </div>
     </div>
 
-    <!-- ========================================================
-       TAB VIEW 4: IN-SITE JOURNAL & PNL CHART
-       ======================================================== -->
+    <!-- TAB VIEW 4: JOURNAL & CHART -->
     <div id="view-journal" class="tab-view">
       <div class="chart-card-box" style="margin-top:10px;">
         <div class="card-title-row">
@@ -1433,10 +1396,10 @@
 
         <form id="journalForm" onsubmit="saveTrade(event)" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; background:var(--bg-card-sub); padding:16px; border-radius:12px; margin-bottom:18px;">
           <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">매매일자</label><input type="date" id="tradeDate" required style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
-          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">종목명</label><input type="text" id="tradeName" placeholder="예: 대한전선" required style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
-          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">매수가(원)</label><input type="number" id="tradeBuyPrice" placeholder="12800" required oninput="calcTradePnl()" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
-          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">매도가(원)</label><input type="number" id="tradeSellPrice" placeholder="13500" oninput="calcTradePnl()" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
-          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">수량(주)</label><input type="number" id="tradeQty" placeholder="300" required oninput="calcTradePnl()" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
+          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">종목명</label><input type="text" id="tradeName" placeholder="예: SK하이닉스" required style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
+          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">매수가(원)</label><input type="number" id="tradeBuyPrice" placeholder="182000" required oninput="calcTradePnl()" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
+          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">매도가(원)</label><input type="number" id="tradeSellPrice" placeholder="192000" oninput="calcTradePnl()" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
+          <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">수량(주)</label><input type="number" id="tradeQty" placeholder="50" required oninput="calcTradePnl()" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title);"></div>
           <div><label style="font-size:0.74rem; font-weight:600; color:var(--text-muted);">실현손익</label><input type="text" id="tradePnlAmount" readonly placeholder="0원" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); font-weight:800; color:#0284c7;"></div>
           <div style="grid-column:1/-1; display:flex; justify-content:flex-end;">
             <button type="submit" style="background:#0284c7; color:#fff; border:none; padding:10px 20px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">
@@ -1464,29 +1427,25 @@
       </div>
     </div>
 
-    <!-- ========================================================
-       TAB VIEW 5: CALCULATOR
-       ======================================================== -->
+    <!-- TAB VIEW 5: CALCULATOR -->
     <div id="view-calc" class="tab-view">
       <div class="chart-card-box" style="margin-top:10px;">
         <h2 class="card-title-text" style="margin-bottom:16px;">🧮 2% 리스크 & 적정 진입 수량 계산기</h2>
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px; margin-bottom:16px;">
           <div><label style="font-size:0.75rem; color:var(--text-muted);">운용 시드 (원)</label><input type="number" id="calcSeed" value="10000000" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title); font-size:1rem; font-weight:700;"></div>
-          <div><label style="font-size:0.75rem; color:var(--text-muted);">매수 진입가 (원)</label><input type="number" id="calcBuyPrice" value="12800" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title); font-size:1rem; font-weight:700;"></div>
-          <div><label style="font-size:0.75rem; color:var(--text-muted);">칼손절 기준가 (원)</label><input type="number" id="calcStopPrice" value="12200" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title); font-size:1rem; font-weight:700;"></div>
+          <div><label style="font-size:0.75rem; color:var(--text-muted);">매수 진입가 (원)</label><input type="number" id="calcBuyPrice" value="182000" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title); font-size:1rem; font-weight:700;"></div>
+          <div><label style="font-size:0.75rem; color:var(--text-muted);">칼손절 기준가 (원)</label><input type="number" id="calcStopPrice" value="175000" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--border-color); background:var(--bg-card); color:var(--text-title); font-size:1rem; font-weight:700;"></div>
         </div>
         <button onclick="calculateRisk()" style="background:#0284c7; color:#fff; border:none; padding:10px 22px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">포지션 계산</button>
         <div style="margin-top:18px; padding:16px; border-radius:12px; background:var(--bg-card-sub); display:flex; flex-wrap:wrap; justify-content:space-between; gap:14px;">
           <div><div style="font-size:0.72rem; color:var(--text-dim);">1회 허용 손실액 (2%)</div><div style="font-size:1.15rem; font-weight:800; color:#f59e0b;" id="resMaxLoss">200,000 원</div></div>
-          <div><div style="font-size:0.72rem; color:var(--text-dim);">최대 매수 가능 수량</div><div style="font-size:1.15rem; font-weight:800; color:#10b981;" id="resMaxShares">333 주</div></div>
-          <div><div style="font-size:0.72rem; color:var(--text-dim);">적정 진입 비중</div><div style="font-size:1.15rem; font-weight:800; color:#0284c7;" id="resTotalEntry">4,262,400 원 (시드의 42.6%)</div></div>
+          <div><div style="font-size:0.72rem; color:var(--text-dim);">최대 매수 가능 수량</div><div style="font-size:1.15rem; font-weight:800; color:#10b981;" id="resMaxShares">28 주</div></div>
+          <div><div style="font-size:0.72rem; color:var(--text-dim);">적정 진입 비중</div><div style="font-size:1.15rem; font-weight:800; color:#0284c7;" id="resTotalEntry">5,096,000 원 (시드의 50.9%)</div></div>
         </div>
       </div>
     </div>
 
-    <!-- ========================================================
-       TAB VIEW 6: SITES
-       ======================================================== -->
+    <!-- TAB VIEW 6: SITES -->
     <div id="view-sites" class="tab-view">
       <div class="bottom-row-3" style="margin-top:10px;">
         <a class="bottom-card" href="http://consensus.hankyung.com/" target="_blank" rel="noopener" style="text-decoration:none;">
@@ -1506,25 +1465,23 @@
 
   </main>
 
-  <!-- MODAL: MACRO DETAIL -->
   <div id="macro-modal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'macro-modal')">
     <div class="modal-box">
       <div class="modal-head">
-        <h4 class="modal-title">📊 미국장 마감 분석 & 오늘 국장 행동 수칙</h4>
+        <h4 class="modal-title">📊 옵션·파생 헷지 분석 & 실전 행동 수칙</h4>
         <button class="modal-close-btn" onclick="closeModal('macro-modal')">✕</button>
       </div>
       <div style="font-size:0.9rem; line-height:1.6; color:var(--text-body);">
         <p style="margin-bottom:12px;">
-          - <strong>반도체 조정:</strong> ASML 실적 여파로 반도체 지수(-0.78%)가 약세를 보였으나 엔비디아와 TSMC가 낙폭을 만회하여 AI 수요는 견조합니다.<br>
-          - <strong>시초가 원칙:</strong> 삼성전자/하이닉스 등 시초가 갭하락 추격매수는 절대 금지하며, 전력 인프라·조선 등 독립적 수급주에 집중합니다.<br>
-          - <strong>파생 지지선:</strong> 1,072.7pt 지지 확인 시 손익비 1:3 롱 타점으로 진입합니다.
+          - <strong>SK하이닉스 감마 스퀴즈:</strong> 180,000원 풋옵션 방어선 터치 시 딜러 숏 감마 헷지 매수 유입 가능성 주시.<br>
+          - <strong>알테오젠 숏커버링:</strong> 코스닥150 선물 1위 종목으로 380,000원 지지선 중심 분할 타점 유효.<br>
+          - <strong>파생 지지선:</strong> 지수 1,072.7pt 지지 확인 시 손익비 1:3 롱 타점으로 진입.
         </p>
       </div>
     </div>
   </div>
 
   <script>
-    // Tab Navigation
     function switchMainTab(tabKey) {
       document.querySelectorAll('.tab-view').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.top-tab').forEach(el => el.classList.remove('active'));
@@ -1545,7 +1502,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Theme Toggle
     function toggleTheme() {
       const html = document.documentElement;
       const current = html.getAttribute('data-theme');
@@ -1556,7 +1512,6 @@
     const savedTheme = localStorage.getItem('stockventura_theme');
     if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
 
-    // Modal
     function openModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.add('open');
@@ -1569,7 +1524,6 @@
       if (e.target.id === id) closeModal(id);
     }
 
-    // 2% Risk Calculator
     function calculateRisk() {
       const seed = parseFloat(document.getElementById('calcSeed').value) || 0;
       const buyPrice = parseFloat(document.getElementById('calcBuyPrice').value) || 0;
@@ -1589,7 +1543,6 @@
       document.getElementById('resTotalEntry').innerText = `${totalEntry.toLocaleString()} 원 (${entryRatio}%)`;
     }
 
-    // Journal & Chart
     const STORAGE_KEY = 'stockventura_trades_v1';
     const INITIAL_LOSS = -138800000;
 
