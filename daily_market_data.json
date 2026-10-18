@@ -1,100 +1,86 @@
 {
-  "updatedAt": "2026-10-16 01:02:55",
-  "marketState": {
-    "status": "중립 ~ 단기 박스권 상단 저항",
-    "comment": "코스피 1,112pt 부근 콜벽(1,117~1,120pt) 저항권 도달. 무리한 추격 매수보다 1,075~1,082pt 지지선 눌림목 대기 전략 유효.",
-    "derivativesInsight": {
-      "resistance": "1,117.5 ~ 1,120 (월위클리 콜벽 최대 + 핀자석) ▷ 분할 익절/비중 축소",
-      "support": "1,072.7 ~ 1,082.5 (MaxPain + 차트 6회 다중지지) ▷ 최우선 분할 매수 타점",
-      "dangerLine": "1,046.1 (감마 플립 라인) ▷ 하향 이탈 시 전량 손절 및 패닉셀 대비"
+  "updated_at": "2026.10.18 21:56 KST",
+  "market_overview": {
+    "kospi": {
+      "price": 0.0,
+      "change": 0.0,
+      "rate": 0.0
+    },
+    "kosdaq": {
+      "price": 0.0,
+      "change": 0.0,
+      "rate": 0.0
+    },
+    "usdkrw": {
+      "price": 1354.2,
+      "change": -4.5,
+      "rate": -0.33
+    },
+    "sp500": {
+      "price": 5842.1,
+      "change": 7.01,
+      "rate": 0.12
+    },
+    "nasdaq": {
+      "price": 20412.5,
+      "change": -71.44,
+      "rate": -0.35
+    },
+    "sox": {
+      "price": 5280.4,
+      "change": -41.5,
+      "rate": -0.78
+    },
+    "futures200": {
+      "price": 878.05,
+      "change": -3.7,
+      "rate": -0.42
+    },
+    "nasdaq_fut": {
+      "price": 20380.0,
+      "change": -57.2,
+      "rate": -0.28
     }
   },
-  "consensusPicks": [
+  "derivatives_levels": {
+    "monthly_call_wall_max": 1250.0,
+    "gex_primary_resistance": 1150.0,
+    "weekly_call_wall_magnet": 1117.5,
+    "current_price": 1112.13,
+    "golden_support_multitouch": 1072.7,
+    "weekly_gamma_flip": 1046.1,
+    "monthly_gamma_flip": 1006.7
+  },
+  "top_conviction_stocks": [
     {
-      "stock": "현대모비스",
-      "code": "012330",
-      "broker": "한화투자증권",
-      "targetPrice": "340,000원",
-      "category": "실적 턴어라운드"
-    },
-    {
-      "stock": "한국콜마",
-      "code": "161890",
-      "broker": "SK증권",
-      "targetPrice": "180,000원",
-      "category": "K-뷰티 수출 호조"
-    },
-    {
-      "stock": "대한전선",
+      "rank": 1,
+      "name": "대한전선",
       "code": "001440",
-      "broker": "SK증권",
-      "targetPrice": "33,000원",
-      "category": "초고압 전력망 수혜"
+      "sector": "AI 전력망 / 초고압 케이블",
+      "net_buy": "+182억",
+      "target_entry": 12800,
+      "stop_loss": 12200,
+      "thesis": "한경 컨센서스 목표가 상향. 북미 AI 데이터센터 수주 사상 최대."
     },
     {
-      "stock": "삼성중공업",
+      "rank": 2,
+      "name": "삼성중공업",
       "code": "010140",
-      "broker": "상상인증권",
-      "targetPrice": "35,000원",
-      "category": "조선 슈퍼사이클"
-    }
-  ],
-  "techNews": [
-    {
-      "title": "테크윙, 메모리 호황에 3분기 매출 전년비 2배 이상 성장",
-      "url": "https://www.thelec.kr",
-      "theme": "HBM 반도체",
-      "source": "디일렉"
+      "sector": "조선 / 고수익 FLNG",
+      "net_buy": "+240억",
+      "target_entry": 9850,
+      "stop_loss": 9400,
+      "thesis": "FLNG 수주 독점력 부각 및 기관 3거래일 연속 순매수."
     },
     {
-      "title": "대한전선, 영국 런던에 400kV 초고압 전력망 구축 수주",
-      "url": "https://www.thelec.kr",
-      "theme": "전력인프라",
-      "source": "디일렉"
-    },
-    {
-      "title": "삼성전자, 엔비디아 AI 노트북용 차세대 OLED 독점 공급",
-      "url": "https://www.thelec.kr",
-      "theme": "AI/디스플레이",
-      "source": "디일렉"
-    }
-  ],
-  "topThemes": [
-    {
-      "theme": "AI 전력 인프라 & 초고압 변압기",
-      "stocks": [
-        "대한전선",
-        "HD현대일렉트릭",
-        "효성중공업",
-        "일진전기"
-      ],
-      "driver": "미국 및 유럽 노후 전력망 교체 + AI 데이터센터 전력 수요 폭증으로 2028년까지 4년치 수주잔고 확보",
-      "flow": "외인/기관 동반 순매수 지속",
-      "strategy": "신고가 부근 20일선 눌림목 분할 진입"
-    },
-    {
-      "theme": "조선 & 방산 슈퍼사이클",
-      "stocks": [
-        "HD현대중공업",
-        "삼성중공업",
-        "한화오션",
-        "한화시스템"
-      ],
-      "driver": "LNG선 고선가 인도 개시 + 미국 함정 MRO(유지보수) 수주 가시화",
-      "flow": "기관 연기금 중심 집중 매수",
-      "strategy": "수주 공시 후 단기 차익 실현 눌림목 관찰"
-    },
-    {
-      "theme": "반도체 소부장 (HBM 테스터/후공정)",
-      "stocks": [
-        "테크윙",
-        "한미반도체",
-        "이오테크닉스",
-        "원익IPS"
-      ],
-      "driver": "차세대 HBM4 및 엑시노스 양산 확대에 따른 검사장비 수요 폭증",
-      "flow": "투신 및 사모펀드 수급 유입",
-      "strategy": "52주 전고점 돌파 후 리테스트 지지 확인"
+      "rank": 3,
+      "name": "테크윙",
+      "code": "089030",
+      "sector": "HBM 테스트 핸들러",
+      "net_buy": "+95억",
+      "target_entry": 37500,
+      "stop_loss": 35800,
+      "thesis": "디일렉 첨단 패키징 R&D 수혜. HBM 큐브 핸들러 글로벌 공급."
     }
   ]
 }
