@@ -770,6 +770,163 @@
       font-size: 0.78rem;
     }
 
+    
+    /* ========================================================
+       DESKTOP vs MOBILE ADAPTIVE RESPONSIVE SYSTEM
+       PC: Wide Figma SaaS OS / Mobile: Touch-Friendly Toss/Robinhood UI
+       ======================================================== */
+    .mobile-cards-view { display: none; }
+    .desktop-table-view { display: block; }
+    .mobile-top-bar { display: none; }
+
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: calc(72px + env(safe-area-inset-bottom, 12px)) !important;
+      }
+
+      aside.app-sidebar {
+        width: 100% !important;
+        height: calc(58px + env(safe-area-inset-bottom, 8px)) !important;
+        flex-direction: row !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        border-right: none !important;
+        border-top: 1px solid var(--border-base) !important;
+        padding: 4px 6px env(safe-area-inset-bottom, 6px) !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        background: rgba(255, 255, 255, 0.96) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        box-shadow: 0 -3px 16px rgba(0, 0, 0, 0.05) !important;
+        z-index: 9999 !important;
+      }
+      [data-theme="dark"] aside.app-sidebar {
+        background: rgba(15, 18, 23, 0.96) !important;
+      }
+
+      .brand-header, .nav-group-label, .sidebar-footer {
+        display: none !important;
+      }
+
+      .nav-list {
+        flex-direction: row !important;
+        width: 100% !important;
+        justify-content: space-around !important;
+        gap: 2px !important;
+      }
+
+      .nav-item-btn {
+        width: auto !important;
+        padding: 6px 12px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important;
+        font-size: 0.68rem !important;
+        font-weight: 700 !important;
+        border-radius: 8px !important;
+      }
+      .nav-item-btn .nav-icon { font-size: 20px !important; }
+      .nav-badge-pill { display: none !important; }
+
+      main.app-main {
+        margin-left: 0 !important;
+        padding: 12px 14px 20px !important;
+        width: 100% !important;
+      }
+
+      .top-action-bar { margin-bottom: 14px !important; }
+      .global-search-box { max-width: 100% !important; }
+
+      .page-title-wrap h1 { font-size: 1.25rem !important; }
+      .page-title-wrap p { font-size: 0.78rem !important; }
+      .page-header-actions { width: 100% !important; display: flex !important; }
+      .btn-secondary, .btn-primary { flex: 1 !important; justify-content: center !important; padding: 8px 12px !important; font-size: 0.8rem !important; }
+
+      /* 2x2 Grid for Stat Cards on Mobile */
+      .stats-grid-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        margin-bottom: 16px !important;
+      }
+      .stat-card-figma { padding: 14px 12px !important; border-radius: var(--radius-sm) !important; }
+      .stat-value-big { font-size: 1.25rem !important; }
+      .stat-label-text { font-size: 0.68rem !important; }
+      .stat-footer-meta { font-size: 0.68rem !important; }
+
+      /* Hide Table on Mobile, Show Cards! */
+      .desktop-table-view { display: none !important; }
+      .mobile-cards-view { display: flex !important; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+
+      .m-stock-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-base);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        box-shadow: var(--shadow-card);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        cursor: pointer;
+      }
+      .m-stock-card:active { background: var(--bg-hover); transform: scale(0.985); }
+      .m-card-header { display: flex; justify-content: space-between; align-items: flex-start; }
+      .m-stock-info { display: flex; align-items: center; gap: 10px; }
+      .m-stock-thumb {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--bg-card-sub);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
+        border: 1px solid var(--border-base);
+        flex-shrink: 0;
+      }
+      .m-stock-name { font-size: 1.05rem; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 6px; }
+      .m-stock-code { font-size: 0.72rem; color: var(--text-dim); font-weight: 600; }
+      .m-stock-sector { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; }
+
+      .m-card-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: var(--bg-card-sub);
+        border-radius: var(--radius-sm);
+        padding: 10px 12px;
+        gap: 8px;
+        text-align: center;
+      }
+      .m-metric-box { display: flex; flex-direction: column; gap: 2px; }
+      .m-metric-label { font-size: 0.68rem; color: var(--text-dim); font-weight: 700; }
+      .m-metric-val { font-size: 0.88rem; font-weight: 800; color: var(--text-main); }
+      .m-metric-val.green { color: var(--color-green-text, #059669); }
+      .m-metric-val.red { color: var(--color-red-text, #dc2626); }
+
+      .m-card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 8px;
+        border-top: 1px dashed var(--border-subtle);
+        font-size: 0.76rem;
+      }
+      .m-options-tag { color: var(--brand-primary); font-weight: 700; }
+      .m-tap-guide { color: var(--text-dim); font-weight: 600; display: flex; align-items: center; gap: 2px; }
+
+      /* Mobile Trade Journal Form */
+      #journalForm {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        padding: 16px !important;
+        gap: 12px !important;
+      }
+      #journalForm input { font-size: 16px !important; }
+      #journalForm button { width: 100% !important; height: 46px !important; }
+    }
+
     /* Modal */
     .modal-overlay {
       display: none;
@@ -932,9 +1089,9 @@
             <span class="stat-label-text">🔥 숏 감마 1순위</span>
             <span style="color:var(--text-dim); font-size:12px;">•••</span>
           </div>
-          <div class="stat-value-big" style="color:#6366f1;">SK하이닉스</div>
+          <div class="stat-value-big" style="color:#6366f1;">펩트론</div>
           <div class="stat-footer-meta">
-            <span class="stat-change-tag up">↑ 99.19 pt</span>
+            <span class="stat-change-tag up">↑ 93.0 pt</span>
             <span class="stat-period-text">감마 스퀴즈 점수</span>
           </div>
         </div>
@@ -978,8 +1135,8 @@
         </div>
       </div>
 
-      <!-- Clean Data Table (Matching Figma Reference Table) -->
-      <div class="table-container-card">
+      <!-- Clean Data Table (PC Desktop View) -->
+      <div class="table-container-card desktop-table-view">
         <div class="data-table-wrap">
           <table class="saas-table" id="leadersTable">
             <thead>
@@ -995,49 +1152,124 @@
                 <th>상태 (Status)</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- Row 1: SK하이닉스 -->
-              <tr onclick="openStockDetail('000660')" data-category="GAMMA">
+            <tbody id="leadersTableBody">
+              <tr onclick="openStockDetail('087010')" data-category="BREAKOUT">
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="stock-cell">
-                    <div class="stock-thumb-box">💾</div>
+                    <div class="stock-thumb-box">🧬</div>
                     <div class="stock-title-wrap">
-                      <span class="stock-name-text">SK하이닉스</span>
-                      <span class="stock-subMeta">AI 반도체 HBM 대장주</span>
+                      <span class="stock-name-text">펩트론</span>
+                      <span class="stock-sub-meta">바이오 플랫폼 / 숏커버링</span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--text-main);">000660</div>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">HBM4E / CPO 표준화</div>
+                  <div style="font-weight:700; color:var(--text-main);">087010</div>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">글로벌 빅딜 마일스톤 가시화</div>
                 </td>
                 <td>
-                  <div style="font-weight:800; color:var(--text-main);">182,000원</div>
+                  <div style="font-weight:800; color:var(--text-main);">81,180원</div>
                   <div style="font-size:0.72rem; color:var(--text-muted);">눌림목 타점</div>
                 </td>
                 <td>
-                  <div style="font-weight:800; color:var(--color-green);">202,000원</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">+10.98%</div>
+                  <div style="font-weight:800; color:var(--color-green);">91,430원</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">+12.6%</div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--color-red);">175,000원</div>
-                  <div style="font-size:0.72rem; color:var(--color-red);">-3.85%</div>
+                  <div style="font-weight:700; color:var(--color-red);">78,880원</div>
+                  <div style="font-size:0.72rem; color:var(--color-red);">-2.8%</div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--text-main);">외인 선물 순매수 전환</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">기관 3일 누적 600억</div>
+                  <div style="font-weight:700; color:var(--text-main);">외인 바스켓 대량 유입</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">신고가 돌파 거래대금 1위</div>
                 </td>
                 <td>
-                  <span style="font-weight:700; color:#6366f1;">감마 스퀴즈 99.2pt</span>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">180,000 풋옵션 방어벽</div>
+                  <span style="font-weight:700; color:#6366f1;">코스닥150 선물 숏스퀴즈</span>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">공매도 대규모 환매수 랠리</div>
                 </td>
                 <td>
                   <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
                 </td>
               </tr>
-
-              <!-- Row 2: 알테오젠 -->
+              <tr onclick="openStockDetail('064350')" data-category="BREAKOUT">
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="stock-cell">
+                    <div class="stock-thumb-box">🚀</div>
+                    <div class="stock-title-wrap">
+                      <span class="stock-name-text">현대로템</span>
+                      <span class="stock-sub-meta">K-방산 & 우주항공 / 수출</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div style="font-weight:700; color:var(--text-main);">064350</div>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">유럽·중동 2차 실행계약 임박</div>
+                </td>
+                <td>
+                  <div style="font-weight:800; color:var(--text-main);">61,880원</div>
+                  <div style="font-size:0.72rem; color:var(--text-muted);">눌림목 타점</div>
+                </td>
+                <td>
+                  <div style="font-weight:800; color:var(--color-green);">69,690원</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">+12.6%</div>
+                </td>
+                <td>
+                  <div style="font-weight:700; color:var(--color-red);">60,120원</div>
+                  <div style="font-size:0.72rem; color:var(--color-red);">-2.8%</div>
+                </td>
+                <td>
+                  <div style="font-weight:700; color:var(--text-main);">외인 4일 연속 순매수</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">박스권 상단 돌파 양봉</div>
+                </td>
+                <td>
+                  <span style="font-weight:700; color:#6366f1;">개별주식선물 외인 매집</span>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">콜옵션 프리미엄 가속 구간</div>
+                </td>
+                <td>
+                  <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+                </td>
+              </tr>
+              <tr onclick="openStockDetail('000250')" data-category="BREAKOUT">
+                <td><input type="checkbox"></td>
+                <td>
+                  <div class="stock-cell">
+                    <div class="stock-thumb-box">🧬</div>
+                    <div class="stock-title-wrap">
+                      <span class="stock-name-text">삼천당제약</span>
+                      <span class="stock-sub-meta">바이오 플랫폼 / 숏커버링</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div style="font-weight:700; color:var(--text-main);">000250</div>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">글로벌 빅딜 마일스톤 가시화</div>
+                </td>
+                <td>
+                  <div style="font-weight:800; color:var(--text-main);">146,520원</div>
+                  <div style="font-size:0.72rem; color:var(--text-muted);">눌림목 타점</div>
+                </td>
+                <td>
+                  <div style="font-weight:800; color:var(--color-green);">165,020원</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">+12.6%</div>
+                </td>
+                <td>
+                  <div style="font-weight:700; color:var(--color-red);">142,380원</div>
+                  <div style="font-size:0.72rem; color:var(--color-red);">-2.8%</div>
+                </td>
+                <td>
+                  <div style="font-weight:700; color:var(--text-main);">외인 바스켓 대량 유입</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">신고가 돌파 거래대금 1위</div>
+                </td>
+                <td>
+                  <span style="font-weight:700; color:#6366f1;">코스닥150 선물 숏스퀴즈</span>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">공매도 대규모 환매수 랠리</div>
+                </td>
+                <td>
+                  <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+                </td>
+              </tr>
               <tr onclick="openStockDetail('196170')" data-category="BREAKOUT">
                 <td><input type="checkbox"></td>
                 <td>
@@ -1045,159 +1277,75 @@
                     <div class="stock-thumb-box">🧬</div>
                     <div class="stock-title-wrap">
                       <span class="stock-name-text">알테오젠</span>
-                      <span class="stock-subMeta">바이오 SC 피하주사 플랫폼</span>
+                      <span class="stock-sub-meta">바이오 플랫폼 / 숏커버링</span>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div style="font-weight:700; color:var(--text-main);">196170</div>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">코스닥150 선물 1위</div>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">글로벌 빅딜 마일스톤 가시화</div>
                 </td>
                 <td>
-                  <div style="font-weight:800; color:var(--text-main);">380,000원</div>
-                  <div style="font-size:0.72rem; color:var(--text-muted);">20일선 지지</div>
+                  <div style="font-weight:800; color:var(--text-main);">376,200원</div>
+                  <div style="font-size:0.72rem; color:var(--text-muted);">눌림목 타점</div>
                 </td>
                 <td>
-                  <div style="font-weight:800; color:var(--color-green);">428,000원</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">+12.63%</div>
+                  <div style="font-weight:800; color:var(--color-green);">423,700원</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">+12.6%</div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--color-red);">365,000원</div>
-                  <div style="font-size:0.72rem; color:var(--color-red);">-3.95%</div>
+                  <div style="font-weight:700; color:var(--color-red);">365,560원</div>
+                  <div style="font-size:0.72rem; color:var(--color-red);">-2.8%</div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--text-main);">공매도 숏커버링 폭발</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">기관 바스켓 매집</div>
+                  <div style="font-weight:700; color:var(--text-main);">외인 바스켓 대량 유입</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">신고가 돌파 거래대금 1위</div>
                 </td>
                 <td>
-                  <span style="font-weight:700; color:#6366f1;">선물 숏스퀴즈</span>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">키트루다SC 마일스톤</div>
-                </td>
-                <td>
-                  <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
-                </td>
-              </tr>
-
-              <!-- Row 3: 한화에어로스페이스 -->
-              <tr onclick="openStockDetail('012450')" data-category="BREAKOUT">
-                <td><input type="checkbox"></td>
-                <td>
-                  <div class="stock-cell">
-                    <div class="stock-thumb-box">🚀</div>
-                    <div class="stock-title-wrap">
-                      <span class="stock-name-text">한화에어로스페이스</span>
-                      <span class="stock-subMeta">K-방산 지상무기 & 항공우주</span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div style="font-weight:700; color:var(--text-main);">012450</div>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">K9 자주포 · 루마니아 수주</div>
-                </td>
-                <td>
-                  <div style="font-weight:800; color:var(--text-main);">350,000원</div>
-                  <div style="font-size:0.72rem; color:var(--text-muted);">신고가 돌파자리</div>
-                </td>
-                <td>
-                  <div style="font-weight:800; color:var(--color-green);">390,000원</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">+11.43%</div>
-                </td>
-                <td>
-                  <div style="font-weight:700; color:var(--color-red);">335,000원</div>
-                  <div style="font-size:0.72rem; color:var(--color-red);">-4.28%</div>
-                </td>
-                <td>
-                  <div style="font-weight:700; color:var(--text-main);">외인 4일 연속 순매수</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">주식선물 +340억 유입</div>
-                </td>
-                <td>
-                  <span style="font-weight:700; color:#6366f1;">콜옵션 매수 집중</span>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">IV 프리미엄 확대형</div>
+                  <span style="font-weight:700; color:#6366f1;">코스닥150 선물 숏스퀴즈</span>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">공매도 대규모 환매수 랠리</div>
                 </td>
                 <td>
                   <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
                 </td>
               </tr>
-
-              <!-- Row 4: 대한전선 -->
-              <tr onclick="openStockDetail('001440')" data-category="PULLBACK">
+              <tr onclick="openStockDetail('229640')" data-category="PULLBACK">
                 <td><input type="checkbox"></td>
                 <td>
                   <div class="stock-cell">
                     <div class="stock-thumb-box">⚡</div>
                     <div class="stock-title-wrap">
-                      <span class="stock-name-text">대한전선</span>
-                      <span class="stock-subMeta">AI 전력망 525kV 초고압망</span>
+                      <span class="stock-name-text">LS에코에너지</span>
+                      <span class="stock-sub-meta">AI 전력인프라 & 원전 SMR</span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--text-main);">001440</div>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">북미 변전소 수주 최고치</div>
+                  <div style="font-weight:700; color:var(--text-main);">229640</div>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">빅테크 전력망 쇼티지 수혜</div>
                 </td>
                 <td>
-                  <div style="font-weight:800; color:var(--text-main);">12,800원</div>
-                  <div style="font-size:0.72rem; color:var(--text-muted);">5일선 눌림목</div>
+                  <div style="font-weight:800; color:var(--text-main);">34,160원</div>
+                  <div style="font-size:0.72rem; color:var(--text-muted);">눌림목 타점</div>
                 </td>
                 <td>
-                  <div style="font-weight:800; color:var(--color-green);">14,500원</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">+13.28%</div>
+                  <div style="font-weight:800; color:var(--color-green);">38,470원</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">+12.6%</div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--color-red);">12,200원</div>
-                  <div style="font-size:0.72rem; color:var(--color-red);">-4.68%</div>
+                  <div style="font-weight:700; color:var(--color-red);">33,190원</div>
+                  <div style="font-size:0.72rem; color:var(--color-red);">-2.8%</div>
                 </td>
                 <td>
-                  <div style="font-weight:700; color:var(--text-main);">외인·기관 +182억</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">거래대금 1,800억 돌파</div>
+                  <div style="font-weight:700; color:var(--text-main);">연기금·투신 동반 순매수</div>
+                  <div style="font-size:0.72rem; color:var(--color-green);">거래대금 1,500억 돌파</div>
                 </td>
                 <td>
-                  <span style="font-weight:700; color:#6366f1;">유동성 모멘텀 1위</span>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">전력망 쇼티지 가속</div>
+                  <span style="font-weight:700; color:#6366f1;">파생 롱 포지션 확대</span>
+                  <div style="font-size:0.72rem; color:var(--text-dim);">초고압 변압기/케이블 완판</div>
                 </td>
                 <td>
                   <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
-                </td>
-              </tr>
-
-              <!-- Row 5: 두산에너빌리티 -->
-              <tr onclick="openStockDetail('034020')" data-category="PULLBACK">
-                <td><input type="checkbox"></td>
-                <td>
-                  <div class="stock-cell">
-                    <div class="stock-thumb-box">⚛️</div>
-                    <div class="stock-title-wrap">
-                      <span class="stock-name-text">두산에너빌리티</span>
-                      <span class="stock-subMeta">체코 원전 & 빅테크 SMR 파트너</span>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <div style="font-weight:700; color:var(--text-main);">034020</div>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">아마존·구글 SMR 투자</div>
-                </td>
-                <td>
-                  <div style="font-weight:800; color:var(--text-main);">21,500원</div>
-                  <div style="font-size:0.72rem; color:var(--text-muted);">바닥 탈피 첫양봉</div>
-                </td>
-                <td>
-                  <div style="font-weight:800; color:var(--color-green);">24,500원</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">+13.95%</div>
-                </td>
-                <td>
-                  <div style="font-weight:700; color:var(--color-red);">20,400원</div>
-                  <div style="font-size:0.72rem; color:var(--color-red);">-5.12%</div>
-                </td>
-                <td>
-                  <div style="font-weight:700; color:var(--text-main);">외인 선물 순매수 전환</div>
-                  <div style="font-size:0.72rem; color:var(--color-green);">기관 바닥 매집 유입</div>
-                </td>
-                <td>
-                  <span style="font-weight:700; color:#6366f1;">선물 롱 포지션 급증</span>
-                  <div style="font-size:0.72rem; color:var(--text-dim);">원전 수주 본계약 임박</div>
-                </td>
-                <td>
-                  <span class="status-badge out-stock"><span class="status-dot"></span>돌파 대기</span>
                 </td>
               </tr>
             </tbody>
@@ -1205,7 +1353,328 @@
         </div>
       </div>
 
-    </div>
+    
+      <!-- Mobile Stock Cards View (Smartphones < 768px) -->
+      <div class="mobile-cards-view" id="mobileLeadersContainer">
+        <div class="m-stock-card" onclick="openStockDetail('087010')" data-category="BREAKOUT">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">🧬</div>
+              <div>
+                <div class="m-stock-name">펩트론 <span class="m-stock-code">087010</span></div>
+                <div class="m-stock-sector">바이오 플랫폼 / 숏커버링</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">81,180원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 코스닥150 선물 숏스퀴즈</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('064350')" data-category="BREAKOUT">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">🚀</div>
+              <div>
+                <div class="m-stock-name">현대로템 <span class="m-stock-code">064350</span></div>
+                <div class="m-stock-sector">K-방산 & 우주항공 / 수출</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">61,880원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 개별주식선물 외인 매집</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('000250')" data-category="BREAKOUT">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">🧬</div>
+              <div>
+                <div class="m-stock-name">삼천당제약 <span class="m-stock-code">000250</span></div>
+                <div class="m-stock-sector">바이오 플랫폼 / 숏커버링</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">146,520원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 코스닥150 선물 숏스퀴즈</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('196170')" data-category="BREAKOUT">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">🧬</div>
+              <div>
+                <div class="m-stock-name">알테오젠 <span class="m-stock-code">196170</span></div>
+                <div class="m-stock-sector">바이오 플랫폼 / 숏커버링</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">376,200원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 코스닥150 선물 숏스퀴즈</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('229640')" data-category="PULLBACK">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">⚡</div>
+              <div>
+                <div class="m-stock-name">LS에코에너지 <span class="m-stock-code">229640</span></div>
+                <div class="m-stock-sector">AI 전력인프라 & 원전 SMR</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">34,160원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 파생 롱 포지션 확대</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+      </div>
+              <div>
+                <div class="m-stock-name">펩트론 <span class="m-stock-code">087010</span></div>
+                <div class="m-stock-sector">바이오 플랫폼 / 숏커버링</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">81,180원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 코스닥150 선물 숏스퀴즈</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('064350')" data-category="BREAKOUT">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">🚀</div>
+              <div>
+                <div class="m-stock-name">현대로템 <span class="m-stock-code">064350</span></div>
+                <div class="m-stock-sector">K-방산 & 우주항공 / 수출</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">61,880원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 개별주식선물 외인 매집</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('000250')" data-category="BREAKOUT">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">🧬</div>
+              <div>
+                <div class="m-stock-name">삼천당제약 <span class="m-stock-code">000250</span></div>
+                <div class="m-stock-sector">바이오 플랫폼 / 숏커버링</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">146,520원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 코스닥150 선물 숏스퀴즈</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('196170')" data-category="BREAKOUT">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">🧬</div>
+              <div>
+                <div class="m-stock-name">알테오젠 <span class="m-stock-code">196170</span></div>
+                <div class="m-stock-sector">바이오 플랫폼 / 숏커버링</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">376,200원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 코스닥150 선물 숏스퀴즈</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+        <div class="m-stock-card" onclick="openStockDetail('229640')" data-category="PULLBACK">
+          <div class="m-card-header">
+            <div class="m-stock-info">
+              <div class="m-stock-thumb">⚡</div>
+              <div>
+                <div class="m-stock-name">LS에코에너지 <span class="m-stock-code">229640</span></div>
+                <div class="m-stock-sector">AI 전력인프라 & 원전 SMR</div>
+              </div>
+            </div>
+            <span class="status-badge published"><span class="status-dot"></span>매수 유효</span>
+          </div>
+
+          <div class="m-card-metrics-grid">
+            <div class="m-metric-box">
+              <span class="m-metric-label">현재 진입가</span>
+              <span class="m-metric-val">34,160원</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">주간 목표가</span>
+              <span class="m-metric-val green">+12.6%</span>
+            </div>
+            <div class="m-metric-box">
+              <span class="m-metric-label">손절선</span>
+              <span class="m-metric-val red">-2.8%</span>
+            </div>
+          </div>
+
+          <div class="m-card-footer">
+            <span class="m-options-tag">🎯 파생 롱 포지션 확대</span>
+            <span class="m-tap-guide">상세 차트 ↗</span>
+          </div>
+        </div>
+      </div>
+</div>
 
     <!-- ========================================================
        TAB 2: 한 장 마감 시황 (ALPHA ENGINE STYLE - MATCHING IMAGE 1)
@@ -1359,11 +1828,7 @@
             <strong>763.88</strong>
             <span style="color:#ef4444; font-weight:700;">-0.84%</span>
           </div>
-          <div class="alpha-idx-pill">
-            <span>선물200</span>
-            <strong>878.05</strong>
-            <span style="color:#ef4444; font-weight:700;">-0.42%</span>
-          </div>
+          
           <div class="alpha-idx-pill">
             <span>원/달러</span>
             <strong>1,354.20원</strong>
@@ -1428,7 +1893,7 @@
         <div class="alpha-feedback-strip">
           <div style="flex:1; min-width:260px;">
             <strong style="color:var(--text-main);">🎯 알파엔진 아침 판단 ▷ 마감 복기 결과</strong><br>
-            • <strong>아침 판단:</strong> ASML 쇼크 반도체 갭하락 시초가 추격매수 절대 금지, 1,117.5pt 콜벽 저항 경계.<br>
+            • <strong>아침 판단:</strong> ASML 쇼크 반도체 갭하락 시초가 추격매수 절대 금지, 2,610.0pt 콜벽 저항 경계.<br>
             • <strong>마감 복기:</strong> 반도체 대형주 조정 적중, 전력망·FLNG 수급 집중으로 계좌 방어 성공. 뇌동매매 0회 준수.
           </div>
           <span class="alpha-match-tag">✅ 원칙 100% 적중</span>
@@ -1446,7 +1911,7 @@
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
           <div>
             <h2 style="font-size:1.2rem; font-weight:800; color:var(--text-main); letter-spacing:-0.01em;">
-              🎯 코스피200 파생 지지·저항 레벨 (Derivatives Ladder)
+              🎯 코스피 지수 핵심 지지·저항 레벨 (KOSPI Index Key Levels)
             </h2>
             <p style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">
               GEX · 위클리 옵션 콜벽 · 풋옵션 방어벽 미결제약정 정밀 사다리
@@ -1467,8 +1932,8 @@
           <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 16px; border:1px solid var(--border-base); background:var(--bg-card); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:14px;">
               <span style="font-size:0.72rem; padding:2px 8px; border-radius:4px; background:var(--bg-card-sub); color:var(--text-muted); font-weight:700;">저항 4</span>
-              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">1,250.0</span>
-              <span style="font-size:0.84rem; color:var(--text-body);">월물 콜벽 최대 (+38.39억, OI 6,872)</span>
+              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">2,660.0</span>
+              <span style="font-size:0.84rem; color:var(--text-body);">코스피 월물 콜벽 최대 저항선 (+38.4억 집중)</span>
             </div>
             <span style="font-size:0.76rem; color:var(--text-dim); font-weight:600;">월물 저항</span>
           </div>
@@ -1476,8 +1941,8 @@
           <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 16px; border:1px solid var(--border-base); background:var(--bg-card); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:14px;">
               <span style="font-size:0.72rem; padding:2px 8px; border-radius:4px; background:var(--bg-card-sub); color:var(--text-muted); font-weight:700;">저항 3</span>
-              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">1,150.0</span>
-              <span style="font-size:0.84rem; color:var(--text-body);"><strong>GEX+ELW 중첩:</strong> 월물콜벽(+20.56억) + 콜델타 46.9% 집중</span>
+              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">2,630.0</span>
+              <span style="font-size:0.84rem; color:var(--text-body);"><strong>GEX 중첩 저항선:</strong> 코스피 2,630pt 콜델타 46.9% 집중</span>
             </div>
             <span style="font-size:0.76rem; color:var(--text-dim); font-weight:600;">최우선 저항</span>
           </div>
@@ -1485,8 +1950,8 @@
           <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border:1px solid #d1d5db; background:var(--bg-card-sub); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:14px;">
               <span style="font-size:0.72rem; padding:2px 8px; border-radius:4px; background:#111827; color:#fff; font-weight:700;">저항 2</span>
-              <span style="font-weight:900; font-size:1.05rem; color:var(--text-main); width:75px;">1,117.5</span>
-              <span style="font-size:0.86rem; font-weight:700; color:var(--text-main);">월위클리M 콜벽 최대 (+163.93억, OI 4,897, 핀자석)</span>
+              <span style="font-weight:900; font-size:1.05rem; color:var(--text-main); width:75px;">2,610.0</span>
+              <span style="font-size:0.86rem; font-weight:700; color:var(--text-main);">단기 상투 주의선 (2,610pt 핀자석 저항)</span>
             </div>
             <span style="font-size:0.76rem; color:#ef4444; font-weight:800;">상투 주의선</span>
           </div>
@@ -1495,9 +1960,9 @@
           <div style="background:var(--text-main); color:var(--bg-card); padding:14px 20px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin:10px 0; box-shadow:var(--shadow-sm);">
             <div style="display:flex; align-items:center; gap:10px;">
               <span style="font-size:0.75rem; background:rgba(255,255,255,0.2); padding:3px 8px; border-radius:4px; font-weight:700;">현재가</span>
-              <span style="font-weight:700; font-size:0.88rem;">코스피200 선물 기준선 (최근 4거래일 1,100~1,115 박스)</span>
+              <span style="font-weight:700; font-size:0.88rem;">코스피 종합지수 기준선 (2,580~2,620 박스권 공방)</span>
             </div>
-            <span style="font-size:1.35rem; font-weight:900; font-family:'Inter', sans-serif;">1,112.13 pt</span>
+            <span style="font-size:1.35rem; font-weight:900; font-family:'Inter', sans-serif;">2,596.91 pt</span>
           </div>
 
           <!-- SUPPORT GROUP -->
@@ -1508,8 +1973,8 @@
           <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 16px; border:1px solid var(--border-base); background:var(--bg-card); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:14px;">
               <span style="font-size:0.72rem; padding:2px 8px; border-radius:4px; background:var(--bg-card-sub); color:var(--text-muted); font-weight:700;">지지 1</span>
-              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">1,091.3</span>
-              <span style="font-size:0.84rem; color:var(--text-body);">차트 다중터치 지지 (4회 확인)</span>
+              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">2,580.0</span>
+              <span style="font-size:0.84rem; color:var(--text-body);">차트 4회 다중터치 1차 단기 지지선</span>
             </div>
             <span style="font-size:0.76rem; color:var(--text-dim); font-weight:600;">1차 지지</span>
           </div>
@@ -1517,8 +1982,8 @@
           <div style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border:1px solid #10b981; background:rgba(16,185,129,0.04); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:14px;">
               <span style="font-size:0.72rem; padding:2px 8px; border-radius:4px; background:#10b981; color:#fff; font-weight:700;">핵심 타점</span>
-              <span style="font-weight:900; font-size:1.05rem; color:#059669; width:75px;">1,072.7</span>
-              <span style="font-size:0.86rem; font-weight:800; color:var(--text-main);">차트 다중터치 6회 최다 지지 + 월물 MaxPain (골든존)</span>
+              <span style="font-weight:900; font-size:1.05rem; color:#059669; width:75px;">2,560.0</span>
+              <span style="font-size:0.86rem; font-weight:800; color:var(--text-main);">차트 6회 최다 지지 + MaxPain 골든존 (손익비 1:3 롱)</span>
             </div>
             <span style="font-size:0.76rem; color:#059669; font-weight:800;">손익비 1:3 롱</span>
           </div>
@@ -1526,8 +1991,8 @@
           <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 16px; border:1px solid var(--border-base); background:var(--bg-card); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:14px;">
               <span style="font-size:0.72rem; padding:2px 8px; border-radius:4px; background:var(--bg-card-sub); color:var(--text-muted); font-weight:700;">감마 플립</span>
-              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">1,046.1</span>
-              <span style="font-size:0.84rem; color:var(--text-body);">월위클리M 감마 Flip (ELW 풋집중 교차검증)</span>
+              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">2,540.0</span>
+              <span style="font-size:0.84rem; color:var(--text-body);">코스피 중기 추세 생명선 (이탈 시 현금 비중 확대)</span>
             </div>
             <span style="font-size:0.76rem; color:var(--text-dim); font-weight:600;">핵심 이탈선</span>
           </div>
@@ -1535,8 +2000,8 @@
           <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 16px; border:1px solid var(--border-base); background:var(--bg-card); border-radius:8px;">
             <div style="display:flex; align-items:center; gap:14px;">
               <span style="font-size:0.72rem; padding:2px 8px; border-radius:4px; background:var(--bg-card-sub); color:var(--text-muted); font-weight:700;">위험 방어</span>
-              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">1,006.7</span>
-              <span style="font-size:0.84rem; color:var(--text-body);">월물 감마 Flip (최후의 안전마진)</span>
+              <span style="font-weight:800; font-size:1.02rem; color:var(--text-main); width:75px;">2,500.0</span>
+              <span style="font-size:0.84rem; color:var(--text-body);">심리적 마지노선 2,500pt (이탈 시 전량 손절)</span>
             </div>
             <span style="font-size:0.76rem; color:#ef4444; font-weight:800;">전량 손절선</span>
           </div>
@@ -1759,7 +2224,184 @@
     const STORAGE_KEY = 'stockventura_trades_v2';
     const INITIAL_LOSS = -138800000;
 
+    
+    /* ========================================================
+       CLIENT-SIDE DYNAMIC DATA SYNC FROM daily_market_data.json
+       Ensures stocks are automatically updated without manual entry!
+       ======================================================== */
+    async function syncLiveData() {
+      try {
+        const res = await fetch('daily_market_data.json?v=' + Date.now());
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.weekly_10pct_momentum_leaders && data.weekly_10pct_momentum_leaders.length > 0) {
+          renderDynamicLeadersTable(data.weekly_10pct_momentum_leaders);
+        }
+      } catch(e) {
+        console.log("Offline mode or local preview");
+      }
+    }
+
+    function renderDynamicLeadersTable(leaders) {
+      const tbody = document.getElementById('leadersTableBody');
+      const mobileContainer = document.getElementById('mobileLeadersContainer');
+      if (!leaders || leaders.length === 0) return;
+
+      const emojis = ['💾', '🧬', '🚀', '⚡', '🤖', '🔋', '🚗', '🚢', '💊', '🏭'];
+      let rowsHtml = '';
+      let cardsHtml = '';
+
+      leaders.forEach((item, idx) => {
+        const emoji = item.emoji || emojis[idx % emojis.length];
+        const category = item.category || (idx === 0 ? 'GAMMA' : (idx === 1 ? 'BREAKOUT' : 'PULLBACK'));
+        const gainPct = item.weekly_target_rate || '+12.6%';
+        const stopPct = item.stop_loss_pct || '-2.8%';
+        const statusClass = item.status_class || 'published';
+        const statusText = item.status_text || '매수 유효';
+
+        // 1. Desktop Table Row
+        rowsHtml += `
+          <tr onclick="openStockDetail('${item.code}')" data-category="${category}">
+            <td><input type="checkbox"></td>
+            <td>
+              <div class="stock-cell">
+                <div class="stock-thumb-box">${emoji}</div>
+                <div class="stock-title-wrap">
+                  <span class="stock-name-text">${item.name}</span>
+                  <span class="stock-sub-meta">${item.sector || '주도주'}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div style="font-weight:700; color:var(--text-main);">${item.code}</div>
+              <div style="font-size:0.72rem; color:var(--text-dim);">${item.theme_tag || '주간 +10% 타겟'}</div>
+            </td>
+            <td>
+              <div style="font-weight:800; color:var(--text-main);">${Number(item.target_entry).toLocaleString()}원</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">눌림목 타점</div>
+            </td>
+            <td>
+              <div style="font-weight:800; color:var(--color-green);">${Number(item.target_price).toLocaleString()}원</div>
+              <div style="font-size:0.72rem; color:var(--color-green);">${gainPct}</div>
+            </td>
+            <td>
+              <div style="font-weight:700; color:var(--color-red);">${Number(item.stop_loss).toLocaleString()}원</div>
+              <div style="font-size:0.72rem; color:var(--color-red);">${stopPct}</div>
+            </td>
+            <td>
+              <div style="font-weight:700; color:var(--text-main);">${item.supply_strength || '외인·기관 쌍끌이'}</div>
+              <div style="font-size:0.72rem; color:var(--color-green);">${item.flow_text || '거래대금 상위'}</div>
+            </td>
+            <td>
+              <span style="font-weight:700; color:#6366f1;">${item.options_structure || '감마 스퀴즈 98pt'}</span>
+              <div style="font-size:0.72rem; color:var(--text-dim);">${item.options_note || '풋옵션 방어벽 확인'}</div>
+            </td>
+            <td>
+              <span class="status-badge ${statusClass}"><span class="status-dot"></span>${statusText}</span>
+            </td>
+          </tr>
+        `;
+
+        // 2. Mobile Native Card
+        cardsHtml += `
+          <div class="m-stock-card" onclick="openStockDetail('${item.code}')" data-category="${category}">
+            <div class="m-card-header">
+              <div class="m-stock-info">
+                <div class="m-stock-thumb">${emoji}</div>
+                <div>
+                  <div class="m-stock-name">${item.name} <span class="m-stock-code">${item.code}</span></div>
+                  <div class="m-stock-sector">${item.sector || '주도주'}</div>
+                </div>
+              </div>
+              <span class="status-badge ${statusClass}"><span class="status-dot"></span>${statusText}</span>
+            </div>
+
+            <div class="m-card-metrics-grid">
+              <div class="m-metric-box">
+                <span class="m-metric-label">현재 진입가</span>
+                <span class="m-metric-val">${Number(item.target_entry).toLocaleString()}원</span>
+              </div>
+              <div class="m-metric-box">
+                <span class="m-metric-label">주간 목표가</span>
+                <span class="m-metric-val green">${gainPct}</span>
+              </div>
+              <div class="m-metric-box">
+                <span class="m-metric-label">손절선</span>
+                <span class="m-metric-val red">${stopPct}</span>
+              </div>
+            </div>
+
+            <div class="m-card-footer">
+              <span class="m-options-tag">🎯 ${item.options_structure || '수급 집중'}</span>
+              <span class="m-tap-guide">상세 차트 ↗</span>
+            </div>
+          </div>
+        `;
+      });
+
+      if (tbody) tbody.innerHTML = rowsHtml;
+      if (mobileContainer) mobileContainer.innerHTML = cardsHtml;
+      return;
+      
+      const emojis = ['💾', '🧬', '🚀', '⚡', '🤖', '🔋', '🚗', '🚢', '💊', '🏭'];
+      let rowsHtml = '';
+      
+      leaders.forEach((item, idx) => {
+        const emoji = emojis[idx % emojis.length];
+        const category = item.category || (idx === 0 ? 'GAMMA' : (idx === 1 ? 'BREAKOUT' : 'PULLBACK'));
+        const gainPct = item.weekly_target_rate || '+11.5%';
+        const stopPct = item.stop_loss_pct || '-3.8%';
+        const statusClass = item.status_class || 'published';
+        const statusText = item.status_text || '매수 유효';
+
+        rowsHtml += `
+          <tr onclick="openStockDetail('${item.code}')" data-category="${category}">
+            <td><input type="checkbox"></td>
+            <td>
+              <div class="stock-cell">
+                <div class="stock-thumb-box">${emoji}</div>
+                <div class="stock-title-wrap">
+                  <span class="stock-name-text">${item.name}</span>
+                  <span class="stock-sub-meta">${item.sector || '주도주'}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div style="font-weight:700; color:var(--text-main);">${item.code}</div>
+              <div style="font-size:0.72rem; color:var(--text-dim);">${item.theme_tag || '주간 +10% 타겟'}</div>
+            </td>
+            <td>
+              <div style="font-weight:800; color:var(--text-main);">${Number(item.target_entry).toLocaleString()}원</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">눌림목 타점</div>
+            </td>
+            <td>
+              <div style="font-weight:800; color:var(--color-green);">${Number(item.target_price).toLocaleString()}원</div>
+              <div style="font-size:0.72rem; color:var(--color-green);">${gainPct}</div>
+            </td>
+            <td>
+              <div style="font-weight:700; color:var(--color-red);">${Number(item.stop_loss).toLocaleString()}원</div>
+              <div style="font-size:0.72rem; color:var(--color-red);">${stopPct}</div>
+            </td>
+            <td>
+              <div style="font-weight:700; color:var(--text-main);">${item.supply_strength || '외인·기관 쌍끌이'}</div>
+              <div style="font-size:0.72rem; color:var(--color-green);">${item.flow_text || '거래대금 상위'}</div>
+            </td>
+            <td>
+              <span style="font-weight:700; color:#6366f1;">${item.options_structure || '감마 스퀴즈 98pt'}</span>
+              <div style="font-size:0.72rem; color:var(--text-dim);">${item.options_note || '풋옵션 방어벽 확인'}</div>
+            </td>
+            <td>
+              <span class="status-badge ${statusClass}"><span class="status-dot"></span>${statusText}</span>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = rowsHtml;
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
+      syncLiveData();
       const dateInput = document.getElementById('tradeDate');
       if (dateInput) {
         dateInput.value = new Date().toISOString().split('T')[0];
