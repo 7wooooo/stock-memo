@@ -188,26 +188,13 @@ def screen_weekly_10pct_leaders():
 
     # Dynamic seed pool if scraped list is empty (e.g. offline/network blocked)
     if len(candidates) < 5:
-        day_seed = datetime.datetime.now().day
-        full_pool = [
-            {"name": "SK하이닉스", "code": "000660", "price": 182000, "rate": 1.85, "trade_val": 450000},
-            {"name": "현대로템", "code": "064350", "price": 62500, "rate": 5.20, "trade_val": 240000},
-            {"name": "리가켐바이오", "code": "141080", "price": 128000, "rate": 4.10, "trade_val": 160000},
-            {"name": "대한전선", "code": "001440", "price": 12800, "rate": 4.50, "trade_val": 180000},
-            {"name": "삼천당제약", "code": "000250", "price": 148000, "rate": 6.80, "trade_val": 190000},
-            {"name": "알테오젠", "code": "196170", "price": 380000, "rate": 3.40, "trade_val": 380000},
-            {"name": "한화에어로스페이스", "code": "012450", "price": 350000, "rate": 2.15, "trade_val": 290000},
-            {"name": "두산에너빌리티", "code": "034020", "price": 21500, "rate": 2.80, "trade_val": 210000},
-            {"name": "HD현대일렉트릭", "code": "267260", "price": 320000, "rate": 3.10, "trade_val": 150000},
-            {"name": "한미반도체", "code": "042700", "price": 115000, "rate": 2.40, "trade_val": 220000},
-            {"name": "테크윙", "code": "089030", "price": 43500, "rate": 4.90, "trade_val": 140000},
-            {"name": "효성중공업", "code": "298040", "price": 415000, "rate": 3.80, "trade_val": 130000},
-            {"name": "펩트론", "code": "087010", "price": 82000, "rate": 7.50, "trade_val": 170000},
-            {"name": "LS에코에너지", "code": "229640", "price": 34500, "rate": 5.60, "trade_val": 120000},
-            {"name": "LIG넥스원", "code": "079550", "price": 240000, "rate": 2.90, "trade_val": 110000}
+        candidates = [
+            {"name": "현대로템", "code": "064350", "price": 100500, "rate": 3.72, "trade_val": 450000},
+            {"name": "알테오젠", "code": "196170", "price": 239500, "rate": 2.35, "trade_val": 420000},
+            {"name": "한화에어로스페이스", "code": "012450", "price": 895000, "rate": 0.78, "trade_val": 380000},
+            {"name": "삼천당제약", "code": "000250", "price": 210000, "rate": 2.68, "trade_val": 310000},
+            {"name": "LS에코에너지", "code": "229640", "price": 58300, "rate": 2.10, "trade_val": 280000}
         ]
-        shift = day_seed % len(full_pool)
-        candidates = full_pool[shift:] + full_pool[:shift]
 
     for item in candidates:
         name = item["name"]
@@ -405,13 +392,13 @@ def main():
             "nasdaq_fut": nasdaq_fut
         },
         "derivatives_levels": {
-            "monthly_call_wall_max": 1250.0,
-            "gex_primary_resistance": 1150.0,
-            "weekly_call_wall_magnet": 1117.5,
-            "current_price": 1112.13,
-            "golden_support_multitouch": 1072.7,
-            "weekly_gamma_flip": 1046.1,
-            "monthly_gamma_flip": 1006.7
+            "monthly_call_wall_max": 2660.0,
+            "gex_primary_resistance": 2630.0,
+            "weekly_call_wall_magnet": 2610.0,
+            "current_price": 2596.91,
+            "golden_support_multitouch": 2560.0,
+            "weekly_gamma_flip": 2540.0,
+            "monthly_gamma_flip": 2500.0
         },
         "weekly_10pct_momentum_leaders": weekly_leaders
     }
